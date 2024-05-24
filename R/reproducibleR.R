@@ -6,6 +6,7 @@
 #'
 reproducibleR <- function(options) {
   path <- dirname(knitr::current_input(dir=TRUE))
+  this_filename <- knitr::current_input()
   # initialize empty output vector
   output = c()
   # error counter set to zero
@@ -28,7 +29,7 @@ reproducibleR <- function(options) {
   # set filetype
   filetype = "json"
   # get file with repro values
-  filename <- paste0(path,"/",".repro_",label,".",filetype,collapse="")
+  filename <- paste0(path,"/",".repro_",this_filename,"_",label,".",filetype,collapse="")
   cat("Filename: ", filename,"\n")
   # does the file exist?
   if (!file.exists(filename)) {
@@ -90,7 +91,7 @@ reproducibleR <- function(options) {
 
   if (!is.null(options$report))
     if (isTRUE(options$report)) {
-      this_filename <- knitr::current_input()
+
       if (is.null(this_filename)) this_filename <- ""
       filename <- paste0("reproducibility_report_",this_filename,"-",label,".txt")
       con <- file(filename)
