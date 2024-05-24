@@ -1,0 +1,17 @@
+{
+  "type": "list",
+  "attributes": {
+    "names": {
+      "type": "character",
+      "attributes": {},
+      "value": ["numbers"]
+    }
+  },
+  "value": [
+    {
+      "type": "double",
+      "attributes": {},
+      "value": [0.874094, -1.6943659, -0.8961591, 1.00840087, 1.61713635]
+    }
+  ]
+}

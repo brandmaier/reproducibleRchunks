@@ -1,0 +1,17 @@
+{
+  "type": "list",
+  "attributes": {
+    "names": {
+      "type": "character",
+      "attributes": {},
+      "value": ["p"]
+    }
+  },
+  "value": [
+    {
+      "type": "double",
+      "attributes": {},
+      "value": [0.07098765]
+    }
+  ]
+}

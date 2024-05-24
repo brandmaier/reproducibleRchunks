@@ -1,0 +1,44 @@
+---
+title: "Test"
+output:
+  html_document: default
+  pdf_document: default
+date: "2024-05-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library("reproducibleRchunks")
+
+knitr::knit_engines$set(reproducibleR = reproducibleR)
+
+```
+
+## Reproducible Chunks
+
+Define some numbers. Should be reproducible. Test reproducibility by using `reproducibleR` code chunk.
+
+```{reproducibleR somenumbers}
+xyz <- 1:10
+```
+
+## Mixing standard and reproducible chunks
+
+We can run standard R code chunks without reproducibility chunks:
+
+```{r ttest, echo=TRUE}
+test_result <- t.test(c(1,2,3,4),c(3,4,5,6))
+```
+
+and then subject specific results to a reproducibility check in a reproducibleR chunk:
+
+```{reproducibleR}
+p <- test_result$p.value
+```
+
+# Break reproducibility
+
+```{reproducibleR broken}
+numbers <- rnorm(5)
+```
