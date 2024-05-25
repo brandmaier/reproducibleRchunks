@@ -27,9 +27,8 @@ reproducibleR <- function(options) {
   # remove those that existed already (from previous chunks)
   current_vars <- current_vars[sapply(current_vars,function(x){!x %in% existing_var_names})]
   # set filetype
-  filetype = "json"
   # get file with repro values
-  filename <- paste0(path,"/",".repro_",this_filename,"_",label,".",filetype,collapse="")
+  filename <- paste0(path,"/",".repro_",this_filename,"_",label,".",default_filetype(),collapse="")
   cat("Filename: ", filename,"\n")
   # does the file exist?
   if (!file.exists(filename)) {
@@ -51,8 +50,8 @@ reproducibleR <- function(options) {
       original_value <- get(var, envir = repro_env)
       current_value <- get(var, envir = current_env)
 
-      if (is.numeric(current_value)) current_value <- round(current_value,8)
-      if (is.numeric(original_value)) original_value <- round(original_value,8)
+      if (is.numeric(current_value)) current_value <- round(current_value,default_digits())
+      if (is.numeric(original_value)) original_value <- round(original_value,default_digits())
 
       if (base::identical(original_value, current_value)) {
         result <- paste0("- ✅  ",var, ": REPRODUCTION SUCCESSFUL")
