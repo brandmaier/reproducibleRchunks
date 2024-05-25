@@ -10,6 +10,6 @@ load_repro_data <- function(filename, envir=globalenv(),filetype=c("json","rda")
       assign(x=var_name, value=json_lst[[i]], envir=envir)
     }
   } else {
-    load(file=filename, envir=repro_env)
+    load(file=filename, envir=envir)
   }
 }
