@@ -11,6 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library("reproducibleRchunks")
 
+options(reproducibleRchunks.hashing = TRUE)
+
 knitr::knit_engines$set(reproducibleR = reproducibleR)
 
 ```
