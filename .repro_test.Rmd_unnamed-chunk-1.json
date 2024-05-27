@@ -4,14 +4,70 @@
     "names": {
       "type": "character",
       "attributes": {},
-      "value": ["p"]
+      "value": ["metadata", "data"]
     }
   },
   "value": [
     {
-      "type": "double",
-      "attributes": {},
-      "value": [0.07098765]
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": ["hashing", "hashing_algorithm", "hashing_package", "hashing_package_version"]
+        }
+      },
+      "value": [
+        {
+          "type": "logical",
+          "attributes": {},
+          "value": [true]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["sha256"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["digest"]
+        },
+        {
+          "type": "list",
+          "attributes": {
+            "class": {
+              "type": "character",
+              "attributes": {},
+              "value": ["package_version", "numeric_version"]
+            }
+          },
+          "value": [
+            {
+              "type": "integer",
+              "attributes": {},
+              "value": [0, 6, 31]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": ["p"]
+        }
+      },
+      "value": [
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["ca9892ed3251fd3fdefa7ec7ad89d9a024b95fd7b0c38faecbb465372076f8ac"]
+        }
+      ]
     }
   ]
 }

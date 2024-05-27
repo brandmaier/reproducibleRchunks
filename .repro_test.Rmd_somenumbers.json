@@ -4,14 +4,70 @@
     "names": {
       "type": "character",
       "attributes": {},
-      "value": ["xyz"]
+      "value": ["metadata", "data"]
     }
   },
   "value": [
     {
-      "type": "integer",
-      "attributes": {},
-      "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": ["hashing", "hashing_algorithm", "hashing_package", "hashing_package_version"]
+        }
+      },
+      "value": [
+        {
+          "type": "logical",
+          "attributes": {},
+          "value": [true]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["sha256"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["digest"]
+        },
+        {
+          "type": "list",
+          "attributes": {
+            "class": {
+              "type": "character",
+              "attributes": {},
+              "value": ["package_version", "numeric_version"]
+            }
+          },
+          "value": [
+            {
+              "type": "integer",
+              "attributes": {},
+              "value": [0, 6, 31]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": ["xyz"]
+        }
+      },
+      "value": [
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["7e5e0ed60b8f8dbcc35d554d96e2753e4f7b51e08a7e8eb4ef68aa26c258216d"]
+        }
+      ]
     }
   ]
 }

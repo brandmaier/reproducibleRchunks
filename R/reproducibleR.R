@@ -50,6 +50,10 @@ reproducibleR <- function(options) {
       original_value <- get(var, envir = repro_env)
       current_value <- get(var, envir = current_env)
 
+      if (isTRUE(default_hashing())) {
+        current_value <- hash(current_value)
+      }
+
       if (is.numeric(current_value)) current_value <- round(current_value,default_digits())
       if (is.numeric(original_value)) original_value <- round(original_value,default_digits())
 
@@ -57,7 +61,12 @@ reproducibleR <- function(options) {
         result <- paste0("- ✅  ",var, ": REPRODUCTION SUCCESSFUL")
       } else {
         err_counter = err_counter + 1
-        errmsg <- "Objects are not identical."
+        if (isTRUE(default_hashing())) {
+          errmsg <- "Fingerprints are not identical."
+        } else {
+          errmsg <- "Objects are not identical."
+        }
+
         if (is.numeric(original_value) && is.numeric(current_value))         {
           if (length(original_value)==1 && length(current_value==1)) {
             errmsg <- paste0("Numbers are not identical: ",original_value," vs ", current_value, collapse="")
