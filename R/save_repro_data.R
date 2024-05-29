@@ -3,9 +3,22 @@ default_digits <- function()getOption("reproducibleRchunks.digits", 8)
 default_hashing <- function()getOption("reproducibleRchunks.hashing", FALSE)
 default_hashing_algorithm <- function()getOption("reproducibleRchunks.hashing_algorithm", "sha256")
 
-save_repro_data <- function(x, filename, filetype=default_filetype()) {
+#' @param {name} {description}
+#' @param filename Name (possible including full path) of the save file
+save_repro_data <- function(x,
+                            filename,
+                            filetype=default_filetype(),
+                            envir = NULL) {
   if (filetype=="json") {
-    named_list <- lapply(x, function(x){ get(x)})
+
+    exist_all <- all(lapply(x, function(x) { exists(x)} ))
+    if (!exist_all) stop("Some objects to be saved do not exist!")
+
+    if (is.null(envir))
+     named_list <- lapply(x, function(x){ get(x)})
+    else
+      named_list <- lapply(x, function(x){ get(x,envir=envir)})
+
     names(named_list) <- x
     if (isTRUE(default_hashing())) {
       named_list <- lapply(named_list, hash)
@@ -25,6 +38,8 @@ save_repro_data <- function(x, filename, filetype=default_filetype()) {
     close(con)
   } else if (filetype=="rda") {
     save(list=x, file = filename)
+  } else {
+    stop("Unknown filetype. Cannot save reproducibility data.")
   }
 }
 

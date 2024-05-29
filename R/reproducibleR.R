@@ -1,6 +1,10 @@
 #'
+#' @author Andreas M. Brandmaier
+#' @name reproducibleR
 #' This is the main RMarkdown chunk hook for processing
 #' the reproducibility tests
+#'
+#' @param options A list of chunk options passed from the knitr engine.
 #'
 #' @export
 #'
@@ -89,7 +93,6 @@ reproducibleR <- function(options) {
   num_errors_total = num_errors_total + err_counter
   assign(x="repror_error_counter",value = num_errors_total, envir=knitr::knit_global())
 
-  #cat(output)
   out <- paste0(output,sep="",collapse="\n")
   out <- paste0("## Reproduction Report\n",out,"\n\n",collapse="\n")
   code <- options$code
