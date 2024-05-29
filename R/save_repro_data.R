@@ -11,7 +11,7 @@ save_repro_data <- function(x,
                             envir = NULL) {
   if (filetype=="json") {
 
-    exist_all <- all(lapply(x, function(x) { exists(x)} ))
+    exist_all <- all(sapply(x, function(x) { exists(x)} ))
     if (!exist_all) stop("Some objects to be saved do not exist!")
 
     if (is.null(envir))
