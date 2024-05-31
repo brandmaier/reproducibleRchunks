@@ -1,6 +1,6 @@
 default_filetype <- function() getOption("reproducibleRchunks.filetype", "json")
 default_digits <- function() getOption("reproducibleRchunks.digits", 8)
-default_hashing <- function() getOption("reproducibleRchunks.hashing", FALSE)
+default_hashing <- function() getOption("reproducibleRchunks.hashing", TRUE)
 default_hashing_algorithm <- function() getOption("reproducibleRchunks.hashing_algorithm", "sha256")
 
 #' @title Storing reproducibility data
