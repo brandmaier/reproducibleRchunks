@@ -2,12 +2,17 @@
 % Please edit documentation in R/reproducibleR.R
 \name{reproducibleR}
 \alias{reproducibleR}
-\title{This is the main RMarkdown chunk hook for processing
-the reproducibility tests}
+\title{Knitr Hook}
 \usage{
 reproducibleR(options)
+}
+\arguments{
+\item{options}{A list of chunk options passed from the knitr engine.}
 }
 \description{
 This is the main RMarkdown chunk hook for processing
 the reproducibility tests
+}
+\author{
+Andreas M. Brandmaier
 }

@@ -1,7 +1,9 @@
+#' @title Knitr Hook
 #'
 #' @author Andreas M. Brandmaier
 #' @name reproducibleR
-#' This is the main RMarkdown chunk hook for processing
+#'
+#' @description This is the main RMarkdown chunk hook for processing
 #' the reproducibility tests
 #'
 #' @param options A list of chunk options passed from the knitr engine.
