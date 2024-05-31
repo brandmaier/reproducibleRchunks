@@ -1,0 +1,83 @@
+{
+  "type": "list",
+  "attributes": {
+    "names": {
+      "type": "character",
+      "attributes": {},
+      "value": ["metadata", "data"]
+    }
+  },
+  "value": [
+    {
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": ["hashing", "hashing_algorithm", "hashing_package", "hashing_package_version"]
+        }
+      },
+      "value": [
+        {
+          "type": "logical",
+          "attributes": {},
+          "value": [true]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["sha256"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["digest"]
+        },
+        {
+          "type": "list",
+          "attributes": {
+            "class": {
+              "type": "character",
+              "attributes": {},
+              "value": ["package_version", "numeric_version"]
+            }
+          },
+          "value": [
+            {
+              "type": "integer",
+              "attributes": {},
+              "value": [0, 6, 31]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": ["abc", "some_obj", "xyz"]
+        }
+      },
+      "value": [
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["4a480dc2ce45df25d86aa7f96f76c13dec5dbcd9c946df63238753745f42c2a5"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["c4c279cd08c06ef9a63b7c380d7835690b250e8ade1db42e50670d421aa7d4d7"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["7e5e0ed60b8f8dbcc35d554d96e2753e4f7b51e08a7e8eb4ef68aa26c258216d"]
+        }
+      ]
+    }
+  ]
+}

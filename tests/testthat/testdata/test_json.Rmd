@@ -1,0 +1,22 @@
+---
+title: "Test JSON data storage using `testthat`"
+output: html_document
+date: "2024-05-31"
+---
+
+```{r setup, include=FALSE}
+
+library("reproducibleRchunks")
+
+options(reproducibleRchunks.hashing = TRUE)
+
+knitr::knit_engines$set(reproducibleR = reproducibleR)
+```
+
+## Here comes some data
+
+```{reproducibleR somenumbers}
+xyz <- 1:10
+abc <- "hello world"
+some_obj <- t.test(xyz)
+```
