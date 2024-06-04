@@ -1,4 +1,4 @@
-test_that("multiplication works", {
+test_that("developers did not forget a browser() statement in the code", {
   funcs <- c(reproducibleRchunks::reproducibleR, reproducibleRchunks::save_repro_data,
              reproducibleRchunks::load_repro_data)
   for (f in funcs) {
