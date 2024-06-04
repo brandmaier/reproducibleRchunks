@@ -13,7 +13,9 @@ options(reproducibleRchunks.hashing = TRUE)
 knitr::knit_engines$set(reproducibleR = reproducibleR)
 ```
 
-## Here comes some data
+## Reproducible Computations
+
+The following computations will be automatically tested for reproducibility with every build of this document.
 
 ```{reproducibleR somenumbers}
 xyz <- 1:10

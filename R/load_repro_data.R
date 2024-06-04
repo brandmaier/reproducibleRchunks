@@ -12,6 +12,20 @@ load_repro_data <- function(filename, envir=globalenv(),filetype=c("json","rda")
     json_payload <- jsonlite::unserializeJSON(json_data)
     json_lst <- json_payload$data
     json_meta <- json_payload$metadata
+
+    if (json_meta$hashing_algorithm != default_hashing_algorithm())
+    {
+      stop("Hashing algorith mismatch between Markdown and JSON file!")
+    }
+    if (json_meta$hashing_package != "digest") {
+      stop("Unsupported R package for hashing in JSON file!")
+    }
+    if (json_meta$hashing != default_hashing()) {
+      stop("Hashing vs. raw data mismatch between Markdown and JSON file!")
+    }
+
+  # TODO    if (json$hashing_package_version != ...) {}
+
     for (i in 1:length(json_lst)) {
       var_name <- names(json_lst)[i]
       assign(x=var_name, value=json_lst[[i]], envir=envir)

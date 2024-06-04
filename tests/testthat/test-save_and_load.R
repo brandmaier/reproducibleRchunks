@@ -1,4 +1,6 @@
 test_that("save numbers in JSON works", {
+  # set no hashing
+  options(reproducibleRchunks.hashing = FALSE)
   mydata <- 1:10
   filename <- tempfile()
   reproducibleRchunks::save_repro_data(c("mydata"),
@@ -10,7 +12,7 @@ test_that("save numbers in JSON works", {
                                         filetype = "json",
                                         envir = test_envir)
 
-  expect_that(ls(test_envir) == "mydata")
+  expect_identical(ls(test_envir), "mydata")
   expect_identical(get("mydata", envir = test_envir), mydata)
 
 })
