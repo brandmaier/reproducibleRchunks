@@ -1,6 +1,8 @@
 ---
 title: "Test3"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 date: "2024-06-04"
 ---
 
