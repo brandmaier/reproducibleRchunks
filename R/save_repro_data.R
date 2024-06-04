@@ -14,6 +14,8 @@ save_repro_data <- function(x,
                             filename,
                             filetype=default_filetype(),
                             envir = NULL) {
+  if (is.null(envir)) envir = sys.parent()
+
   if (tolower(filetype)=="json") {
 
     exist_all <- all(sapply(x, function(x) {

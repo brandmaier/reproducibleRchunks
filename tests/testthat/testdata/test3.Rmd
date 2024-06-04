@@ -1,0 +1,25 @@
+---
+title: "Test3"
+output: html_document
+date: "2024-06-04"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+options(reproducibleRchunks.hashing = FALSE)
+
+library(reproducibleRchunks)
+```
+
+## Potentially problematic variable names
+
+...because they are used internally in the package functions:
+
+```{reproducibleR}
+x <- 999
+filename <- "test.txt"
+
+```
+
+
