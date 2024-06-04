@@ -19,7 +19,8 @@ library(reproducibleRchunks)
 ```{reproducibleR}
 x <- 999
 filename <- "test.txt"
-
+filetype <- "yada-yada"
+exist_all <- "yes"
 ```
 
 

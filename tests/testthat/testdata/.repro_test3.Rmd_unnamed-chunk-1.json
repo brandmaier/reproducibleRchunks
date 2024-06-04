@@ -58,14 +58,24 @@
         "names": {
           "type": "character",
           "attributes": {},
-          "value": ["filename", "x"]
+          "value": ["exist_all", "filename", "filetype", "x"]
         }
       },
       "value": [
         {
           "type": "character",
           "attributes": {},
+          "value": ["yes"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
           "value": ["C:/Users/andreas.brandmaier/LokaleDokumente/Projekte/reproducibleRchunks/tests/testthat/testdata/.repro_test3.Rmd_unnamed-chunk-1.json"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["yada-yada"]
         },
         {
           "type": "double",
