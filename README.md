@@ -14,6 +14,8 @@ Here is how you can check it out for yourself. Install the package and render `t
 
 The package executes reproducibleR code chunks as regular R code and gathers information about all variables that are newly defined in a given chunk. The contents of those variables are stored in a separate JSON data file (which is labelled according to the original Markdown file and the chunk label). Once the document is re-generated and JSON data files exist, their content is checked against the newly computed chunk variables for identity.
 
+![](inst/img/schema-json-fingerprints.png)
+
 Here is an example of how the contents of two objects are stored, which is a single variable called `numbers` with a vector of five numbers `[0.874094, -1.6943659, -0.8961591, 1.00840087, 1.61713635]` (rounded to a specified precision):
 
 ```{json}
@@ -41,3 +43,7 @@ For privacy reasons (and to save disk space), we actually do not store the raw d
 ## Notes
 
 Do not store critical and/or large data as raw data in reproducibleR chunks. In particular, do not store raw data (too large and possible breach of data protection laws, privacy issues), passwords (security risk as they would be stored in clear text), etc.
+
+## License
+
+The figures (in directory `inst/img` of this repository) are all provided under Creative Commons 4.0 CC-BY license.

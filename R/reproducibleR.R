@@ -15,6 +15,7 @@ reproducibleR <- function(options) {
   this_filename <- knitr::current_input()
   # determine requested output format
   output_format <- knitr::pandoc_to()
+  if (is.null(output_format)) output_format <- "undef"
   # initialize empty output vector
   output = c()
   # error counter set to zero
@@ -149,6 +150,7 @@ reproducibleR <- function(options) {
 }
 
 ok_symbol <- function(fmt="undef") {
+  if (is.null(fmt)) fmt<-"undef"
   if (fmt=="html")
     return("✅  ")
   else
@@ -156,6 +158,7 @@ ok_symbol <- function(fmt="undef") {
 }
 
 fail_symbol <- function(fmt="undef") {
+  if (is.null(fmt)) fmt<-"undef"
   if (fmt=="html")
     return("❌")
   else
@@ -163,6 +166,7 @@ fail_symbol <- function(fmt="undef") {
 }
 
 warning_symbol <- function(fmt="undef") {
+  if (is.null(fmt)) fmt<-"undef"
   if (fmt=="html")
     return("&#9888;")
   else
