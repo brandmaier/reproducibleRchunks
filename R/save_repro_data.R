@@ -13,8 +13,7 @@ default_hashing_algorithm <-
 default_templates <-
   function()
     getOption("reproducibleRchunks.templates", list(
-      html="<p style='border: 3px solid black;'><h3>Output</h3>${output}</p>",
-      latex="${output}"
+      html="<div style='border: 3px solid black; padding: 10px 10px 10px 10px; background-color: #EEEEEE;'><h5>${title}</h5>${output}</div>"
     ))
 
 #' @title Storing reproducibility data

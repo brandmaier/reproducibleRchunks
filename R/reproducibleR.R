@@ -13,6 +13,8 @@
 reproducibleR <- function(options) {
   path <- dirname(knitr::current_input(dir=TRUE))
   this_filename <- knitr::current_input()
+  # determine requested output format
+  output_format <- knitr::pandoc_to()
   # initialize empty output vector
   output = c()
   # error counter set to zero
@@ -59,7 +61,7 @@ reproducibleR <- function(options) {
     if (hasName(meta_data,"code_fingerprint")) {
 
       if(!identical(meta_data$code_fingerprint, code_fingerprint)) {
-        output <- c("Warning: Current code chunk fingerprint and stored code chunk fingerprint mismatch. Likely, the code chunk was modified after reproduction data was stored the first time.\n", output)
+        output <- c(warning_symbol(output_format)," Warning: Current code chunk fingerprint and stored code chunk fingerprint mismatch. Likely, the code chunk was modified after reproduction data was stored the first time.\n", output)
       }
 
     }
@@ -77,7 +79,7 @@ reproducibleR <- function(options) {
       if (is.numeric(original_value)) original_value <- round(original_value,default_digits())
 
       if (base::identical(original_value, current_value)) {
-        result <- paste0("- ✅  ",var, ": REPRODUCTION SUCCESSFUL")
+        result <- paste0("- ",ok_symbol(output_format),var, ": REPRODUCTION SUCCESSFUL")
       } else {
         err_counter = err_counter + 1
         if (isTRUE(default_hashing())) {
@@ -102,7 +104,7 @@ reproducibleR <- function(options) {
           }
 
         }
-        result <- paste0("- ❌",var, ": **REPRODUCTION FAILED** ",errmsg)
+        result <- paste0("- ",fail_symbol(output_format),var, ": **REPRODUCTION FAILED** ",errmsg)
       }
       output <- c(output, result,"\n")
     }
@@ -114,7 +116,7 @@ reproducibleR <- function(options) {
   assign(x="repror_error_counter",value = num_errors_total, envir=knitr::knit_global())
 
   out <- paste0(output,sep="",collapse="\n")
-  out <- paste0("## Reproduction Report\n",out,"\n\n",collapse="\n")
+  title <- "Code Chunk Reproduction Report"
   code <- options$code
 
   options$results <- "asis"
@@ -130,14 +132,39 @@ reproducibleR <- function(options) {
       close(con)
     }
 
-  output_format <- knitr::pandoc_to()
+
   template <- default_templates()
   if (hasName(template, output_format)) {
     out <- gsub(pattern="(\\$\\{output\\})", replacement=out,x=template[[output_format]])
+    out <- gsub(pattern="(\\$\\{title\\})", replacement=title,x=out)
+
+  } else {
+    out <- paste0(paste0("###",title,collapse=""), out,"\n\n",collapse="\n")
   }
 
 
 
   knitr::engine_output(options, code, out)
 
+}
+
+ok_symbol <- function(fmt="undef") {
+  if (fmt=="html")
+    return("✅  ")
+  else
+    return("OK")
+}
+
+fail_symbol <- function(fmt="undef") {
+  if (fmt=="html")
+    return("❌")
+  else
+    return("x")
+}
+
+warning_symbol <- function(fmt="undef") {
+  if (fmt=="html")
+    return("&#9888;")
+  else
+    return("/!\\")
 }
