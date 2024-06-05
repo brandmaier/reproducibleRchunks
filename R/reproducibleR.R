@@ -23,6 +23,8 @@ reproducibleR <- function(options) {
   stopifnot(label!="")
   # get code as a single string
   code <- paste(options$code, collapse = "\n")
+  # build code fingerprint
+  code_fingerprint <- digest::digest(code, algo="sha256")
   # create an environment for the current reproduction attempt
   current_env <- globalenv()
   existing_var_names <- ls(current_env)
@@ -44,13 +46,24 @@ reproducibleR <- function(options) {
       warning("No variables were created. No reproduction report possible for current chunk ",label,".")
     } else {
       # save all defined files
-      save_repro_data(current_vars, filename, filetype = "json")
+      save_repro_data(current_vars, filename, filetype = "json",
+                      extra=list(code_fingerprint=code_fingerprint))
     }
 
   } else {
     # restore original results
     repro_env <- new.env()
-    load_repro_data(filename, envir=repro_env, filetype="json")
+    meta_data <- load_repro_data(filename, envir=repro_env, filetype="json")
+
+    # compare code fingerprint (if exists)
+    if (hasName(meta_data,"code_fingerprint")) {
+
+      if(!identical(meta_data$code_fingerprint, code_fingerprint)) {
+        output <- c("Warning: Current code chunk fingerprint and stored code chunk fingerprint mismatch. Likely, the code chunk was modified after reproduction data was stored the first time.\n", output)
+      }
+
+    }
+
     # compare all results
     for (var in ls(repro_env)) {
       original_value <- get(var, envir = repro_env)
@@ -73,6 +86,11 @@ reproducibleR <- function(options) {
           errmsg <- "Objects are not identical."
         }
 
+        if (is.character(original_value) && is.character(current_value)) {
+          errmsg <- paste0("Character vectors differ: ",original_value, " vs ", current_value)
+        }
+
+        # generate more informative error message for numeric values
         if (is.numeric(original_value) && is.numeric(current_value))         {
           if (length(original_value)==1 && length(current_value==1)) {
             errmsg <- paste0("Numbers are not identical: ",original_value," vs ", current_value, collapse="")
@@ -101,7 +119,7 @@ reproducibleR <- function(options) {
 
   options$results <- "asis"
 
-
+  # write a separate report file
   if (!is.null(options$report))
     if (isTRUE(options$report)) {
 
@@ -111,6 +129,14 @@ reproducibleR <- function(options) {
       writeLines(text = out, con=con)
       close(con)
     }
+
+  output_format <- knitr::pandoc_to()
+  template <- default_templates()
+  if (hasName(template, output_format)) {
+    out <- gsub(pattern="(\\$\\{output\\})", replacement=out,x=template[[output_format]])
+  }
+
+
 
   knitr::engine_output(options, code, out)
 

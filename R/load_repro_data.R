@@ -35,4 +35,6 @@ load_repro_data <- function(filename, envir=globalenv(),filetype=c("json","rda")
   } else {
     stop("Filetype is not supported!")
   }
+
+  return(json_meta)
 }

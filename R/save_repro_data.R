@@ -10,18 +10,25 @@ default_hashing <-
 default_hashing_algorithm <-
   function()
     getOption("reproducibleRchunks.hashing_algorithm", "sha256")
+default_templates <-
+  function()
+    getOption("reproducibleRchunks.templates", list(
+      html="<p style='border: 3px solid black;'><h3>Output</h3>${output}</p>",
+      latex="${output}"
+    ))
 
 #' @title Storing reproducibility data
 #' @param x{description}
 #' @param filename Name (possible including full path) of the save file
 #' @param envir Environment to load the objects into. By default, this is the global environment.
 #' @param filetype Character. Currenlty supported is json and rda.
-
+#' @param extra List. Extra payload to store in the meta data
 #' @export
 save_repro_data <- function(x,
                             filename,
                             filetype = default_filetype(),
-                            envir = NULL) {
+                            envir = NULL,
+                            extra = NULL) {
   # search the calling frame for definitions, ignore
   # local definitions such as x, filename, filetype
   if (is.null(envir))
@@ -70,6 +77,13 @@ save_repro_data <- function(x,
       ),
       data = named_list
     )
+
+    # add extra information to payload (if given)
+    if (!is.null(extra)) {
+      for (key in names(extra)) {
+        payload$metadata[[key]] <- extra[[key]]
+      }
+    }
 
     json_data <- jsonlite::serializeJSON(payload,
                                          pretty = TRUE,
