@@ -14,7 +14,7 @@
         "names": {
           "type": "character",
           "attributes": {},
-          "value": ["hashing", "hashing_algorithm", "hashing_package", "hashing_package_version", "digits"]
+          "value": ["hashing", "hashing_algorithm", "hashing_package", "hashing_package_version", "digits", "code_fingerprint"]
         }
       },
       "value": [
@@ -54,6 +54,11 @@
           "type": "double",
           "attributes": {},
           "value": [8]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["5f1c2c65369ffc161442df9736a5e555b174231267ee88b544882c9883b15f07"]
         }
       ]
     },

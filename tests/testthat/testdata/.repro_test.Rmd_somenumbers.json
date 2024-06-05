@@ -14,7 +14,7 @@
         "names": {
           "type": "character",
           "attributes": {},
-          "value": ["hashing", "hashing_algorithm", "hashing_package", "hashing_package_version"]
+          "value": ["hashing", "hashing_algorithm", "hashing_package", "hashing_package_version", "digits", "code_fingerprint"]
         }
       },
       "value": [
@@ -49,6 +49,16 @@
               "value": [0, 6, 31]
             }
           ]
+        },
+        {
+          "type": "double",
+          "attributes": {},
+          "value": [8]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["c799b5d3adc54239e28da8c5ddad399f33478f41c043115d3abe47e44293fbf2"]
         }
       ]
     },
