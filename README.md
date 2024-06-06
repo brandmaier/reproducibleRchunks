@@ -1,4 +1,6 @@
-# reproducibleRchunks
+
+
+# reproducibleRchunks <img src="inst/img/sticker.png" align="right" height="138" />
 
 ## Why should I care?
 
