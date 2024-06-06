@@ -47,7 +47,7 @@ reproducibleR <- function(options) {
   cat("Filename: ", filename,"\n")
   # does the file exist?
   if (!file.exists(filename)) {
-    output <- c(output, "**Creating reproduction file**\n This seems to be the first run of the R Markdown file including reproducible chunks.\nCreating variables:\n ",paste0("- ",current_vars,collapse="\n"))
+    output <- c(output, "**Creating reproduction file**\n This seems to be the first run of the R Markdown file including reproducible chunks.\nStoring reproducibility information for variables:\n ",paste0("- ",current_vars,collapse="\n"))
     # are there any variables defined at all?
     if (length(current_vars)==0) {
       warning("No variables were created. No reproduction report possible for current chunk ",label,".")
