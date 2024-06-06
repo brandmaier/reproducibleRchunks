@@ -4,7 +4,7 @@
 
 This package allows you to make computational results in R testable for reproduction (does the same script with the same data produce the same results, e.g. on a different computer and/or later in time). There is only a single thing you need to change in your analysis if you are already using RMarkdown: Change the code chunk type from `r` to `reproducibleR`. It's that easy:
 
-![](inst/img/rstudio-screenshot-marker.png)
+![](inst/img/rstudio-screenshot-marker2.png)
 
 ## Demo
 
@@ -48,10 +48,17 @@ Here is an example of how the contents of two objects are stored, which is a sin
 
 For privacy reasons (and to save disk space), we actually do not store the raw data by default but only fingerprints of the data, which do not allow to reproduce the original data.
 
+## What kind of variables can be tested?
+
+Virtually any kind of variable can be subjected to a reproducibility test by defining it within a `reproducibleR` code chunk in a R Markdown document, no matter whether it is a numeric result, a character string, or a more complex object such as the result from a call to `t.test()` (or any other statistical model):
+
+![](inst/img/rstudio-screenshot-marker.png)
+
 ## Notes
 
 Do not store critical and/or large data as raw data in reproducibleR chunks. In particular, do not store raw data (too large and possible breach of data protection laws, privacy issues), passwords (security risk as they would be stored in clear text), etc.
+Make sure to use random seeds if your analysis is based on random numbers and note that results from the default random number generator may vary between R versions.
 
 ## License
 
-The figures (in directory `inst/img` of this repository) are all provided under Creative Commons 4.0 CC-BY license.
+The figures (in directory `inst/img` of this repository) are all provided under Creative Commons 4.0 CC-BY license. All code is provided under the MIT license. 
