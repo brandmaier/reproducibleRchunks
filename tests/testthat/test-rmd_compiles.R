@@ -2,7 +2,7 @@ test_that("RMD compiles and reproduces", {
 
   json_filename_chunk1 <- testthat::test_path("testdata",".repro_test_json.Rmd_somenumbers.json")
   if (file.exists(json_filename_chunk1)) {
-    rm(json_filename_chunk1)
+    file.remove(json_filename_chunk1)
   }
 
   fname <- testthat::test_path("testdata","test_json.Rmd")

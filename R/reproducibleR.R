@@ -54,13 +54,16 @@ reproducibleR <- function(options) {
     } else {
       # save all defined files
       save_repro_data(current_vars, filename, filetype = "json",
+                      envir = current_env,
                       extra=list(code_fingerprint=code_fingerprint))
     }
 
   } else {
     # restore original results
     repro_env <- new.env()
-    meta_data <- load_repro_data(filename, envir=repro_env, filetype="json")
+    meta_data <- load_repro_data(filename,
+                                 envir=repro_env,
+                                 filetype="json")
 
     # compare code fingerprint (if exists)
     if (hasName(meta_data,"code_fingerprint")) {
