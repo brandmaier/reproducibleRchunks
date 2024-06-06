@@ -49,7 +49,7 @@ save_repro_data <- function(x,
 
       })))
       stop("Some objects to be saved do not exist: ",
-           paste0(missing_obj_names))
+           paste0(missing_obj_names,collapse = ", "))
     }
 
     if (is.null(envir))

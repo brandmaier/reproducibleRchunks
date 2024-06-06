@@ -4,7 +4,11 @@
 #' @name reproducibleR
 #'
 #' @description This is the main RMarkdown chunk hook for processing
-#' the reproducibility tests
+#' the automated reproducibility tests of code chunks
+#' @details
+#' This function first executes the R code from a given chunk.
+#'
+#'
 #'
 #' @param options A list of chunk options passed from the knitr engine.
 #'
@@ -29,7 +33,7 @@ reproducibleR <- function(options) {
   # build code fingerprint
   code_fingerprint <- digest::digest(code, algo="sha256")
   # create an environment for the current reproduction attempt
-  current_env <- globalenv()
+  current_env <- knitr::knit_global()#globalenv()
   existing_var_names <- ls(current_env)
   # evaluate code
   result <- eval(parse(text=code), envir = current_env)
@@ -43,7 +47,7 @@ reproducibleR <- function(options) {
   cat("Filename: ", filename,"\n")
   # does the file exist?
   if (!file.exists(filename)) {
-    output <- c(output, "**Creating reproduction file**\n This seems to be the first run of the R Markdown file including reproducible chunks.\nCreating variables: ",paste0("-",current_vars,collapse="\n"))
+    output <- c(output, "**Creating reproduction file**\n This seems to be the first run of the R Markdown file including reproducible chunks.\nCreating variables:\n ",paste0("- ",current_vars,collapse="\n"))
     # are there any variables defined at all?
     if (length(current_vars)==0) {
       warning("No variables were created. No reproduction report possible for current chunk ",label,".")
@@ -67,9 +71,18 @@ reproducibleR <- function(options) {
 
     }
 
+    # check whether variables are the same in current
+    # and reproduction data?
+    # TODO not implemented yet
+
     # compare all results
     for (var in ls(repro_env)) {
       original_value <- get(var, envir = repro_env)
+
+      if (!exists(var, envir=current_env)) {
+        output <- c(output, fail_symbol(), "Reproduction error! Variable ",var, " was not defined in this chunk!")
+        next
+      }
       current_value <- get(var, envir = current_env)
 
       if (isTRUE(default_hashing())) {
@@ -147,28 +160,4 @@ reproducibleR <- function(options) {
 
   knitr::engine_output(options, code, out)
 
-}
-
-ok_symbol <- function(fmt="undef") {
-  if (is.null(fmt)) fmt<-"undef"
-  if (fmt=="html")
-    return("✅  ")
-  else
-    return("OK")
-}
-
-fail_symbol <- function(fmt="undef") {
-  if (is.null(fmt)) fmt<-"undef"
-  if (fmt=="html")
-    return("❌")
-  else
-    return("x")
-}
-
-warning_symbol <- function(fmt="undef") {
-  if (is.null(fmt)) fmt<-"undef"
-  if (fmt=="html")
-    return("&#9888;")
-  else
-    return("/!\\")
 }

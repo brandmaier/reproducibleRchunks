@@ -10,6 +10,14 @@ This package allows you to make computational results in R testable for reproduc
 
 Here is how you can check it out for yourself. Install the package and render `test.Rmd` to assess reproducibility of its R code chunks. Each code chunk will render a reproducibility report. One chunk is set up to fail to demonstrate the package.
 
+Step 1: Document is built for the first time:
+
+![](inst/img/generation-step1.png)
+
+Step 2: Document is re-built and automatically checked for reproducibility
+
+![](inst/img/generation-step2.png)
+
 ## Mechanics
 
 The package executes reproducibleR code chunks as regular R code and gathers information about all variables that are newly defined in a given chunk. The contents of those variables are stored in a separate JSON data file (which is labelled according to the original Markdown file and the chunk label). Once the document is re-generated and JSON data files exist, their content is checked against the newly computed chunk variables for identity.
