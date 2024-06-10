@@ -110,6 +110,9 @@ reproducibleR <- function(options) {
 
     # compare all results
     for (var in ls(repro_env)) {
+
+      cur_attempt_successful <- FALSE
+
       original_value <- get(var, envir = repro_env)
 
       if (!exists(var, envir = current_env)) {
@@ -140,6 +143,7 @@ reproducibleR <- function(options) {
                  ok_symbol(output_format),
                  var,
                  ": REPRODUCTION SUCCESSFUL")
+        cur_attempt_successful <- TRUE
       } else {
         err_counter = err_counter + 1
         if (isTRUE(default_hashing())) {
@@ -195,7 +199,21 @@ reproducibleR <- function(options) {
                  errmsg)
       }
       output <- c(output, result, "\n")
-    }
+
+      # store information
+      temp_data = get(x = "repror_summary",
+                      envir = knitr::knit_global())
+      temp_data <- rbind(temp_data,
+                         c(label,var,cur_attempt_successful))
+      assign(x = "repror_summary",
+             value = temp_data,
+             envir = knitr::knit_global())
+
+
+    } # end for var in ...
+
+
+
   }
 
   # update error counter
@@ -211,26 +229,26 @@ reproducibleR <- function(options) {
 
   options$results <- "asis"
 
-  # write a separate report file
-  if (!is.null(options$reportfile))
-    if (isTRUE(options$reportfile)) {
-      if (is.null(this_filename))
-        this_filename <- ""
-      filename <-
-        paste0("reproducibility_report_",
-               this_filename,
-               "-",
-               label,
-               ".txt")
-      con <- file(filename)
-      writeLines(text = out, con = con)
-      close(con)
-    }
+  # write a separate report file (DELETE ME...)
+ # if (!is.null(options$reportfile))
+    # if (isTRUE(options$reportfile)) {
+    #   if (is.null(this_filename))
+    #     this_filename <- ""
+    #   filename <-
+    #     paste0("reproducibility_report_",
+    #            this_filename,
+    #            "-",
+    #            label,
+    #            ".txt")
+    #   con <- file(filename)
+    #   writeLines(text = out, con = con)
+    #   close(con)
+    # }
 
       template <- default_templates()
       if (hasName(template, output_format)) {
         out <-
-          gsub(pattern = "(\\$\\{output\\})",
+          gsub(pattern = "(\\$\\{content\\})",
                replacement = out,
                x = template[[output_format]])
         out <- gsub(pattern = "(\\$\\{title\\})",

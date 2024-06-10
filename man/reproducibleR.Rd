@@ -11,7 +11,10 @@ reproducibleR(options)
 }
 \description{
 This is the main RMarkdown chunk hook for processing
-the reproducibility tests
+the automated reproducibility tests of code chunks
+}
+\details{
+This function first executes the R code from a given chunk.
 }
 \author{
 Andreas M. Brandmaier

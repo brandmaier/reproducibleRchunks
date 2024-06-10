@@ -4,7 +4,13 @@
 \alias{save_repro_data}
 \title{Storing reproducibility data}
 \usage{
-save_repro_data(x, filename, filetype = default_filetype(), envir = NULL)
+save_repro_data(
+  x,
+  filename,
+  filetype = default_filetype(),
+  envir = NULL,
+  extra = NULL
+)
 }
 \arguments{
 \item{filename}{Name (possible including full path) of the save file}
@@ -12,6 +18,8 @@ save_repro_data(x, filename, filetype = default_filetype(), envir = NULL)
 \item{filetype}{Character. Currenlty supported is json and rda.}
 
 \item{envir}{Environment to load the objects into. By default, this is the global environment.}
+
+\item{extra}{List. Extra payload to store in the meta data}
 }
 \description{
 Storing reproducibility data
