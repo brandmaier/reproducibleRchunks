@@ -37,7 +37,7 @@ reproducibleR <- function(options) {
   current_env <- knitr::knit_global()#globalenv()
   existing_var_names <- ls(current_env)
   # evaluate code
-  result <- eval(parse(text = code), envir = current_env)
+  code_result <- eval(parse(text = code), envir = current_env)
   # get all defined variables
   current_vars <- ls(current_env)
   # remove those that existed already (from previous chunks)
@@ -242,7 +242,9 @@ reproducibleR <- function(options) {
           paste0(paste0("###", title, collapse = ""), out, "\n\n", collapse = "\n")
       }
 
-
+  # merge code result and package output
+  if (isFALSE(options$report)) out <- ""
+  out <- c(code_result,"\n", out)
 
   knitr::engine_output(options, code, out)
 
