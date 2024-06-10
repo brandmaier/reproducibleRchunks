@@ -146,45 +146,47 @@ reproducibleR <- function(options) {
           errmsg <- "Fingerprints are not identical."
         } else {
           errmsg <- "Objects are not identical."
-        }
 
-        if (is.character(original_value) &&
-            is.character(current_value)) {
-          errmsg <-
-            paste0("Character vectors differ: ",
-                   original_value,
-                   " vs ",
-                   current_value)
-        }
-
-        # generate more informative error message for numeric values
-        if (is.numeric(original_value) &&
-            is.numeric(current_value))         {
-          if (length(original_value) == 1 && length(current_value == 1)) {
+          if (is.character(original_value) &&
+              is.character(current_value)) {
             errmsg <-
-              paste0(
-                "Numbers are not identical: ",
-                original_value,
-                " vs ",
-                current_value,
-                collapse = ""
-              )
-          } else {
-            num_diff = sum(original_value != current_value)
-            errmsg <-
-              paste0(
-                num_diff ,
-                " numbers out of ",
-                length(original_value),
-                " differ!\nOriginal values:",
-                paste0(original_value, collapse = ", "),
-                "\n",
-                "Current values: ",
-                paste0(current_value, collapse = ", ")
-              )
+              paste0("Character vectors differ: ",
+                     original_value,
+                     " vs ",
+                     current_value)
           }
 
+          # generate more informative error message for numeric values
+          if (is.numeric(original_value) &&
+              is.numeric(current_value))         {
+            if (length(original_value) == 1 && length(current_value == 1)) {
+              errmsg <-
+                paste0(
+                  "Numbers are not identical: ",
+                  original_value,
+                  " vs ",
+                  current_value,
+                  collapse = ""
+                )
+            } else {
+              num_diff = sum(original_value != current_value)
+              errmsg <-
+                paste0(
+                  num_diff ,
+                  " numbers out of ",
+                  length(original_value),
+                  " differ!\nOriginal values:",
+                  paste0(original_value, collapse = ", "),
+                  "\n",
+                  "Current values: ",
+                  paste0(current_value, collapse = ", ")
+                )
+            }
+
+          }
         }
+
+
         result <-
           paste0("- ",
                  fail_symbol(output_format),
@@ -225,8 +227,6 @@ reproducibleR <- function(options) {
       close(con)
     }
 
-  if (!is.null(options$report))
-    if (isTRUE(options$report)) {
       template <- default_templates()
       if (hasName(template, output_format)) {
         out <-
@@ -241,7 +241,7 @@ reproducibleR <- function(options) {
         out <-
           paste0(paste0("###", title, collapse = ""), out, "\n\n", collapse = "\n")
       }
-    }
+
 
 
   knitr::engine_output(options, code, out)
