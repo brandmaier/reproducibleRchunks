@@ -1,0 +1,51 @@
+---
+title: "Test Suite"
+output: html_document
+date: "2024-06-17"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(reproducibleRchunks)
+```
+
+## Test Suite
+
+This test suite is for manual testing of whether code chunk options work properly. We are testing the following chunk options:
+
+- `include` runs the code but doesn’t show the code or results in the document
+- `echo` prevents code, but not the results from appearing in the document
+
+### Test 1: Default options
+
+This is supposed to show code, results and report:
+
+```{reproducibleR}
+a <- 1
+b <- a + 10
+```
+
+### Test 2: Echo = FALSE
+
+This is supposed to show results and report but not the code:
+
+```{reproducibleR echo=FALSE}
+summe <- a + b
+```
+
+### Test 3: echo = false and report = FALSE
+
+This is supposed to only show the result (12)
+
+```{reproducibleR echo=FALSE, eval=TRUE, report=FALSE}
+summe2 <- a + b
+```
+
+### Test 4: Eval = FALSE
+
+This is supposed to only show the code
+
+```{reproducibleR eval=FALSE}
+summe3 <- a + b
+```
