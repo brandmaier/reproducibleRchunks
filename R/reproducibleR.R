@@ -15,6 +15,12 @@
 #' @export
 #'
 reproducibleR <- function(options) {
+
+  # abort if chunk option eval==FALSE
+  if (isFALSE(options$eval)) {
+    return(knitr::engine_output(options, options$code, ""))
+  }
+
   path <- dirname(knitr::current_input(dir = TRUE))
   this_filename <- knitr::current_input()
   # determine requested output format
