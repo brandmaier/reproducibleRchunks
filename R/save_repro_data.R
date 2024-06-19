@@ -10,11 +10,15 @@ default_hashing <-
 default_hashing_algorithm <-
   function()
     getOption("reproducibleRchunks.hashing_algorithm", "sha256")
+default_prefix <-
+  function()
+    getOption("reproducibleRchunks.prefix", ".repro")
 default_templates <-
   function()
-    getOption("reproducibleRchunks.templates", list(
-      html="<div style='border: 3px solid black; padding: 10px 10px 10px 10px; background-color: #EEEEEE;'><h5>${title}</h5>${content}</div>"
-    ))
+    getOption(
+      "reproducibleRchunks.templates",
+      list(html = "<div style='border: 3px solid black; padding: 10px 10px 10px 10px; background-color: #EEEEEE;'><h5>${title}</h5>${content}</div>")
+    )
 
 #' @title Storing reproducibility data
 #' @param x{description}
@@ -44,12 +48,11 @@ save_repro_data <- function(x,
       missing_obj_names <- names(which(sapply(x, function(x) {
         if (is.null(envir))
           ! exists(x)
-        else
-          ! exists(x, envir = envir)
+        else!exists(x, envir = envir)
 
       })))
       stop("Some objects to be saved do not exist: ",
-           paste0(missing_obj_names,collapse = ", "))
+           paste0(missing_obj_names, collapse = ", "))
     }
 
     if (is.null(envir))

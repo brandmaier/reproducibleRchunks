@@ -55,8 +55,9 @@ reproducibleR <- function(options) {
   # get file with repro values
   filename <-
     paste0(path,
-           "/",
-           ".repro_",
+           .Platform$file.sep,
+           default_prefix(),
+           "_",
            this_filename,
            "_",
            label,
