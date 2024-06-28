@@ -4,7 +4,7 @@ ok_symbol <- function(fmt="undef") {
   if (fmt=="html")
     return("✅  ")
   else
-    return("OK")
+    return("OK ")
 }
 
 fail_symbol <- function(fmt="undef") {
@@ -12,7 +12,7 @@ fail_symbol <- function(fmt="undef") {
   if (fmt=="html")
     return("❌")
   else
-    return("x")
+    return("[x] ")
 }
 
 warning_symbol <- function(fmt="undef") {

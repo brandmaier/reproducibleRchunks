@@ -1,6 +1,6 @@
 Package: reproducibleRchunks
 Title: Automated reproducibility checks for R Markdown documents
-Version: 0.2
+Version: 1.0
 Authors@R: c(person("Andreas M. Brandmaier", email="andy@brandmaier.de", role=c("aut","cre")), person("Aaron Peikert",email="peikert@mpib-berlin.mpg.de",role="ctb"))
 Description: Provide reproducibleR chunks in R Markdown document that automatically check computational results for reproducibility
 License: MIT + file LICENSE
