@@ -2,7 +2,7 @@
 
 # reproducibleRchunks <img src="inst/img/sticker.png" align="right" height="138" />
 
-Preprint available here: [](https://osf.io/preprints/psyarxiv/3zjvf)
+Preprint available on PsyArXiV: [https://osf.io/preprints/psyarxiv/3zjvf](https://osf.io/preprints/psyarxiv/3zjvf)
 
 ## Why should I care?
 
