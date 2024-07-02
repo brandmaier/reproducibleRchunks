@@ -266,7 +266,16 @@ reproducibleR <- function(options) {
 
       } else {
         out <-
-          paste0(paste0("###", title, collapse = ""), out, "\n\n", collapse = "\n")
+          paste0(paste0("### ", title,"\n", collapse = ""), out, "\n\n", collapse = "\n")
+        # use knitr superpowers again TODO: improve
+        opts_int <- options
+        opts_int$engine <- output_format
+        opts_int$results <- "asis"
+        opts_int$echo <- FALSE # suppress code generation
+        out<-knitr::engine_output(options=opts_int,
+                                                 code="",
+                                  out=out)
+
       }
 
   # merge code result and package output
