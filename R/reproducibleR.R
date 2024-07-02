@@ -271,6 +271,15 @@ reproducibleR <- function(options) {
 
   # merge code result and package output
   if (isFALSE(options$report)) out <- ""
+
+  if (options$results == "markup") {
+    # TODO: use knitr for proper wrapping!
+    if (!is.null(code_output)) {
+      if (length(code_output)>1)
+      code_output <- paste("\\#\\#",code_output, collapse="\n")
+    }
+  }
+
   out <- c(code_output,"\n", out)
 
   options$results <- "asis" # set results to 'asis' for proper display of report summary
