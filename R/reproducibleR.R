@@ -272,16 +272,30 @@ reproducibleR <- function(options) {
   # merge code result and package output
   if (isFALSE(options$report)) out <- ""
 
-  if (options$results != "asis") {
-    # TODO: use knitr for proper wrapping!
-    if (!is.null(code_output) && length(code_output)!=0) {
-      code_output <- paste("\\#\\#",code_output, collapse="\n")
-    }
-  }
 
-  out <- c(code_output,"\n", out)
+      # use knitr to prettyprint R output
+      opts_int <- options
+      opts_int$engine <- "r"
+      opts_int$echo <- FALSE # suppress code generation
+      code_output_pretty<-knitr::engine_output(options=opts_int,
+                                               code="", out=code_output)
+      #---
 
-  options$results <- "asis" # set results to 'asis' for proper display of report summary
-  knitr::engine_output(options, code, out)
 
+#  out <- c(code_output,"\n", out)
+
+  # use knitr to prettyprint R code
+  opts_int <- options
+  opts_int$engine <- "r"
+  opts_int$code <- ""
+  code_pretty <- knitr::engine_output(options=opts_int,
+                                    code=code, out="")
+  # ---
+
+
+
+  #options$results <- "asis" # set results to 'asis' for proper display of report summary
+  #knitr::engine_output(options, code_pretty, out)
+  paste0(code_pretty, code_output_pretty, out)
+ # paste0(code_output_pretty)
 }
