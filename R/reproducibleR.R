@@ -21,7 +21,12 @@ reproducibleR <- function(options) {
     return(knitr::engine_output(options, options$code, ""))
   }
 
-  path <- dirname(knitr::current_input(dir = TRUE))
+  path <- NULL
+  try({
+    path <- dirname(knitr::current_input(dir = TRUE))
+  })
+  if (is.null(path)) path <- "." # TODO: this seems unsafe, maybe use here package instead?
+
   this_filename <- knitr::current_input()
   # determine requested output format
   output_format <- knitr::pandoc_to()
