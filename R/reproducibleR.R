@@ -21,11 +21,30 @@ reproducibleR <- function(options) {
     return(knitr::engine_output(options, options$code, ""))
   }
 
-  path <- NULL
-  try({
-    path <- dirname(knitr::current_input(dir = TRUE))
-  })
-  if (is.null(path)) path <- "." # TODO: this seems unsafe, maybe use here package instead?
+  # pass on to regular R if we have no information about
+  # the entire Rmarkdown file and its location
+  if (is.null(knitr::current_input(dir = TRUE))) {
+
+    # evaluate code
+    code_output <- capture.output({ code_result <-
+      eval(parse(text = options$code), envir=globalenv())
+    })
+
+    options$engine <- "r"
+    return(c( code_output, knitr::engine_output(options = options,
+                                code=options$code,
+                                out=code_output)) )
+  }
+
+  # determine path where to store the meta data
+  fullpath_of_inputfile <- knitr::current_input(dir = TRUE)
+  if (is.null(fullpath_of_inputfile)) {
+    # we end up here if people run individual chunks in Rstudio
+    path <- here::here()
+  } else {
+    # we end up here if people render an entire Rmd file
+    path <- dirname(fullpath_of_inputfile)
+  }
 
   this_filename <- knitr::current_input()
   # determine requested output format
@@ -231,33 +250,12 @@ reproducibleR <- function(options) {
   }
 
   # update error counter
-  num_errors_total = get(x = "repror_error_counter", envir = knitr::knit_global())
-  num_errors_total = num_errors_total + err_counter
-  assign(x = "repror_error_counter",
-         value = num_errors_total,
-         envir = knitr::knit_global())
+  increase_error_counter_by(err_counter)
 
   out <- paste0(output, sep = "", collapse = "\n")
   title <- "Code Chunk Reproduction Report"
   code <- options$code
 
-
-
-  # write a separate report file (DELETE ME...)
- # if (!is.null(options$reportfile))
-    # if (isTRUE(options$reportfile)) {
-    #   if (is.null(this_filename))
-    #     this_filename <- ""
-    #   filename <-
-    #     paste0("reproducibility_report_",
-    #            this_filename,
-    #            "-",
-    #            label,
-    #            ".txt")
-    #   con <- file(filename)
-    #   writeLines(text = out, con = con)
-    #   close(con)
-    # }
 
       template <- default_templates()
       if (hasName(template, output_format)) {
