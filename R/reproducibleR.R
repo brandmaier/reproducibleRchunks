@@ -243,13 +243,7 @@ reproducibleR <- function(options) {
       output <- c(output, result, "\n")
 
       # store information
-      temp_data = get(x = "repror_summary",
-                      envir = knitr::knit_global())
-      temp_data <- rbind(temp_data,
-                         c(label,var,cur_attempt_successful))
-      assign(x = "repror_summary",
-             value = temp_data,
-             envir = knitr::knit_global())
+      add_to_repror_summary(c(label,var,cur_attempt_successful))
 
 
     } # end for var in ...
