@@ -23,7 +23,8 @@ reproducibleR <- function(options) {
 
   # pass on to regular R if we have no information about
   # the entire Rmarkdown file and its location
-  if (is.null(knitr::current_input(dir = TRUE))) {
+  unknown_knitr_filename <- is.null(knitr::current_input(dir = TRUE))
+  if (unknown_knitr_filename) {
 
     # evaluate code
     code_output <- capture.output({ code_result <-
@@ -39,14 +40,22 @@ reproducibleR <- function(options) {
   # determine path where to store the meta data
   fullpath_of_inputfile <- knitr::current_input(dir = TRUE)
   if (is.null(fullpath_of_inputfile)) {
-    # we end up here if people run individual chunks in Rstudio
-    path <- here::here()
+    # we end up here eg. if people run individual chunks in Rstudio
+    if ("rstudioapi" %in% installed.packages()) {
+      act_doc <- rstudioapi::getActiveDocumentContext()$path
+      path <- dirname(act_doc)
+      this_filename <- basename(act_doc)
+    } else {
+      return("Note: Unable to determine file and chunk name for reproducibility check.")
+    }
   } else {
     # we end up here if people render an entire Rmd file
+    # through knitr or Rstudio's knitr button
     path <- dirname(fullpath_of_inputfile)
+    this_filename <- knitr::current_input()
   }
 
-  this_filename <- knitr::current_input()
+
   # determine requested output format
   output_format <- knitr::pandoc_to()
   if (is.null(output_format))
