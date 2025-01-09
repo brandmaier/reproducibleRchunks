@@ -1,0 +1,28 @@
+---
+title: "Test2"
+output: html_document
+date: "2024-06-04"
+---
+
+
+
+## Computational Block 1
+
+
+```r
+options(reproducibleRchunks.hashing = TRUE)
+zzz <- 1:10 + 1
+```
+
+### Code Chunk Reproduction Report
+- OK zzz: REPRODUCTION SUCCESSFUL
+
+## Computational Block 2
+
+```r
+options(reproducibleRchunks.hashing = FALSE)
+yyy <- 1
+```
+
+### Code Chunk Reproduction Report
+- OK yyy: REPRODUCTION SUCCESSFUL
