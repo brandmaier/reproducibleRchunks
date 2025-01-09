@@ -1,0 +1,32 @@
+---
+title: "Untitled"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+date: "2024-07-01"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+if ("reproducibleRchunks" %in% installed.packages()) {
+  library("reproducibleRchunks")
+} else {
+  
+}
+
+options(reproducibleRchunks.templates = list(
+     # latex="\\hrulefill \n \\section{${title}} 
+    #  \\medskip \\small 
+    #  ${content}\n \\hrulefill \n
+    #  ")
+  latex="\\marginpar{${content}}"
+    ))
+```
+
+# Section 
+
+```{reproducibleR pressure, echo=FALSE}
+model <- lm(pressure~temperature, pressure)
+```

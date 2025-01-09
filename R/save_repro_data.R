@@ -22,7 +22,7 @@ default_templates <-
     )
 
 #' @title Storing reproducibility data
-#' @param x{description}
+#' @param x Object to be stored.
 #' @param filename Name (possible including full path) of the save file
 #' @param envir Environment to load the objects into. By default, this is the global environment.
 #' @param filetype Character. Currenlty supported is json and rda.
@@ -49,7 +49,8 @@ save_repro_data <- function(x,
       missing_obj_names <- names(which(sapply(x, function(x) {
         if (is.null(envir))
           ! exists(x)
-        else!exists(x, envir = envir)
+        else
+          ! exists(x, envir = envir)
 
       })))
       stop("Some objects to be saved do not exist: ",
@@ -75,7 +76,7 @@ save_repro_data <- function(x,
         hashing = default_hashing(),
         hashing_algorithm = default_hashing_algorithm(),
         hashing_package = "digest",
-        hashing_package_version = packageVersion("digest"),
+        hashing_package_version = utils::packageVersion("digest"),
         digits = default_digits()
       ),
       data = named_list

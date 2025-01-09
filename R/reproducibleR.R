@@ -15,7 +15,6 @@
 #' @export
 #'
 reproducibleR <- function(options) {
-
   # abort if chunk option eval==FALSE
   if (isFALSE(options$eval)) {
     return(knitr::engine_output(options, options$code, ""))
@@ -23,25 +22,31 @@ reproducibleR <- function(options) {
 
   # pass on to regular R if we have no information about
   # the entire Rmarkdown file and its location
-  unknown_knitr_filename <- is.null(knitr::current_input(dir = TRUE))
+  unknown_knitr_filename <-
+    is.null(knitr::current_input(dir = TRUE))
   if (unknown_knitr_filename) {
-
     # evaluate code
-    code_output <- capture.output({ code_result <-
-      eval(parse(text = options$code), envir=globalenv())
+    code_output <- utils::capture.output({
+      code_result <-
+        eval(parse(text = options$code), envir = globalenv())
     })
 
     options$engine <- "r"
-    return(c( code_output, knitr::engine_output(options = options,
-                                code=options$code,
-                                out=code_output)) )
+    return(c(
+      code_output,
+      knitr::engine_output(
+        options = options,
+        code = options$code,
+        out = code_output
+      )
+    ))
   }
 
   # determine path where to store the meta data
   fullpath_of_inputfile <- knitr::current_input(dir = TRUE)
   if (is.null(fullpath_of_inputfile)) {
     # we end up here eg. if people run individual chunks in Rstudio
-    if ("rstudioapi" %in% installed.packages()) {
+    if ("rstudioapi" %in% utils::installed.packages()) {
       act_doc <- rstudioapi::getActiveDocumentContext()$path
       path <- dirname(act_doc)
       this_filename <- basename(act_doc)
@@ -76,8 +81,9 @@ reproducibleR <- function(options) {
   current_env <- knitr::knit_global()#globalenv()
   existing_var_names <- ls(current_env)
   # evaluate code
-  code_output <- capture.output({ code_result <-
-    eval(parse(text = code), envir = current_env)
+  code_output <- utils::capture.output({
+    code_result <-
+      eval(parse(text = code), envir = current_env)
   })
   # get all defined variables
   current_vars <- ls(current_env)
@@ -89,16 +95,18 @@ reproducibleR <- function(options) {
   # set filetype
   # get file with repro values
   filename <-
-    paste0(path,
-           .Platform$file.sep,
-           default_prefix(),
-           "_",
-           this_filename,
-           "_",
-           label,
-           ".",
-           default_filetype(),
-           collapse = "")
+    paste0(
+      path,
+      .Platform$file.sep,
+      default_prefix(),
+      "_",
+      this_filename,
+      "_",
+      label,
+      ".",
+      default_filetype(),
+      collapse = ""
+    )
 
   # does the file exist?
   if (!file.exists(filename)) {
@@ -134,7 +142,7 @@ reproducibleR <- function(options) {
                                  filetype = "json")
 
     # compare code fingerprint (if exists)
-    if (hasName(meta_data, "code_fingerprint")) {
+    if (utils::hasName(meta_data, "code_fingerprint")) {
       if (!identical(meta_data$code_fingerprint, code_fingerprint)) {
         output <-
           c(
@@ -152,7 +160,6 @@ reproducibleR <- function(options) {
 
     # compare all results
     for (var in ls(repro_env)) {
-
       cur_attempt_successful <- FALSE
 
       original_value <- get(var, envir = repro_env)
@@ -243,7 +250,7 @@ reproducibleR <- function(options) {
       output <- c(output, result, "\n")
 
       # store information
-      add_to_repror_summary(c(label,var,cur_attempt_successful))
+      add_to_repror_summary(c(label, var, cur_attempt_successful))
 
 
     } # end for var in ...
@@ -260,51 +267,57 @@ reproducibleR <- function(options) {
   code <- options$code
 
 
-      template <- default_templates()
-      if (hasName(template, output_format)) {
-        out <-
-          gsub(pattern = "(\\$\\{content\\})",
-               replacement = out,
-               x = template[[output_format]])
-        out <- gsub(pattern = "(\\$\\{title\\})",
-                    replacement = title,
-                    x = out)
+  template <- default_templates()
+  if (utils::hasName(template, output_format)) {
+    out <-
+      gsub(pattern = "(\\$\\{content\\})",
+           replacement = out,
+           x = template[[output_format]])
+    out <- gsub(pattern = "(\\$\\{title\\})",
+                replacement = title,
+                x = out)
 
-      } else {
-        out <-
-          paste0(paste0("### ", title,"\n", collapse = ""), out, "\n\n", collapse = "\n")
-        # use knitr superpowers again TODO: improve
-        opts_int <- options
-        opts_int$engine <- output_format
-        opts_int$results <- "asis"
-        opts_int$echo <- FALSE # suppress code generation
-        out<-knitr::engine_output(options=opts_int,
-                                                 code="",
-                                  out=out)
+  } else {
+    out <-
+      paste0(paste0("### ", title, "\n", collapse = ""),
+             out,
+             "\n\n",
+             collapse = "\n")
+    # use knitr superpowers again TODO: improve
+    opts_int <- options
+    opts_int$engine <- output_format
+    opts_int$results <- "asis"
+    opts_int$echo <- FALSE # suppress code generation
+    out <- knitr::engine_output(options = opts_int,
+                                code = "",
+                                out = out)
 
-      }
+  }
 
   # merge code result and package output
-  if (isFALSE(options$report)) out <- ""
+  if (isFALSE(options$report))
+    out <- ""
 
 
-      # use knitr to prettyprint R output
-      opts_int <- options
-      opts_int$engine <- "r"
-      opts_int$echo <- FALSE # suppress code generation
-      code_output_pretty<-knitr::engine_output(options=opts_int,
-                                               code="", out=code_output)
-      #---
+  # use knitr to prettyprint R output
+  opts_int <- options
+  opts_int$engine <- "r"
+  opts_int$echo <- FALSE # suppress code generation
+  code_output_pretty <- knitr::engine_output(options = opts_int,
+                                             code = "",
+                                             out = code_output)
+  #---
 
 
-#  out <- c(code_output,"\n", out)
+  #  out <- c(code_output,"\n", out)
 
   # use knitr to prettyprint R code
   opts_int <- options
   opts_int$engine <- "r"
   opts_int$code <- ""
-  code_pretty <- knitr::engine_output(options=opts_int,
-                                    code=code, out="")
+  code_pretty <- knitr::engine_output(options = opts_int,
+                                      code = code,
+                                      out = "")
   # ---
 
 
@@ -312,5 +325,5 @@ reproducibleR <- function(options) {
   #options$results <- "asis" # set results to 'asis' for proper display of report summary
   #knitr::engine_output(options, code_pretty, out)
   paste0(code_pretty, code_output_pretty, out)
- # paste0(code_output_pretty)
+  # paste0(code_output_pretty)
 }

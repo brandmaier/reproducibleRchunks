@@ -10,6 +10,12 @@ This package allows you to make computational results in R testable for reproduc
 
 ![](inst/img/rstudio-screenshot-marker2.png)
 
+## Installation
+
+```
+devtools::install_github("brandmaier/reproducibleRchunks")
+```
+
 ## Demo
 
 Here is how you can check it out for yourself. Install the package and render `test.Rmd` to assess reproducibility of its R code chunks. Each code chunk will render a reproducibility report. One chunk is set up to fail to demonstrate the package. Here is what will happen.
