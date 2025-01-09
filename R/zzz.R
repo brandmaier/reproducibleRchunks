@@ -1,9 +1,11 @@
 
 
 .onLoad <- function(libname, pkgname) {
+  default_envir <- knitr::knit_global()
+
   assign(x = "repror_error_counter",
          value = 0,
-         envir = knitr::knit_global())
+         envir = default_envir)
   assign(
     x = "repror_summary",
     value = data.frame(
@@ -11,7 +13,7 @@
       variable_name = NULL,
       success = NULL
     ),
-    envir = knitr::knit_global()
+    envir = default_envir
   )
 
   knitr::knit_engines$set(reproducibleR = reproducibleR)

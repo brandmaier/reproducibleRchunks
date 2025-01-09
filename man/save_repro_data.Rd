@@ -13,6 +13,8 @@ save_repro_data(
 )
 }
 \arguments{
+\item{x}{Object to be stored.}
+
 \item{filename}{Name (possible including full path) of the save file}
 
 \item{filetype}{Character. Currenlty supported is json and rda.}

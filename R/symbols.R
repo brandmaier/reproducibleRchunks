@@ -2,7 +2,7 @@
 ok_symbol <- function(fmt="undef") {
   if (is.null(fmt)) fmt<-"undef"
   if (fmt=="html")
-    return("✅  ")
+    return("\u2705")
   else
     return("OK ")
 }
@@ -10,7 +10,7 @@ ok_symbol <- function(fmt="undef") {
 fail_symbol <- function(fmt="undef") {
   if (is.null(fmt)) fmt<-"undef"
   if (fmt=="html")
-    return("❌")
+    return("\u274C")
   else
     return("[x] ")
 }

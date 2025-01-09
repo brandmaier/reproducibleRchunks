@@ -1,8 +1,6 @@
 ---
-title: "Untitled"
+title: "Example for custom reproducibility summaries"
 output:
-  word_document: default
-  html_document: default
   pdf_document: default
 date: "2024-07-01"
 ---
@@ -25,8 +23,15 @@ options(reproducibleRchunks.templates = list(
     ))
 ```
 
-# Section 
+# Linear Model
+
+Using the `pressure` data set (vapor pressure of mercury as a function of temperature), we ran a simple regression model with temperature predicting pressure.
 
 ```{reproducibleR pressure, echo=FALSE}
 model <- lm(pressure~temperature, pressure)
+```
+We found the following model coefficients:
+
+```{reproducibleR pressuretidy, echo=FALSE}
+broom::tidy(model)
 ```

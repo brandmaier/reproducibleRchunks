@@ -32,6 +32,10 @@ rnd <- rnorm(10)
 
 ## Summary
 
+The following table summarizes reproducibility information collected in this document:
+
 ```{r}
-reproducibleRchunks::get_reproducibility_summary()
+knitr::kable(
+  reproducibleRchunks::get_reproducibility_summary()
+)
 ```

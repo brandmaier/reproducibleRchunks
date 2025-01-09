@@ -2,6 +2,10 @@
 
 # reproducibleRchunks <img src="inst/img/sticker.png" align="right" height="138" />
 
+ <!-- badges: start -->
+  [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+  <!-- badges: end -->
+
 Preprint available on PsyArXiV: [https://osf.io/preprints/psyarxiv/3zjvf](https://osf.io/preprints/psyarxiv/3zjvf)
 
 ## Why should I care?
