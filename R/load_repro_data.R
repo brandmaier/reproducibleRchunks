@@ -3,7 +3,7 @@
 #'
 #' @param filename Character. Filename to load objects from.
 #' @param envir Environment to load the objects into. By default, this is the global environment.
-#' @param filetype Character. Currenlty supported is json and rda.
+#' @param filetype Character. Currently supported is json and rda.
 load_repro_data <-
   function(filename,
            envir = globalenv(),

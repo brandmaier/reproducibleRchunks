@@ -25,7 +25,7 @@ default_templates <-
 #' @param x Object to be stored.
 #' @param filename Name (possible including full path) of the save file
 #' @param envir Environment to load the objects into. By default, this is the global environment.
-#' @param filetype Character. Currenlty supported is json and rda.
+#' @param filetype Character. Currently supported is json and rda.
 #' @param extra List. Extra payload to store in the meta data
 #' @export
 save_repro_data <- function(x,

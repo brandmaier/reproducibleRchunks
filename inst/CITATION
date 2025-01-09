@@ -1,0 +1,10 @@
+citHeader("To cite reproducibleRchunks in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "Automated Reproducibility Testing in R Markdown",
+  author   = "Brandmaier, A. M., & Peikert, A.",
+  journal  = "OSF",
+  year     = "2024",
+  url      = "https://doi.org/10.31234/osf.io/3zjvf"
+)

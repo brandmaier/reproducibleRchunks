@@ -17,7 +17,7 @@ save_repro_data(
 
 \item{filename}{Name (possible including full path) of the save file}
 
-\item{filetype}{Character. Currenlty supported is json and rda.}
+\item{filetype}{Character. Currently supported is json and rda.}
 
 \item{envir}{Environment to load the objects into. By default, this is the global environment.}
 

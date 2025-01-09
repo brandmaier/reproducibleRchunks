@@ -11,7 +11,7 @@ load_repro_data(filename, envir = globalenv(), filetype = c("json", "rda"))
 
 \item{envir}{Environment to load the objects into. By default, this is the global environment.}
 
-\item{filetype}{Character. Currenlty supported is json and rda.}
+\item{filetype}{Character. Currently supported is json and rda.}
 }
 \description{
 Loading reproducibility data
