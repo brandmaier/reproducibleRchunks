@@ -38,7 +38,7 @@ All computational results are reproduced, fingerprinted and their fingerprints a
 
 ## Mechanics
 
-The package executes reproducibleR code chunks as regular R code and gathers information about all variables that are newly declared in a given chunk. The contents of those variables are stored in a separate JSON data file (which is labelled according to the name of original Markdown file and the chunk label preceded by the prefix `.repro` and ending with the suffix `.json`). Once the document is re-generated and a corresponding JSON data files exist, their content is checked against the newly computed chunk variables for identity.
+The package executes `reproducibleR` code chunks as regular R code and gathers information about all variables that are newly declared in a given chunk. The contents of those variables are stored in a separate JSON data file (which is labeled according to the name of original Markdown file and the chunk label preceded by the prefix `.repro` and ending with the suffix `.json`). Once the document is re-generated and a corresponding JSON data files exist, their content is checked against the newly computed chunk variables for identity.
 
 ![](inst/img/schema-json-fingerprints.png)
 

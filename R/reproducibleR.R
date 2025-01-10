@@ -6,16 +6,16 @@
 #' @description This is the main RMarkdown chunk hook for processing
 #' the automated reproducibility tests of code chunks. This function is
 #' not intended to be called directly. Rather, it is expected that
-#' Rstudio calls this function when rendering chunks with the label
+#' RStudio calls this function when rendering chunks with the label
 #' identical to this function name.
-#' If a variable is declared within the scope of the chunk to be rendered,
-#' meta information about its content are generated. If no metadata exists,
-#' this metadata is stored in a separate file. If metadata exists, it is compared
-#' against the metadata of the reproduction attempt.
+#'
 #'
 #' @details
 #' This function first executes the R code from a given chunk.
-#'
+#' If a variable is declared within the scope of the chunk,
+#' meta information about the variable's content are generated. If no metadata exists,
+#' this metadata is stored in a separate file. If metadata exists, it is compared
+#' against the metadata of the reproduction attempt.
 #'
 #'
 #' @param options A list of chunk options passed from the knitr engine.
@@ -53,7 +53,7 @@ reproducibleR <- function(options) {
   # determine path where to store the meta data
   fullpath_of_inputfile <- knitr::current_input(dir = TRUE)
   if (is.null(fullpath_of_inputfile)) {
-    # we end up here eg. if people run individual chunks in Rstudio
+    # we end up here eg. if people run individual chunks in RStudio
     if ("rstudioapi" %in% utils::installed.packages()) {
       act_doc <- rstudioapi::getActiveDocumentContext()$path
       path <- dirname(act_doc)
@@ -63,7 +63,7 @@ reproducibleR <- function(options) {
     }
   } else {
     # we end up here if people render an entire Rmd file
-    # through knitr or Rstudio's knitr button
+    # through knitr or RStudio's knitr button
     path <- dirname(fullpath_of_inputfile)
     this_filename <- knitr::current_input()
   }

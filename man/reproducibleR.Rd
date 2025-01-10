@@ -11,10 +11,17 @@ reproducibleR(options)
 }
 \description{
 This is the main RMarkdown chunk hook for processing
-the automated reproducibility tests of code chunks
+the automated reproducibility tests of code chunks. This function is
+not intended to be called directly. Rather, it is expected that
+RStudio calls this function when rendering chunks with the label
+identical to this function name.
 }
 \details{
 This function first executes the R code from a given chunk.
+If a variable is declared within the scope of the chunk,
+meta information about the variable's content are generated. If no metadata exists,
+this metadata is stored in a separate file. If metadata exists, it is compared
+against the metadata of the reproduction attempt.
 }
 \author{
 Andreas M. Brandmaier
