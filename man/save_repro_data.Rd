@@ -23,6 +23,12 @@ save_repro_data(
 
 \item{extra}{List. Extra payload to store in the meta data}
 }
+\value{
+No return value
+}
 \description{
 Storing reproducibility data
+}
+\seealso{
+\code{\link[=load_repro_data]{load_repro_data()}}
 }

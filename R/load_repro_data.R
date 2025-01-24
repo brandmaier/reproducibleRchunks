@@ -1,13 +1,35 @@
 #' @export
 #' @title Loading reproducibility data
 #'
-#' @param filename Character. Filename to load objects from.
+#' @description
+#' This function loads reproducibility meta data from a file
+#' and stores the meta information about the variable contents
+#' in the specified environment. Reproducibility
+#' meta data can be loaded from either a json (preferred) or
+#' a binary saved R object. The function returns a named list
+#' with meta information restored from file. The named elements include
+#' "hashing" indicating whether a hashing algorithm was used,
+#' "hashing_algorithm" indicating the name of the hashing algorithm,
+#' "hashing_package" indicating the name of the R package, from which
+#' the hashing algorithm was used, "hashing_package_version" indicating
+#' the package version, "digits" the numeric precision used before hashing
+#' numeric values, and "code_fingerprint" the actual hashed string of the chunk code.
+#'
+#' @param filename Character. File name to load objects from.
 #' @param envir Environment to load the objects into. By default, this is the global environment.
 #' @param filetype Character. Currently supported is json and rda.
+#'
+#' @seealso [save_repro_data()]
+#'
+#' @returns Returns a named list with meta information restored from file. See description for more details.
+#'
 load_repro_data <-
   function(filename,
-           envir = globalenv(),
+           envir,
            filetype = c("json", "rda")) {
+
+    filetype = match.arg(filetype)
+
     if (tolower(filetype) == "json") {
       con <- file(filename)
       json_data <- paste0(readLines(con))
@@ -18,7 +40,7 @@ load_repro_data <-
 
       if (json_meta$hashing_algorithm != default_hashing_algorithm())
       {
-        stop("Hashing algorith mismatch between Markdown and JSON file!")
+        stop("Hashing algorithm mismatch between Markdown and JSON file!")
       }
       if (json_meta$hashing_package != "digest") {
         stop("Unsupported R package for hashing in JSON file!")

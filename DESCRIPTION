@@ -1,8 +1,8 @@
 Package: reproducibleRchunks
 Title: Automated Reproducibility Checks for R Markdown Documents
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: c(person("Andreas M. Brandmaier", email="andreas.brandmaier@medicalschool-berlin.de", role=c("aut","cre")), person("Aaron Peikert",email="peikert@mpib-berlin.mpg.de",role="ctb"))
-Description: Provide reproducible R chunks in R Markdown document that automatically check computational results for reproducibility. This is achieved by creating json files storing metadata about computational results. A comprehensive tutorial to the package is available as preprint (<https://osf.io/preprints/psyarxiv/3zjvf>).
+Description: Provide reproducible R chunks in R Markdown document that automatically check computational results for reproducibility. This is achieved by creating json files storing metadata about computational results. A comprehensive tutorial to the package is available as preprint by Brandmaier & Peikert (2024, <doi:10.31234/osf.io/3zjvf>).
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

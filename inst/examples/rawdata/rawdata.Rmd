@@ -1,0 +1,22 @@
+---
+title: "Storing raw data"
+output: html_document
+date: "2025-01-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(reproducibleRchunks)
+
+options(reproducibleRchunks.hashing=FALSE)
+```
+
+
+## Some Computation
+
+Here is a computation:
+
+```{reproducibleR addition}
+x <- c(1,2,3,4,5,6)
+result <- t.test(x)
+```

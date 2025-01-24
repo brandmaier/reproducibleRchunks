@@ -7,7 +7,12 @@
 reproducibleR(options)
 }
 \arguments{
-\item{options}{A list of chunk options passed from the knitr engine.}
+\item{options}{A list of chunk options passed from the
+knitr engine. Usually this is just the object options
+passed to the engine function; see \link[knitr]{knit_engines}.}
+}
+\value{
+A character string generated from the source code and output.
 }
 \description{
 This is the main RMarkdown chunk hook for processing
@@ -22,6 +27,11 @@ If a variable is declared within the scope of the chunk,
 meta information about the variable's content are generated. If no metadata exists,
 this metadata is stored in a separate file. If metadata exists, it is compared
 against the metadata of the reproduction attempt.
+}
+\examples{
+
+reproducibleR(knitr::opts_chunk$merge(list(engine="reproducibleR",code="1+1")))
+
 }
 \author{
 Andreas M. Brandmaier

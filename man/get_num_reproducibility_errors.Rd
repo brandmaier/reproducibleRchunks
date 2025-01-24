@@ -6,6 +6,9 @@
 \usage{
 get_num_reproducibility_errors()
 }
+\value{
+Returns the number of errors encountered when reproducing a Markdown document
+}
 \description{
 Get the total number of failed reproduction attempts
 }

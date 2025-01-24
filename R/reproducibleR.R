@@ -18,11 +18,23 @@
 #' against the metadata of the reproduction attempt.
 #'
 #'
-#' @param options A list of chunk options passed from the knitr engine.
+#' @param options A list of chunk options passed from the
+#' knitr engine. Usually this is just the object options
+#' passed to the engine function; see \link[knitr]{knit_engines}.
+#'
+#' @returns A character string generated from the source code and output.
+#'
+#' @examples
+#'
+#' reproducibleR(knitr::opts_chunk$merge(list(engine="reproducibleR",code="1+1")))
 #'
 #' @export
 #'
 reproducibleR <- function(options) {
+  # abort if no options are given
+  if (is.null(options)) {
+    stop("No parameter `options` given.")
+  }
   # abort if chunk option eval==FALSE
   if (isFALSE(options$eval)) {
     return(knitr::engine_output(options, options$code, ""))
@@ -36,7 +48,7 @@ reproducibleR <- function(options) {
     # evaluate code
     code_output <- utils::capture.output({
       code_result <-
-        eval(parse(text = options$code), envir = globalenv())
+        eval(parse(text = options$code), envir = knitr::knit_global())
     })
 
     options$engine <- "r"
@@ -54,7 +66,7 @@ reproducibleR <- function(options) {
   fullpath_of_inputfile <- knitr::current_input(dir = TRUE)
   if (is.null(fullpath_of_inputfile)) {
     # we end up here eg. if people run individual chunks in RStudio
-    if ("rstudioapi" %in% utils::installed.packages()) {
+    if(requireNamespace("rstudioapi",quietly=TRUE)) {
       act_doc <- rstudioapi::getActiveDocumentContext()$path
       path <- dirname(act_doc)
       this_filename <- basename(act_doc)
@@ -86,7 +98,7 @@ reproducibleR <- function(options) {
   # build code fingerprint
   code_fingerprint <- digest::digest(code, algo = "sha256")
   # create an environment for the current reproduction attempt
-  current_env <- knitr::knit_global()#globalenv()
+  current_env <- knitr::knit_global()
   existing_var_names <- ls(current_env)
   # evaluate code
   code_output <- utils::capture.output({

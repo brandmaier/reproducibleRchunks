@@ -27,6 +27,11 @@ default_templates <-
 #' @param envir Environment to load the objects into. By default, this is the global environment.
 #' @param filetype Character. Currently supported is json and rda.
 #' @param extra List. Extra payload to store in the meta data
+#'
+#' @returns No return value
+#'
+#' @seealso [load_repro_data()]
+#'
 #' @export
 save_repro_data <- function(x,
                             filename,
@@ -100,4 +105,6 @@ save_repro_data <- function(x,
   } else {
     stop("Unknown filetype. Cannot save reproducibility data.")
   }
+
+  return()
 }
