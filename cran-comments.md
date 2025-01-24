@@ -1,6 +1,11 @@
 Dear CRAN maintainers,
+dear Beni Altmann,
 
-this is the first release of this package on CRAN. Thank you for considering this submission. An accompanying tutorial is currently under review and available as preprint on OSF (<https://osf.io/preprints/psyarxiv/3zjvf>).
+thank you for your helpful feedback on our previous package submission. I fixed all issues as per your request:
+- there is no references to the global environment (instead the knitr environment is now used)
+- there is more documentation, particularly now including @returns tags
+- I use `requireNamespace` instead of `installed.packages()`
+- The DOI is properly referenced in the DESCRIPTION
 
 ## R CMD check results
 

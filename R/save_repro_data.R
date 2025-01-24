@@ -3,7 +3,7 @@ default_filetype <-
     getOption("reproducibleRchunks.filetype", "json")
 default_digits <-
   function()
-    getOption("reproducibleRchunks.digits", 8)
+    getOption("reproducibleRchunks.digits", 10)
 default_hashing <-
   function()
     getOption("reproducibleRchunks.hashing", TRUE)
@@ -94,9 +94,15 @@ save_repro_data <- function(x,
       }
     }
 
+    digits <- default_digits()
+    # this is a heuristic to increase numeric precision
+    # when raw data is stored, otherwise identity-test
+    # may run into problems with numeric precision
+    #if (isFALSE(default_hashing())) digits <- 16
+
     json_data <- jsonlite::serializeJSON(payload,
                                          pretty = TRUE,
-                                         digits = default_digits())
+                                         digits = digits)
     con <- file(filename)
     writeLines(json_data, con)
     close(con)

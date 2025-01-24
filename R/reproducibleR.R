@@ -36,12 +36,13 @@ reproducibleR <- function(options) {
     stop("No parameter `options` given.")
   }
   # abort if chunk option eval==FALSE
+  # pass to default knitr engine for rendering
   if (isFALSE(options$eval)) {
     return(knitr::engine_output(options, options$code, ""))
   }
 
   # pass on to regular R if we have no information about
-  # the entire Rmarkdown file and its location
+  # the surrounding Rmarkdown file and its location
   unknown_knitr_filename <-
     is.null(knitr::current_input(dir = TRUE))
   if (unknown_knitr_filename) {
@@ -97,7 +98,7 @@ reproducibleR <- function(options) {
   code <- paste(options$code, collapse = "\n")
   # build code fingerprint
   code_fingerprint <- digest::digest(code, algo = "sha256")
-  # create an environment for the current reproduction attempt
+  # find an environment for the current reproduction attempt
   current_env <- knitr::knit_global()
   existing_var_names <- ls(current_env)
   # evaluate code
@@ -201,12 +202,16 @@ reproducibleR <- function(options) {
         current_value <- hash(current_value)
       }
 
+      # perform rounding to given numeric precision
       if (is.numeric(current_value))
         current_value <- round(current_value, default_digits())
       if (is.numeric(original_value))
         original_value <- round(original_value, default_digits())
 
-      if (base::identical(original_value, current_value)) {
+      cmp <- isTRUE(all.equal(original_value, current_value,
+                              tolerance=10^-(default_digits()-1)))
+
+      if (cmp) {
         result <-
           paste0("- ",
                  ok_symbol(output_format),
@@ -218,7 +223,10 @@ reproducibleR <- function(options) {
         if (isTRUE(default_hashing())) {
           errmsg <- "Fingerprints are not identical."
         } else {
-          errmsg <- "Objects are not identical."
+          errmsg <- paste0(
+            "Objects are not identical. Details: ",
+            base::all.equal(original_value, current_value)
+          )
 
           if (is.character(original_value) &&
               is.character(current_value)) {
@@ -328,9 +336,6 @@ reproducibleR <- function(options) {
                                              out = code_output)
   #---
 
-
-  #  out <- c(code_output,"\n", out)
-
   # use knitr to prettyprint R code
   opts_int <- options
   opts_int$engine <- "r"
@@ -340,10 +345,6 @@ reproducibleR <- function(options) {
                                       out = "")
   # ---
 
-
-
-  #options$results <- "asis" # set results to 'asis' for proper display of report summary
-  #knitr::engine_output(options, code_pretty, out)
   paste0(code_pretty, code_output_pretty, out)
-  # paste0(code_output_pretty)
+
 }
