@@ -82,7 +82,8 @@ save_repro_data <- function(x,
         hashing_algorithm = default_hashing_algorithm(),
         hashing_package = "digest",
         hashing_package_version = utils::packageVersion("digest"),
-        digits = default_digits()
+        digits = default_digits(),
+        R_version = base::R.version
       ),
       data = named_list
     )

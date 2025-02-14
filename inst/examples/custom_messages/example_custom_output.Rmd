@@ -32,6 +32,12 @@ model <- lm(pressure~temperature, pressure)
 ```
 We found the following model coefficients:
 
-```{reproducibleR pressuretidy, echo=FALSE}
-broom::tidy(model)
+```{reproducibleR pressuretidy, echo=TRUE}
+result <- broom::tidy(model)
+
+knitr::kable(result)
+```
+
+```{r}
+knitr::kable(result)
 ```

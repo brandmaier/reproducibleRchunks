@@ -1,0 +1,28 @@
+---
+title: "Demonstration of reproducibleR chunks"
+output:
+  html_document: default
+  pdf_document: default
+date: "2024-06-05"
+author: "Andreas M. Brandmaier"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Here is a code snippet to override the package functionality and render all chunks as regular R chunks. This is useful if the package is not available:
+
+```{r}
+knitr::knit_engines$set(reproducibleR = knitr::knit_engines$get("R"))
+```
+
+## Some Computation
+
+Here is a computation:
+
+```{reproducibleR simple}
+my_sum <- 12
+```
+
+

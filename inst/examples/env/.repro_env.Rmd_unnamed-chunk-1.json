@@ -1,0 +1,93 @@
+{
+  "type": "list",
+  "attributes": {
+    "names": {
+      "type": "character",
+      "attributes": {},
+      "value": ["metadata", "data"]
+    }
+  },
+  "value": [
+    {
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": ["hashing", "hashing_algorithm", "hashing_package", "hashing_package_version", "digits", "code_fingerprint"]
+        }
+      },
+      "value": [
+        {
+          "type": "logical",
+          "attributes": {},
+          "value": [true]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["sha256"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["digest"]
+        },
+        {
+          "type": "list",
+          "attributes": {
+            "class": {
+              "type": "character",
+              "attributes": {},
+              "value": ["package_version", "numeric_version"]
+            }
+          },
+          "value": [
+            {
+              "type": "integer",
+              "attributes": {},
+              "value": [0, 6, 31]
+            }
+          ]
+        },
+        {
+          "type": "double",
+          "attributes": {},
+          "value": [8]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["d82f9720e7c3cdbd8c72c4f3ddaa52dc2a460862051dd4bb18aefb6846d1f68a"]
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": ["a", "e2", "env"]
+        }
+      },
+      "value": [
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["7c338feca54c5f4d11a1fd4979b4abf73d0e8043f9c9a92754a0182baf6ac16c"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["2cc96fd181877f0a0ba8fb0a7a3998317d0a0b0af3a178a0183d0b32a91b25d4"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["2962dcb58fddfc80d6bdf487469b5ea4e21197628a4b36e82e232a43985feab7"]
+        }
+      ]
+    }
+  ]
+}
