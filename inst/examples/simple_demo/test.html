@@ -360,28 +360,11 @@ display: none;
 <div id="some-computation" class="section level2">
 <h2>Some Computation</h2>
 <p>Here is a computation:</p>
-<pre class="r"><code>my_sum &lt;- x + 1</code></pre>
-<div style="border: 3px solid black; padding: 10px 10px 10px 10px; background-color: #EEEEEE;">
-<h5>
-Code Chunk Reproduction Report
-</h5>
-<ul>
-<li>✅my_sum: REPRODUCTION SUCCESSFUL</li>
-</ul>
-</div>
+<pre class="reproducibler"><code>my_sum &lt;- x + 1</code></pre>
 <p>Here is another computation, which will most likely not reproduce
 because the random number generator will start in different states every
 time:</p>
-<pre class="r"><code>rnd &lt;- rnorm(10)</code></pre>
-<div style="border: 3px solid black; padding: 10px 10px 10px 10px; background-color: #EEEEEE;">
-<h5>
-Code Chunk Reproduction Report
-</h5>
-<ul>
-<li>❌rnd: <strong>REPRODUCTION FAILED</strong> Fingerprints are not
-identical.</li>
-</ul>
-</div>
+<pre class="reproducibler"><code>rnd &lt;- rnorm(10)</code></pre>
 </div>
 <div id="summary" class="section level2">
 <h2>Summary</h2>
@@ -399,16 +382,6 @@ in this document:</p>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">addition</td>
-<td align="left">my_sum</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="even">
-<td align="left">failureToReplicate</td>
-<td align="left">rnd</td>
-<td align="left">FALSE</td>
-</tr>
 </tbody>
 </table>
 </div>

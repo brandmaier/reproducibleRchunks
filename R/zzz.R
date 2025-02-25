@@ -3,18 +3,7 @@
 .onLoad <- function(libname, pkgname) {
   default_envir <- knitr::knit_global()
 
-  assign(x = "repror_error_counter",
-         value = 0,
-         envir = default_envir)
-  assign(
-    x = "repror_summary",
-    value = data.frame(
-      chunk_name = NULL,
-      variable_name = NULL,
-      success = NULL
-    ),
-    envir = default_envir
-  )
+  .reset(default_envir)
 
   knitr::knit_engines$set(reproducibleR = reproducibleR)
   op <- options()
@@ -26,4 +15,21 @@
   if (any(toset))
     options(op_add[toset])
   invisible()
+}
+
+
+.reset <- function(envir) {
+
+  assign(x = "repror_error_counter",
+         value = 0,
+         envir = envir)
+  assign(
+    x = "repror_summary",
+    value = data.frame(
+      Chunk = character(),
+      Variable = character(),
+      Success = logical()
+    ),
+    envir = envir
+  )
 }
