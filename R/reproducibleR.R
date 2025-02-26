@@ -100,14 +100,14 @@ reproducibleR <- function(options) {
   code_fingerprint <- digest::digest(code, algo = "sha256")
   # find an environment for the current reproduction attempt
   current_env <- knitr::knit_global()
-  existing_var_names <- ls(current_env)
+  existing_var_names <- ls(current_env, all.names=TRUE)
   # evaluate code
   code_output <- utils::capture.output({
     code_result <-
       eval(parse(text = code), envir = current_env)
   })
   # get all defined variables
-  current_vars <- ls(current_env)
+  current_vars <- ls(current_env, all.names=TRUE)
   # remove those that existed already (from previous chunks)
   current_vars <-
     current_vars[sapply(current_vars, function(x) {
@@ -180,7 +180,7 @@ reproducibleR <- function(options) {
     # TODO not implemented yet
 
     # compare all results
-    for (var in ls(repro_env)) {
+    for (var in ls(repro_env, all.names=TRUE)) {
       cur_attempt_successful <- FALSE
 
       original_value <- get(var, envir = repro_env)
@@ -278,7 +278,7 @@ reproducibleR <- function(options) {
       output <- c(output, result, "\n")
 
       # store information
-      add_to_repror_summary(c(label, var, cur_attempt_successful))
+      add_to_repror_summary(c(label, var, cur_attempt_successful), .cache)
 
 
     } # end for var in ...
@@ -288,7 +288,7 @@ reproducibleR <- function(options) {
   }
 
   # update error counter
-  increase_error_counter_by(err_counter)
+  increase_error_counter_by(err_counter, envir=.cache)
 
   out <- paste0(output, sep = "", collapse = "\n")
   title <- "Code Chunk Reproduction Report"
