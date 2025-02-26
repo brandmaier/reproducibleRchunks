@@ -4,7 +4,10 @@
 \alias{get_num_reproducibility_errors}
 \title{Get the total number of failed reproduction attempts}
 \usage{
-get_num_reproducibility_errors()
+get_num_reproducibility_errors(envir = .cache)
+}
+\arguments{
+\item{envir}{Environment to retrieve data from. This defaults to a internal package namespace.}
 }
 \value{
 Returns the number of errors encountered when reproducing a Markdown document

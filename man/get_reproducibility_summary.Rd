@@ -4,7 +4,10 @@
 \alias{get_reproducibility_summary}
 \title{Get a summary about all reproduction attempts}
 \usage{
-get_reproducibility_summary()
+get_reproducibility_summary(envir = .cache)
+}
+\arguments{
+\item{envir}{Environment to retrieve data from. This defaults to a internal package namespace.}
 }
 \value{
 Returns a data.frame with three columns.

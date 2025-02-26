@@ -4,12 +4,14 @@
 \alias{isReproducible}
 \title{Test reproducibility of an R Markdown file}
 \usage{
-isReproducible(filename, ...)
+isReproducible(filename, resetOptions = TRUE, ...)
 }
 \arguments{
-\item{filename}{An R Markdown file to check for reproducibility}
+\item{filename}{Character. An R Markdown file to check for reproducibility}
 
-\item{\ldots}{Optional arguments passed down to rmarkdown::render()}
+\item{resetOptions}{Boolean. Should all package options be reset to defaults? TRUE by default. This avoids problems if multiple checks on multiple documents with varying options are made in a row}
+
+\item{\ldots}{Optional arguments passed down to \code{rmarkdown::render()}}
 }
 \description{
 Test reproducibility of an R Markdown file

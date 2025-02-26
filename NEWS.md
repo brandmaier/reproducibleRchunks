@@ -1,6 +1,8 @@
 # reproducibleRchunks 1.0.3
 
+* new function `isReproducible()` allows checking whether a given R Markdown file reproduces or not
 * package metadata now contains comprehensive information about R version
+* reproducibility information is now stored in an internal environment called `.cache`
 
 # reproducibleRchunks 1.0.2
 

@@ -3,9 +3,9 @@
 #'
 #' @param filename Character. An R Markdown file to check for reproducibility
 #' @param resetOptions Boolean. Should all package options be reset to defaults? TRUE by default. This avoids problems if multiple checks on multiple documents with varying options are made in a row
-#' @param \ldots Optional arguments passed down to rmarkdown::render()
+#' @param \ldots Optional arguments passed down to \code{rmarkdown::render()}
 #'
-isReproducible <- function(filename, env = knitr::knit_global(), resetOptions = TRUE,
+isReproducible <- function(filename, resetOptions = TRUE,
                            ...)
 {
   if (!file.exists(filename)) stop("File does not exist")
@@ -20,7 +20,6 @@ isReproducible <- function(filename, env = knitr::knit_global(), resetOptions = 
   .reset()
 
   rmarkdown::render(input = filename,
-                    envir = env,
                     quiet = TRUE,
                     ...)
 
