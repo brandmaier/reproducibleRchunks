@@ -1,0 +1,20 @@
+---
+title: "Reproducibility Tests with Plots"
+output: html_document
+date: "2025-07-01"
+---
+
+```{r setup, include=FALSE}
+library(reproducibleRchunks)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Reproducibility Checks Including Plots
+
+You can also embed plots, for example:
+
+```{reproducibleR pressure, echo=FALSE}
+x <- 1:10
+plot(x)
+```

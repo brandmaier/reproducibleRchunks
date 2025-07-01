@@ -1,0 +1,24 @@
+---
+title: "Empty"
+output: html_document
+date: "2025-07-01"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(reproducibleRchunks)
+```
+
+# Empty Code Chunks
+
+This should not throw an error:
+
+```{reproducibleR chunk1, echo=TRUE}
+
+```
+
+This should also compile:
+
+```{reproducibleR chunk2}
+plot(pressure)
+```

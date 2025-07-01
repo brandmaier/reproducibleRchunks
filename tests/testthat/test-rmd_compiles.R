@@ -5,8 +5,13 @@ test_that("RMD compiles and reproduces", {
     file.remove(json_filename_chunk1)
   }
 
-  fname <- testthat::test_path("testdata","test_json.Rmd")
-  foutname <- testthat::test_path("testdata","test_json.html")
+  path <- testthat::test_path("testdata")
+  fname <- "test_json.Rmd"
+  foutname <- "test_json.html"
+
+
+  lastwd <- getwd()
+  setwd(normalizePath(path))
 
   # create a fresh environment (to avoid that variables
   # defined in the Rmd file are already defined locally)
@@ -15,7 +20,11 @@ test_that("RMD compiles and reproduces", {
 
   testthat::expect_true(file.exists(foutname))
 
+  setwd(lastwd)
+
   testthat::expect_true(
     file.exists(json_filename_chunk1)
   )
+
+
 })

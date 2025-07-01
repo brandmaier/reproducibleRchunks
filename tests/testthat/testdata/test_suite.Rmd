@@ -24,6 +24,7 @@ This is supposed to show code, results and report:
 ```{reproducibleR}
 a <- 1
 b <- a + 10
+b
 ```
 
 ### Test 2: Echo = FALSE
@@ -32,6 +33,7 @@ This is supposed to show results and report but not the code:
 
 ```{reproducibleR echo=FALSE}
 summe <- a + b
+summe
 ```
 
 ### Test 3: echo = false and report = FALSE
@@ -40,6 +42,7 @@ This is supposed to only show the result (12)
 
 ```{reproducibleR echo=FALSE, eval=TRUE, report=FALSE}
 summe2 <- a + b
+summe2
 ```
 
 ### Test 4: Eval = FALSE
@@ -48,4 +51,16 @@ This is supposed to only show the code
 
 ```{reproducibleR eval=FALSE}
 summe3 <- a + b
+summe3
+```
+
+
+### Test 1: Default options
+
+This is supposed to show code, results and report:
+
+```{r results="asis"}
+a <- 1
+b <- a + 10
+b
 ```
