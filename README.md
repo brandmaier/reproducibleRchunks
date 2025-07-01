@@ -16,6 +16,14 @@ This package allows you to make computational results in R testable for reproduc
 
 ## Installation
 
+To install the package from CRAN, enter:
+
+```
+install.packages("reproducibleRchunks")
+```
+
+Or, install the latest developers' version:
+
 ```
 devtools::install_github("brandmaier/reproducibleRchunks")
 ```
