@@ -95,17 +95,21 @@ reproducibleR <- function(options) {
   stopifnot(!is.null(label))
   stopifnot(label != "")
   # get code as a single string
-  code <- paste(options$code, collapse = "\n")
+  code_pasted <- paste(options$code, collapse = "\n")
   # build code fingerprint
-  code_fingerprint <- digest::digest(code, algo = "sha256")
+  code_fingerprint <- digest::digest(code_pasted, algo = "sha256")
   # find an environment for the current reproduction attempt
   current_env <- knitr::knit_global()
   existing_var_names <- ls(current_env, all.names=TRUE)
-  # evaluate code
-  code_output <- utils::capture.output({
-    code_result <-
-      eval(parse(text = code), envir = current_env)
-  })
+  # evaluate code within knitr and retrieve output
+  # make sure that knitr global environment
+  # is the environment we work with
+  eval_options <- options
+  eval_options$engine <- "r"
+  output3 <- knitr::knit_engines$get()$R(eval_options)
+
+
+
   # get all defined variables
   current_vars <- ls(current_env, all.names=TRUE)
   # remove those that existed already (from previous chunks)
@@ -327,24 +331,9 @@ reproducibleR <- function(options) {
     out <- ""
 
 
-  # use knitr to prettyprint R output
-  opts_int <- options
-  opts_int$engine <- "r"
-  opts_int$echo <- FALSE # suppress code generation
-  code_output_pretty <- knitr::engine_output(options = opts_int,
-                                             code = "",
-                                             out = code_output)
-  #---
 
-  # use knitr to prettyprint R code
-  opts_int <- options
-  opts_int$engine <- "r"
-  opts_int$code <- ""
-  code_pretty <- knitr::engine_output(options = opts_int,
-                                      code = code,
-                                      out = "")
-  # ---
 
-  paste0(code_pretty, code_output_pretty, out)
+
+  paste0(c(output3, "\n",out))
 
 }
