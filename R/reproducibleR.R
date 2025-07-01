@@ -113,6 +113,7 @@ reproducibleR <- function(options) {
   # get all defined variables
   current_vars <- ls(current_env, all.names=TRUE)
   # remove those that existed already (from previous chunks)
+  if (length(current_vars)>0)
   current_vars <-
     current_vars[sapply(current_vars, function(x) {
       !x %in% existing_var_names
@@ -144,10 +145,12 @@ reproducibleR <- function(options) {
     # are there any variables defined at all?
     if (length(current_vars) == 0) {
       warning(
-        "No variables were created. No reproduction report possible for current chunk ",
+        "No variables were created within this chunk. Cannot generate a reproduction report.",
         label,
         "."
       )
+      output <-  "No variables were created within this chunk. Cannot generate a reproduction report."
+
     } else {
       # save all defined files
       save_repro_data(
