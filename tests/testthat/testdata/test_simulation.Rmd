@@ -1,0 +1,26 @@
+---
+title: "Use Case: Simulation"
+output: html_document
+date: "2025-07-01"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(reproducibleRchunks)
+```
+
+# Simulate Data
+
+```{reproducibleR}
+my_fun <- function(N, r, ...) {
+  N<-100
+  r=0
+  data <- MASS::mvrnorm(n=N, mu=c(0,0), Sigma=matrix(c(1,r,r,1),nrow=2))
+  cor(data[,1],data[,2])
+}
+
+conditions <- expand.grid(N=c(50,100),r=c(0,0.25,0.5), iter=1:10)
+results <- apply(conditions, 1, function(row) {
+  do.call(my_fun, as.list(row))
+})
+```
