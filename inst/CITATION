@@ -1,13 +1,21 @@
 citHeader("To cite reproducibleRchunks in publications use:")
 
 bibentry(bibtype="article",
-	title = paste("Automated Reproducibility Testing in R Markdown"),
           author = c(
 		      person(c("Andreas", "M."), "Brandmaier"),
-		      person(c("Aaron"), "Peikert")),
-          journal = "OSF",
-	 year  = "2024",
-		  doi   = "10.31234/osf.io/3zjvf",
-
+		      person("Aaron", "Peikert")
+		      ),
+     title = "Automated Reproducibility Testing in R Markdown",
+    journal = "Collabra: Psychology",
+    volume = 11,
+    number = 1,
+    pages = 138638,
+    year = 2025,
+    month = 06,
+        doi = "10.1525/collabra.138638",
 		  textVersion =
-		  paste0("Brandmaier, A. M., & Peikert, A. (2024). Automated Reproducibility Testing in R Markdown [Preprint]. OSF, https://doi.org/10.31234/osf.io/3zjvf"))
+		  paste0("Brandmaier, A.M., & Peikert, A. (2025). Automated Reproducibility Testing in R Markdown. _Collabra: Psychology_, 11(1), 138638.  https://doi.org/10.1525/collabra.138638")
+		  )
+
+
+

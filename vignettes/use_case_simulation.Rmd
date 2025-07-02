@@ -1,5 +1,5 @@
 ---
-title: "use_case_simulation"
+title: "Use Case: A Simulation Study using Random Numbers"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{use_case_simulation}

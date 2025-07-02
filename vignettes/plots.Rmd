@@ -1,0 +1,32 @@
+---
+title: "Plots"
+author: "Andreas Brandmaier"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+knitr::opts_chunk$set(echo = TRUE)
+library(reproducibleRchunks)
+```
+
+# Plot
+
+Note that base R plots typically produce graphical output directly to the current graphics device, without assigning the result to a variable. By design, the `reproducibleRchunks` package only tracks metadata for variables that are explicitly created within each code chunk. Since standard plotting commands do not involve variable assignment, their output is not checked for reproducibility. See the following example, in which only the newly declared variables `x` and `y` are subject to a reproducibility check but not the plot:
+
+```{reproducibleR}
+x <- seq(1,10,.1)
+y <- sin(x)
+plot(x,y)
+```
+
+Note that there is the function `recordPlot()` which records the plot from a graphics device. However the result object contains system-specific information such as local paths to R's, internal libraries and the R version used or a process id, which makes reproducibility checks on plots of base R futile. Instead, we recommend reproducibility checks on the variables that contain the data that is plotted.
+
