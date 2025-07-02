@@ -6,7 +6,8 @@
   [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
   <!-- badges: end -->
 
-Also read our Open Access publication about this package in _Collabra: Psychology_:  [Automated Reproducibility Testing in R Markdown](https://doi.org/10.1525/collabra.138638)
+Also read our Open Access publication about this package in _Collabra: Psychology_:
+[Automated Reproducibility Testing in R Markdown](https://doi.org/10.1525/collabra.138638)
 
 ## Why should I care?
 

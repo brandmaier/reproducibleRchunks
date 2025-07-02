@@ -13,8 +13,19 @@ options(reproducibleRchunks.hashing = TRUE)
 
 The following computations will be automatically tested for reproducibility with every build of this document.
 
-```{reproducibleR somenumbers}
+```{reproducibleR somenumbers, echo=TRUE}
 xyz <- 1:10
 abc <- "hello world"
 some_obj <- t.test(xyz)
+some_obj
+```
+
+
+# regular R
+
+```{r somenumber2s, echo=TRUE}
+xyz <- 1:10
+abc <- "hello world"
+some_obj <- t.test(xyz)
+some_obj
 ```

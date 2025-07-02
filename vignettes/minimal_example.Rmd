@@ -51,4 +51,4 @@ y <- c(4, 8, 15, 16, 23, 42 )
 model <- lm(y~x)
 ```
 
-The reproducibleRchunks package will store meta-data about all variables that are newly declared within a given chunk. Everytime, the document is regenerated and metadata are present, reproducibleR will compare the original data and the regenerated data and will display information about whether they match or not.
+The reproducibleRchunks package will store meta-data about all variables that are newly declared within a given chunk. Every time, the document is regenerated and metadata are present, reproducibleR will compare the original data and the regenerated data and will display information about whether they match or not.
