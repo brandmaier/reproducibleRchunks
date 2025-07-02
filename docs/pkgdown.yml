@@ -1,0 +1,7 @@
+pandoc: 3.1.1
+pkgdown: 2.1.1
+pkgdown_sha: ~
+articles:
+  minimal_example: minimal_example.html
+  use_case_simulation: use_case_simulation.html
+last_built: 2025-07-02T08:13Z
