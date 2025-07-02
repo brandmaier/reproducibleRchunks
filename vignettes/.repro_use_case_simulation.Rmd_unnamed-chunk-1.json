@@ -1,0 +1,180 @@
+{
+  "type": "list",
+  "attributes": {
+    "names": {
+      "type": "character",
+      "attributes": {},
+      "value": ["metadata", "data"]
+    }
+  },
+  "value": [
+    {
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": ["hashing", "hashing_algorithm", "hashing_package", "hashing_package_version", "digits", "R_version", "code_fingerprint"]
+        }
+      },
+      "value": [
+        {
+          "type": "logical",
+          "attributes": {},
+          "value": [true]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["sha256"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["digest"]
+        },
+        {
+          "type": "list",
+          "attributes": {
+            "class": {
+              "type": "character",
+              "attributes": {},
+              "value": ["package_version", "numeric_version"]
+            }
+          },
+          "value": [
+            {
+              "type": "integer",
+              "attributes": {},
+              "value": [0, 6, 37]
+            }
+          ]
+        },
+        {
+          "type": "double",
+          "attributes": {},
+          "value": [10]
+        },
+        {
+          "type": "list",
+          "attributes": {
+            "names": {
+              "type": "character",
+              "attributes": {},
+              "value": ["platform", "arch", "os", "crt", "system", "status", "major", "minor", "year", "month", "day", "svn rev", "language", "version.string", "nickname"]
+            },
+            "class": {
+              "type": "character",
+              "attributes": {},
+              "value": ["simple.list"]
+            }
+          },
+          "value": [
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["x86_64-w64-mingw32"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["x86_64"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["mingw32"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["ucrt"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["x86_64, mingw32"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": [""]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["4"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["4.2"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["2024"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["10"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["31"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["87279"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["R"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["R version 4.4.2 (2024-10-31 ucrt)"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["Pile of Leaves"]
+            }
+          ]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["052105ee6c6e1aec27c7cd1615d44c6625dddbf789d14f678a3b723efc873e23"]
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": ["compute_correlation", "conditions"]
+        }
+      },
+      "value": [
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["adf3e163a60989c6496154bd612efe5846809f038d5354f95f81da82a9d2141d"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["ff6f4baaf28e6d5d53f11f1da163b64f8cd0c205ce1070ef5194a72a06fc0a6d"]
+        }
+      ]
+    }
+  ]
+}

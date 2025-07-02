@@ -1,0 +1,180 @@
+{
+  "type": "list",
+  "attributes": {
+    "names": {
+      "type": "character",
+      "attributes": {},
+      "value": ["metadata", "data"]
+    }
+  },
+  "value": [
+    {
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": ["hashing", "hashing_algorithm", "hashing_package", "hashing_package_version", "digits", "R_version", "code_fingerprint"]
+        }
+      },
+      "value": [
+        {
+          "type": "logical",
+          "attributes": {},
+          "value": [true]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["sha256"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["digest"]
+        },
+        {
+          "type": "list",
+          "attributes": {
+            "class": {
+              "type": "character",
+              "attributes": {},
+              "value": ["package_version", "numeric_version"]
+            }
+          },
+          "value": [
+            {
+              "type": "integer",
+              "attributes": {},
+              "value": [0, 6, 37]
+            }
+          ]
+        },
+        {
+          "type": "double",
+          "attributes": {},
+          "value": [10]
+        },
+        {
+          "type": "list",
+          "attributes": {
+            "names": {
+              "type": "character",
+              "attributes": {},
+              "value": ["platform", "arch", "os", "crt", "system", "status", "major", "minor", "year", "month", "day", "svn rev", "language", "version.string", "nickname"]
+            },
+            "class": {
+              "type": "character",
+              "attributes": {},
+              "value": ["simple.list"]
+            }
+          },
+          "value": [
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["x86_64-w64-mingw32"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["x86_64"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["mingw32"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["ucrt"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["x86_64, mingw32"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": [""]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["4"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["4.2"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["2024"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["10"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["31"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["87279"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["R"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["R version 4.4.2 (2024-10-31 ucrt)"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["Pile of Leaves"]
+            }
+          ]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["304a50c18b8152cb43a18972e43011a84a766780e3406f410f040baecd28e8a3"]
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": [".Random.seed", "results"]
+        }
+      },
+      "value": [
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["537b2a3808f0aa0d3ae20aabca6ca72064eb42720827f5757220252abbdbc268"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["e39baf44e3fd685e18f0983bec503488da2f15cdf378fec61148659e6de31ef7"]
+        }
+      ]
+    }
+  ]
+}

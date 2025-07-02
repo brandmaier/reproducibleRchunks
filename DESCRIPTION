@@ -14,3 +14,4 @@ Config/testthat/edition: 3
 Language: en-US
 BugReports: https://github.com/brandmaier/reproducibleRchunks/issues
 RoxygenNote: 7.3.2
+VignetteBuilder: knitr

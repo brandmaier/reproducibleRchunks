@@ -1,0 +1,54 @@
+---
+title: "A Minimal Example"
+author: "Andreas Brandmaier"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{A Minimal Example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(reproducibleRchunks)
+```
+
+# Setup
+
+First, load the `reproducibleRchunks` package in the first code chunk. 
+Once the package is loaded, the code chunk type `reproducibleR` is now available.
+Your first code chunk will probably look like this:
+
+````{markdown}
+```{r setup, include = FALSE}
+library(reproducibleRchunks)
+```
+```` 
+
+# Using reproducible code chunks
+
+Now, you can use reproducibleR chunks like you use normal R code chunks.
+For example, let us define some data and run a simple statistical model in the following code chunk:
+
+````{markdown}
+```{reproducibleR model1}
+x <- 1:6
+y <- c(4, 8, 15, 16, 23, 42 )
+
+model <- lm(y~x)
+```
+````
+
+```{reproducibleR model1}
+x <- 1:6
+y <- c(4, 8, 15, 16, 23, 42 )
+
+model <- lm(y~x)
+```
+
+The reproducibleRchunks package will store meta-data about all variables that are newly declared within a given chunk. Everytime, the document is regenerated and metadata are present, reproducibleR will compare the original data and the regenerated data and will display information about whether they match or not.

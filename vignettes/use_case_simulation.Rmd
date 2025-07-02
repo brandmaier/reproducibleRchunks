@@ -1,0 +1,46 @@
+---
+title: "use_case_simulation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{use_case_simulation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(reproducibleRchunks)
+```
+
+This vignette illustrates a typical use-case in which the package helps to discover a cause for non-reproducibility in a simulation study.
+
+# Simulate Data
+
+First, we generate conditions for a simulation. These vary a sample size and a
+true correlation `rho`. Second, we define a function that simulates data for two
+normally-distributed variables for a given simulation condition, and returns an estimate of the Pearson correlation of the two variables:
+
+```{reproducibleR}
+conditions <- expand.grid(N=c(50,100),rho=c(0,0.25,0.5), iter=1:10)
+
+compute_correlation <- function(N, rho, ...) {
+  N<-100
+  r=0
+  data <- MASS::mvrnorm(n=N, mu=c(0,0), Sigma=matrix(c(1,r,r,1),nrow=2))
+  cor(data[,1],data[,2])
+}
+```
+
+Last, we call the function for every simulation condition to obtain the estimates for all simulation conditions.
+
+```{reproducibleR}
+results <- apply(conditions, 1, function(row) {
+  do.call(compute_correlation, as.list(row))
+})
+```
+
+Note that the first code chunk reproduces fine while second code chunk does not. This is because the simulation did not specify a random seed, so the random numbers are different every time the document is generated. This is caught by using the `reproducibleR` chunk.
