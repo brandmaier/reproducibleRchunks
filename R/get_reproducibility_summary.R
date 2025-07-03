@@ -2,7 +2,7 @@
 
 #' @title Get the total number of failed reproduction attempts
 #'
-#' @param envir Environment to retrieve data from. This defaults to a internal package namespace.
+#' @param envir Environment to retrieve data from. This defaults to an internal package namespace.
 #'
 #' @returns Returns the number of errors encountered when reproducing a Markdown document
 #' @export
@@ -22,7 +22,7 @@ get_num_reproducibility_errors <- function(envir=.cache) {
 #' stores the name of the variable, and `Success` is a boolean variable,
 #' which indicates whether the reproduction attempt was successful.
 #'
-#' @param envir Environment to retrieve data from. This defaults to a internal package namespace.
+#' @param envir Environment to retrieve data from. This defaults to an internal package namespace.
 #'
 #' @returns Returns a data.frame with three columns.
 #' @export

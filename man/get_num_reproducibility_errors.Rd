@@ -7,7 +7,7 @@
 get_num_reproducibility_errors(envir = .cache)
 }
 \arguments{
-\item{envir}{Environment to retrieve data from. This defaults to a internal package namespace.}
+\item{envir}{Environment to retrieve data from. This defaults to an internal package namespace.}
 }
 \value{
 Returns the number of errors encountered when reproducing a Markdown document
