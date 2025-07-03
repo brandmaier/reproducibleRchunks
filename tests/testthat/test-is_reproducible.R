@@ -11,6 +11,10 @@ test_that("isReproducible returns TRUE on test_json.Rmd", {
     if (file.exists(json)) file.remove(json)
   }, add = TRUE)
 
+  # render once
+  rmarkdown::render(input = rmd, quiet = TRUE)
+
+  # render twice
   res <- reproducibleRchunks::isReproducible(rmd)
   expect_true(res)
 })

@@ -1,6 +1,6 @@
 ---
 title: "Linear Regression with Outlier Correction"
-author: ""  
+author: "Andreas Brandmaier"  
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
