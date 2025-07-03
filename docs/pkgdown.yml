@@ -4,5 +4,6 @@ pkgdown_sha: ~
 articles:
   minimal_example: minimal_example.html
   plots: plots.html
+  regression_example: regression_example.html
   use_case_simulation: use_case_simulation.html
-last_built: 2025-07-02T13:57Z
+last_built: 2025-07-03T07:39Z

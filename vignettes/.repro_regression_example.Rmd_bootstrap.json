@@ -1,0 +1,185 @@
+{
+  "type": "list",
+  "attributes": {
+    "names": {
+      "type": "character",
+      "attributes": {},
+      "value": ["metadata", "data"]
+    }
+  },
+  "value": [
+    {
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": ["hashing", "hashing_algorithm", "hashing_package", "hashing_package_version", "digits", "R_version", "code_fingerprint"]
+        }
+      },
+      "value": [
+        {
+          "type": "logical",
+          "attributes": {},
+          "value": [true]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["sha256"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["digest"]
+        },
+        {
+          "type": "list",
+          "attributes": {
+            "class": {
+              "type": "character",
+              "attributes": {},
+              "value": ["package_version", "numeric_version"]
+            }
+          },
+          "value": [
+            {
+              "type": "integer",
+              "attributes": {},
+              "value": [0, 6, 37]
+            }
+          ]
+        },
+        {
+          "type": "double",
+          "attributes": {},
+          "value": [10]
+        },
+        {
+          "type": "list",
+          "attributes": {
+            "names": {
+              "type": "character",
+              "attributes": {},
+              "value": ["platform", "arch", "os", "crt", "system", "status", "major", "minor", "year", "month", "day", "svn rev", "language", "version.string", "nickname"]
+            },
+            "class": {
+              "type": "character",
+              "attributes": {},
+              "value": ["simple.list"]
+            }
+          },
+          "value": [
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["x86_64-w64-mingw32"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["x86_64"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["mingw32"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["ucrt"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["x86_64, mingw32"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": [""]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["4"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["4.2"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["2024"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["10"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["31"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["87279"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["R"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["R version 4.4.2 (2024-10-31 ucrt)"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["Pile of Leaves"]
+            }
+          ]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["900e7df4e65a8e453fcc88d717d6a7a47c38157390aebaa90609935b82ecedf9"]
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": [".Random.seed", "boot_coefs", "boot_means"]
+        }
+      },
+      "value": [
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["1c8d211e9569e88e726109ee9ff481e9292bc27e135f1be90738a4059bd93a9a"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["5d91f208a4b47cbf032afabbf106005a17233ed6a3513419ea1bbd305a9c17e5"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["5efb4462518671f65b973dd4fe0e3a107fce67e8e007c017ebe59960343de9c2"]
+        }
+      ]
+    }
+  ]
+}
