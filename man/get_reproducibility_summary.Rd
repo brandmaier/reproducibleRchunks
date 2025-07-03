@@ -7,7 +7,7 @@
 get_reproducibility_summary(envir = .cache)
 }
 \arguments{
-\item{envir}{Environment to retrieve data from. This defaults to a internal package namespace.}
+\item{envir}{Environment to retrieve data from. This defaults to an internal package namespace.}
 }
 \value{
 Returns a data.frame with three columns.
