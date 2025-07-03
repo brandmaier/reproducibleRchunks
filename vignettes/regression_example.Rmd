@@ -9,6 +9,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+This vignette demonstrates how to perform a robust linear regression
+analysis on the Boston housing data.  We start by setting global chunk
+options and loading the required packages.
+
 ```{reproducibleR setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -21,12 +25,18 @@ library(MASS)
 
 # Load Data
 
+We load the Boston housing data from the `MASS` package and display the
+first rows to get an overview of the variables.
+
 ```{reproducibleR}
 boston <- MASS::Boston
 head(boston)
 ```
 
 # Outlier Correction
+
+Next, we remove observations with extremely high or low values of
+`medv` using the IQR rule to avoid undue influence of outliers.
 
 ```{reproducibleR}
 iqr_medv <- IQR(boston$medv)
@@ -38,12 +48,23 @@ boston <- boston[boston$medv >= lower & boston$medv <= upper, ]
 
 # Linear Regression
 
+We then fit a multiple linear regression predicting median house value
+from the percentage of lower status population (`lstat`) and the average
+number of rooms (`rm`).
+
 ```{reproducibleR}
 model <- lm(medv ~ lstat + rm, data = boston)
 summary(model)
 ```
 
 # Bootstrap Coefficients
+
+To assess the variability of the coefficients we perform a simple
+bootstrap.  Because random draws can lead to different results across
+runs, we set a random seed to make this step reproducible.  See
+Brandmaier et&nbsp;al. for a detailed discussion of
+reproducibility and random numbers
+([https://qcmb.psychopen.eu/index.php/qcmb/article/view/3763/3763.html](https://qcmb.psychopen.eu/index.php/qcmb/article/view/3763/3763.html)).
 
 ```{reproducibleR}
 set.seed(123)
@@ -56,6 +77,9 @@ boot_means
 ```
 
 # Plot
+
+Finally, we visualise the relation between `lstat` and `medv` together
+with the fitted regression line.
 
 ```{reproducibleR}
 plot(boston$lstat, boston$medv,
