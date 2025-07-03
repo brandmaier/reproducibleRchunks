@@ -1,0 +1,66 @@
+---
+title: "Linear Regression with Outlier Correction"
+author: ""  
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{regression_example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{reproducibleR setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(reproducibleRchunks)
+library(MASS)
+```
+
+# Load Data
+
+```{reproducibleR}
+boston <- MASS::Boston
+head(boston)
+```
+
+# Outlier Correction
+
+```{reproducibleR}
+iqr_medv <- IQR(boston$medv)
+q <- quantile(boston$medv, c(0.25, 0.75))
+lower <- q[1] - 1.5 * iqr_medv
+upper <- q[2] + 1.5 * iqr_medv
+boston <- boston[boston$medv >= lower & boston$medv <= upper, ]
+```
+
+# Linear Regression
+
+```{reproducibleR}
+model <- lm(medv ~ lstat + rm, data = boston)
+summary(model)
+```
+
+# Bootstrap Coefficients
+
+```{reproducibleR}
+set.seed(123)
+boot_coefs <- replicate(1000, {
+  idx <- sample(nrow(boston), replace = TRUE)
+  coef(lm(medv ~ lstat + rm, data = boston[idx, ]))
+})
+boot_means <- rowMeans(boot_coefs)
+boot_means
+```
+
+# Plot
+
+```{reproducibleR}
+plot(boston$lstat, boston$medv,
+     xlab = "Lower status (% population)",
+     ylab = "Median value of homes",
+     main = "Boston Housing Data")
+abline(model, col = "red")
+```
