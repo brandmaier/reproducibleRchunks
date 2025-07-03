@@ -247,7 +247,7 @@ reproducibleR <- function(options) {
           # generate more informative error message for numeric values
           if (is.numeric(original_value) &&
               is.numeric(current_value))         {
-            if (length(original_value) == 1 && length(current_value == 1)) {
+            if (length(original_value) == 1 && length(current_value) == 1) {
               errmsg <-
                 paste0(
                   "Numbers are not identical: ",
