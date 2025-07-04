@@ -1,0 +1,79 @@
+---
+title: "Custom Reports"
+author: "Andreas Brandmaier"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(reproducibleRchunks)
+```
+
+Here, I demonstrate how custom reports about the success of reproduction of a document can be generated within a markdown document. To illustrate, we first create three chunks using the code chunk type `reproducibleR` of which the first two reproduce just fine while not all variables of the third chunk reproduce. Finally, we generate custom reports.
+
+# Cereals
+
+```{reproducibleR cereal}
+cereal_data <- MASS::UScereal
+model <- anova(lm(calories~mfr, cereal_data))
+summary(model)
+```
+
+# Linear Model
+
+```{reproducibleR lm}
+animals <- MASS::Animals
+model2 <- lm(brain~body, animals)
+summary(model2)
+```
+
+# Random Numbers
+
+The following chunk contains some fixed numbers and numbers that are randomly drawn without setting a seed. This should serve as an example of a code chunk that contains both reproducible and non-reproducible parts.
+
+```{reproducibleR random}
+fixed_numbers <- 1:10
+numbers <- rnorm(10, mean = 0, sd = 1)
+```
+
+# Report
+
+In the following, we illustrate how two summary functions can be used to access data about the reproducibility status of the current document. The first simply counts the total number of non-reproducible results:
+
+```{r echo=TRUE, eval=TRUE}
+num_errors <- reproducibleRchunks::get_num_reproducibility_errors()
+ ifelse(num_errors > 0,"There were some results that did not reproduce!","The entire document reproduced succesfully")
+```
+
+The second function `get_reproducibility_summary()` generates a table that can either be used to inspect details about the reproduction status of each variable in each chunk, or to compute further summaries from. First, we obtain the table:
+
+```{r}
+repro_table <- reproducibleRchunks::get_reproducibility_summary()
+knitr::kable(repro_table)
+```
+
+Next, we compute a summary per chunk and use this to plot a visual representation of the reproduction checks.
+
+```{r fig.width=6, fig.height=3}
+if (nrow(repro_table) > 0) {
+  prop_success <- aggregate(Success ~ Chunk, data = repro_table, FUN = mean)
+  
+  barplot(prop_success$Success,
+          names.arg = prop_success$Chunk,
+          ylim = c(0, 1),
+          ylab = "Relative Proportion",
+          xlab = "Chunk",
+          main = "Proportion of Successful Reproductions per Chunk")
+} else {
+  print("No reproducibility information available yet.")
+}
+```

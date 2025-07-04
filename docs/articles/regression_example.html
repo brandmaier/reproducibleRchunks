@@ -84,25 +84,146 @@ options and loading the required packages.</p>
 and display the first rows to get an overview of the variables.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">boston</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/Boston.html" class="external-link">Boston</a></span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">boston</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      crim zn indus chas   nox    rm  age    dis rad tax ptratio  black lstat</span></span>
-<span><span class="co">#&gt; 1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3 396.90  4.98</span></span>
-<span><span class="co">#&gt; 2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8 396.90  9.14</span></span>
-<span><span class="co">#&gt; 3 0.02729  0  7.07    0 0.469 7.185 61.1 4.9671   2 242    17.8 392.83  4.03</span></span>
-<span><span class="co">#&gt; 4 0.03237  0  2.18    0 0.458 6.998 45.8 6.0622   3 222    18.7 394.63  2.94</span></span>
-<span><span class="co">#&gt; 5 0.06905  0  2.18    0 0.458 7.147 54.2 6.0622   3 222    18.7 396.90  5.33</span></span>
-<span><span class="co">#&gt; 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21</span></span>
-<span><span class="co">#&gt;   medv</span></span>
-<span><span class="co">#&gt; 1 24.0</span></span>
-<span><span class="co">#&gt; 2 21.6</span></span>
-<span><span class="co">#&gt; 3 34.7</span></span>
-<span><span class="co">#&gt; 4 33.4</span></span>
-<span><span class="co">#&gt; 5 36.2</span></span>
-<span><span class="co">#&gt; 6 28.7</span></span></code></pre></div>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">boston</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="10%">
+<col width="3%">
+<col width="7%">
+<col width="6%">
+<col width="7%">
+<col width="7%">
+<col width="6%">
+<col width="8%">
+<col width="5%">
+<col width="5%">
+<col width="10%">
+<col width="8%">
+<col width="7%">
+<col width="6%">
+</colgroup>
+<thead><tr class="header">
+<th align="right">crim</th>
+<th align="right">zn</th>
+<th align="right">indus</th>
+<th align="right">chas</th>
+<th align="right">nox</th>
+<th align="right">rm</th>
+<th align="right">age</th>
+<th align="right">dis</th>
+<th align="right">rad</th>
+<th align="right">tax</th>
+<th align="right">ptratio</th>
+<th align="right">black</th>
+<th align="right">lstat</th>
+<th align="right">medv</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">0.00632</td>
+<td align="right">18</td>
+<td align="right">2.31</td>
+<td align="right">0</td>
+<td align="right">0.538</td>
+<td align="right">6.575</td>
+<td align="right">65.2</td>
+<td align="right">4.0900</td>
+<td align="right">1</td>
+<td align="right">296</td>
+<td align="right">15.3</td>
+<td align="right">396.90</td>
+<td align="right">4.98</td>
+<td align="right">24.0</td>
+</tr>
+<tr class="even">
+<td align="right">0.02731</td>
+<td align="right">0</td>
+<td align="right">7.07</td>
+<td align="right">0</td>
+<td align="right">0.469</td>
+<td align="right">6.421</td>
+<td align="right">78.9</td>
+<td align="right">4.9671</td>
+<td align="right">2</td>
+<td align="right">242</td>
+<td align="right">17.8</td>
+<td align="right">396.90</td>
+<td align="right">9.14</td>
+<td align="right">21.6</td>
+</tr>
+<tr class="odd">
+<td align="right">0.02729</td>
+<td align="right">0</td>
+<td align="right">7.07</td>
+<td align="right">0</td>
+<td align="right">0.469</td>
+<td align="right">7.185</td>
+<td align="right">61.1</td>
+<td align="right">4.9671</td>
+<td align="right">2</td>
+<td align="right">242</td>
+<td align="right">17.8</td>
+<td align="right">392.83</td>
+<td align="right">4.03</td>
+<td align="right">34.7</td>
+</tr>
+<tr class="even">
+<td align="right">0.03237</td>
+<td align="right">0</td>
+<td align="right">2.18</td>
+<td align="right">0</td>
+<td align="right">0.458</td>
+<td align="right">6.998</td>
+<td align="right">45.8</td>
+<td align="right">6.0622</td>
+<td align="right">3</td>
+<td align="right">222</td>
+<td align="right">18.7</td>
+<td align="right">394.63</td>
+<td align="right">2.94</td>
+<td align="right">33.4</td>
+</tr>
+<tr class="odd">
+<td align="right">0.06905</td>
+<td align="right">0</td>
+<td align="right">2.18</td>
+<td align="right">0</td>
+<td align="right">0.458</td>
+<td align="right">7.147</td>
+<td align="right">54.2</td>
+<td align="right">6.0622</td>
+<td align="right">3</td>
+<td align="right">222</td>
+<td align="right">18.7</td>
+<td align="right">396.90</td>
+<td align="right">5.33</td>
+<td align="right">36.2</td>
+</tr>
+<tr class="even">
+<td align="right">0.02985</td>
+<td align="right">0</td>
+<td align="right">2.18</td>
+<td align="right">0</td>
+<td align="right">0.458</td>
+<td align="right">6.430</td>
+<td align="right">58.7</td>
+<td align="right">6.0622</td>
+<td align="right">3</td>
+<td align="right">222</td>
+<td align="right">18.7</td>
+<td align="right">394.12</td>
+<td align="right">5.21</td>
+<td align="right">28.7</td>
+</tr>
+</tbody>
+</table>
 <div style="border: 3px solid black; padding: 10px 10px 10px 10px; background-color: #EEEEEE;">
 <h6>
 Code Chunk Reproduction Report
 </h6>
+<p>⚠ Warning: Current code chunk fingerprint and stored code chunk
+fingerprint mismatch. Likely, the code chunk was modified after
+reproduction data was stored the first time.</p>
 <ul>
 <li>✅boston: REPRODUCTION SUCCESSFUL</li>
 </ul>
@@ -112,7 +233,7 @@ Code Chunk Reproduction Report
 <h2 id="outlier-correction">Outlier Correction<a class="anchor" aria-label="anchor" href="#outlier-correction"></a>
 </h2>
 <p>Next, we remove observations with extremely high or low values of
-<code>medv</code> using the IQR rule to avoid undue influence of
+<code>medv</code> using the IQR rule to reduce the influence of
 outliers.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iqr_medv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/IQR.html" class="external-link">IQR</a></span><span class="op">(</span><span class="va">boston</span><span class="op">$</span><span class="va">medv</span><span class="op">)</span></span>

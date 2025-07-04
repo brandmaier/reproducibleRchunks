@@ -1,4 +1,4 @@
-pandoc: 3.1.1
+pandoc: '3.4'
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
@@ -6,4 +6,4 @@ articles:
   plots: plots.html
   regression_example: regression_example.html
   use_case_simulation: use_case_simulation.html
-last_built: 2025-07-03T07:39Z
+last_built: 2025-07-03T09:31Z

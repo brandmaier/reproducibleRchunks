@@ -32,13 +32,13 @@ first rows to get an overview of the variables.
 
 ```{reproducibleR loadData}
 boston <- MASS::Boston
-head(boston)
+knitr::kable(head(boston))
 ```
 
 # Outlier Correction
 
 Next, we remove observations with extremely high or low values of
-`medv` using the IQR rule to avoid undue influence of outliers.
+`medv` using the IQR rule to reduce the influence of outliers.
 
 ```{reproducibleR outliers}
 iqr_medv <- IQR(boston$medv)
