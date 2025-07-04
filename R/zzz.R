@@ -33,3 +33,32 @@
     envir = envir
   )
 }
+
+default_filetype <-
+  function()
+    getOption("reproducibleRchunks.filetype", "json")
+default_digits <-
+  function()
+    getOption("reproducibleRchunks.digits", 10)
+default_hashing <-
+  function()
+    getOption("reproducibleRchunks.hashing", TRUE)
+default_hashing_algorithm <-
+  function()
+    getOption("reproducibleRchunks.hashing_algorithm", "sha256")
+default_prefix <-
+  function()
+    getOption("reproducibleRchunks.prefix", ".repro")
+default_templates <-
+  function()
+    getOption(
+      "reproducibleRchunks.templates",
+      list(html = "<div style='border: 3px solid black; padding: 10px 10px 10px 10px; background-color: #EEEEEE;'><h5>${title}</h5>${content}</div>",
+           latex = "\\hrulefill \n \\section{${title}} \\medskip \\small  ${content}\n \\hrulefill \n")
+    )
+default_msg_success <-
+  function()
+    getOption("reproducibleRchunks.msg_success",": REPRODUCTION SUCCESSFUL")
+default_msg_failure <-
+  function()
+    getOption("reproducibleRchunks.msg_failure",": **REPRODUCTION FAILED** ")

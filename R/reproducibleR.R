@@ -223,7 +223,7 @@ reproducibleR <- function(options) {
           paste0("- ",
                  ok_symbol(output_format),
                  var,
-                 ": REPRODUCTION SUCCESSFUL")
+                 default_msg_success())
         cur_attempt_successful <- TRUE
       } else {
         err_counter = err_counter + 1
@@ -279,7 +279,7 @@ reproducibleR <- function(options) {
           paste0("- ",
                  fail_symbol(output_format),
                  var,
-                 ": **REPRODUCTION FAILED** ",
+                 default_msg_failure(),
                  errmsg)
       }
       output <- c(output, result, "\n")

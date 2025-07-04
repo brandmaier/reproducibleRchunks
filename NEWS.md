@@ -1,3 +1,8 @@
+# reproducibleRchunks 1.2.0
+
+* features new use_github_action() for automated reproducibility checks on github
+* customization of failure and success message is now possible
+
 # reproducibleRchunks 1.1.0
 
 * Rewrite of the internal evaluation and formatting engine to relay most of the heavy
