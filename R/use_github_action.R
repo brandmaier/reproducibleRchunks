@@ -1,6 +1,7 @@
 #' @title Add GitHub Action to test reproducibility
 #' @description Creates a GitHub Actions workflow that runs
 #' [isReproducible()] on all R Markdown files in the repository.
+#' The workflow installs Pandoc so that the documents can be rendered.
 #' If all files reproduce successfully, a badge file `reproduced.svg`
 #' is generated.
 #'
@@ -21,6 +22,7 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml") {
     "    steps:",
     "      - uses: actions/checkout@v3",
     "      - uses: r-lib/actions/setup-r@v2",
+    "      - uses: r-lib/actions/setup-pandoc@v2",
     "      - name: Install reproducibleRchunks",
     "        run: R -e \"install.packages('reproducibleRchunks')\"",
     "      - name: Run reproducibility checks",

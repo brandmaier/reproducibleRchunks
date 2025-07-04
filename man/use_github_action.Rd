@@ -13,5 +13,5 @@ use_github_action(path = ".github/workflows/reproducibleR.yml")
 Invisibly returns the path to the created workflow file.
 }
 \description{
-Creates a GitHub Actions workflow that runs \code{isReproducible()} on all R Markdown files in the repository. If all files reproduce successfully, a badge file \code{reproduced.svg} is generated.
+Creates a GitHub Actions workflow that runs \code{isReproducible()} on all R Markdown files in the repository. The workflow installs Pandoc so that the documents can be rendered. If all files reproduce successfully, a badge file \code{reproduced.svg} is generated.
 }
