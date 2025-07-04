@@ -22,6 +22,11 @@ Here, I demonstrate how custom reports about the success of reproduction of a do
 
 # Cereals
 
+In this first example we work with the `UScereal` data set from the
+`MASS` package. The chunk loads the data, runs an analysis of variance
+on calorie content by manufacturer and prints the summary of the
+model.
+
 ```{reproducibleR cereal}
 cereal_data <- MASS::UScereal
 model <- anova(lm(calories~mfr, cereal_data))
@@ -29,6 +34,10 @@ summary(model)
 ```
 
 # Linear Model
+
+The next chunk demonstrates a simple linear regression. We use the
+`Animals` data from `MASS` to predict brain weight from body weight and
+print the model summary.
 
 ```{reproducibleR lm}
 animals <- MASS::Animals
@@ -38,7 +47,10 @@ summary(model2)
 
 # Random Numbers
 
-The following chunk contains some fixed numbers and numbers that are randomly drawn without setting a seed. This should serve as an example of a code chunk that contains both reproducible and non-reproducible parts.
+The following chunk contains some fixed numbers and numbers that are randomly
+drawn without setting a seed. Because the random numbers change from run to
+run, the chunk mixes reproducible and non-reproducible behaviour and serves as
+an example of how such situations are reported.
 
 ```{reproducibleR random}
 fixed_numbers <- 1:10
@@ -47,7 +59,11 @@ numbers <- rnorm(10, mean = 0, sd = 1)
 
 # Report
 
-In the following, we illustrate how two summary functions can be used to access data about the reproducibility status of the current document. The first simply counts the total number of non-reproducible results:
+After the chunks above have been executed,
+`reproducibleRchunks` stores metadata about all created variables. The
+following code demonstrates how to extract and summarise this
+information. We start by counting the total number of variables that
+did not reproduce correctly:
 
 ```{r echo=TRUE, eval=TRUE}
 num_errors <- reproducibleRchunks::get_num_reproducibility_errors()
@@ -61,7 +77,7 @@ repro_table <- reproducibleRchunks::get_reproducibility_summary()
 knitr::kable(repro_table)
 ```
 
-Next, we compute a summary per chunk and use this to plot a visual representation of the reproduction checks.
+Next, we summarise the table by chunk and create a bar plot that visualises the proportion of successful reproductions.
 
 ```{r fig.width=6, fig.height=3}
 if (nrow(repro_table) > 0) {
