@@ -150,7 +150,7 @@
         {
           "type": "character",
           "attributes": {},
-          "value": ["42fc3266eccab53e134c87fbd34db514d2310d30c96cbe38095822e88f8901ea"]
+          "value": ["13af3818e59da00064e3e9bff093c6f54f969ec2cdf8ca1012ff38616cb94ea7"]
         }
       ]
     },
@@ -160,14 +160,19 @@
         "names": {
           "type": "character",
           "attributes": {},
-          "value": ["boston"]
+          "value": ["animals", "model2"]
         }
       },
       "value": [
         {
           "type": "character",
           "attributes": {},
-          "value": ["a3155f629758cf913f7c4ccf6042bedd87f2e1db7ba2a20673d8a477420dd7de"]
+          "value": ["3e5decd335af75f5d1d29555f463cfa2ae36b25afa4eb2c1812624e7c71f90c4"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["623c36e8741b89dfe0d60e5f78654e9d910612a0d96b8f395a49f53906c6e9e5"]
         }
       ]
     }

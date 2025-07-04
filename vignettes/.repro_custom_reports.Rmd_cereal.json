@@ -150,7 +150,7 @@
         {
           "type": "character",
           "attributes": {},
-          "value": ["42fc3266eccab53e134c87fbd34db514d2310d30c96cbe38095822e88f8901ea"]
+          "value": ["dc6f5df3425c74fc62d76740aab4e80073f387fe5cfe2e08632b751e5ebcb304"]
         }
       ]
     },
@@ -160,14 +160,19 @@
         "names": {
           "type": "character",
           "attributes": {},
-          "value": ["boston"]
+          "value": ["cereal_data", "model"]
         }
       },
       "value": [
         {
           "type": "character",
           "attributes": {},
-          "value": ["a3155f629758cf913f7c4ccf6042bedd87f2e1db7ba2a20673d8a477420dd7de"]
+          "value": ["6fd80e08416cab341db06275ad379107e8d2374ea09717e166976ccf0fa66fa7"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["e9b27720c3becf7bd0bc9006309d73e1ef29603af03d4e471965ac2eac1dc117"]
         }
       ]
     }
