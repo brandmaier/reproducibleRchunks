@@ -20,6 +20,24 @@ library(reproducibleRchunks)
 
 Here, I demonstrate how custom reports about the success of reproduction of a document can be generated within a markdown document. To illustrate, we first create three chunks using the code chunk type `reproducibleR` of which the first two reproduce just fine while not all variables of the third chunk reproduce. Finally, we generate custom reports.
 
+# Styling of chunk-level reports
+
+The following code defines a new format for the chunk-level reports based on HTML/CSS. We
+draw a thin dashed line as border and fill the box with a light gray color. Last, we
+change the title.
+
+```{r}
+options(reproducibleRchunks.templates = list(
+html="<div style='border: 1px dashed gray;
+padding: 15px 15px 5px 15px;
+background-color: #F7F7F7;'>
+<small><b>Reproducibility Checks</b><br>
+
+${content}</small></div><br><br>"))
+```
+
+Next, we define some `reproducibleR` chunks of which some contain reproducible and some non-reproducible parts.
+
 # Cereals
 
 In this first example we work with the `UScereal` data set from the

@@ -2,8 +2,9 @@ pandoc: '3.4'
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
+  custom_reports: custom_reports.html
   minimal_example: minimal_example.html
   plots: plots.html
   regression_example: regression_example.html
   use_case_simulation: use_case_simulation.html
-last_built: 2025-07-03T09:31Z
+last_built: 2025-07-04T06:47Z
