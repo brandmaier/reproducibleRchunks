@@ -35,7 +35,7 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml") {
     "            quit(status = 1)",
     "          }",
     "          EOF",
-    "      - uses: actions/upload-artifact@v3",
+    "      - uses: actions/upload-artifact@v4",
     "        with:",
     "          name: reproduced-badge",
     "          path: reproduced.svg"
