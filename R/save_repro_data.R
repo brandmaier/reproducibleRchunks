@@ -60,7 +60,8 @@ save_repro_data <- function(x,
         hashing_package = "digest",
         hashing_package_version = utils::packageVersion("digest"),
         digits = default_digits(),
-        R_version = base::R.version
+        R_version = base::R.version,
+        session_info = sessionInfo()
       ),
       data = named_list
     )
@@ -90,5 +91,5 @@ save_repro_data <- function(x,
     stop("Unknown filetype. Cannot save reproducibility data.")
   }
 
-  return()
+  invisible()
 }

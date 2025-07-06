@@ -9,8 +9,28 @@
 #'   Defaults to `.github/workflows/reproducibleR.yml`.
 #' @return Invisibly returns the path to the created workflow file.
 #' @export
-use_github_action <- function(path = ".github/workflows/reproducibleR.yml") {
+use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
+                              packages = NULL) {
+
+  if (file.exists(path) && interactive()) {
+    choice <- utils::menu(c("Yes", "No"), title = "Github action already exists. Overwrite?")
+    if (choice != 1) {
+      message("Aborted.")
+      return(invisible(character()))
+    }
+  }
+
+  # create github action file
   dir.create(dirname(path), recursive = TRUE, showWarnings = FALSE)
+
+  # determine packages
+  if (is.null(packages)) {
+    pkglist <- 'reproducibleRchunks'
+  } else {
+    if (!is.vector(packages)) stop("Invalid packages given.")
+    if (!is.character(packages)) stop("Invalid packages given.")
+    pkglist <- paste0(c('reproducibleRchunks', packages),collapse=",")
+  }
 
   workflow <- c(
     "name: Reproducibility",
@@ -38,7 +58,7 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml") {
     "      - uses: r-lib/actions/setup-r@v2",
     "      - uses: r-lib/actions/setup-pandoc@v2",
     "      - name: Install reproducibleRchunks",
-    "        run: R -e \"install.packages('reproducibleRchunks')\"",
+    paste0("        run: R -e \"install.packages(",pkglist,")\"",sep="",collapse=""),
     "      - name: Run reproducibility checks",
     "        run: |",
     "          Rscript - <<'EOF'",

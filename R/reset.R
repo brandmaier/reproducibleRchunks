@@ -1,6 +1,7 @@
 #' @title Delete reproducibility files
 #' @description
-#' Deletes all files in the current working directory that start with
+#' Deletes all meta data in the current directory, that is,
+#' deletes all files in the current working directory that start with
 #' \code{default_prefix()} and end with \code{default_filetype()}.
 #'
 #' @param interactive Logical. If \code{TRUE} (the default), the user is asked
@@ -8,18 +9,18 @@
 #'
 #' @return Invisibly returns the vector of deleted files.
 #' @export
-reset <- function(interactive = TRUE) {
+reset <- function() {
   prefix <- default_prefix()
   filetype <- default_filetype()
   pattern <- paste0("^", prefix, ".*\\.", filetype, "$")
-  files <- list.files(pattern = pattern)
+  files <- list.files(pattern = pattern, all.files = TRUE)
 
   if (length(files) == 0) {
     message("No files found.")
     return(invisible(character()))
   }
 
-  if (interactive) {
+  if (interactive()) {
     cat("Files to be deleted:\n")
     cat(paste0(" - ", files), sep = "\n")
     choice <- utils::menu(c("Yes", "No"), title = "Delete all files above?")
