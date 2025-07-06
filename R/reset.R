@@ -1,0 +1,34 @@
+#' @title Delete reproducibility files
+#' @description
+#' Deletes all files in the current working directory that start with
+#' \code{default_prefix()} and end with \code{default_filetype()}.
+#'
+#' @param interactive Logical. If \code{TRUE} (the default), the user is asked
+#'   for confirmation before files are removed.
+#'
+#' @return Invisibly returns the vector of deleted files.
+#' @export
+reset <- function(interactive = TRUE) {
+  prefix <- default_prefix()
+  filetype <- default_filetype()
+  pattern <- paste0("^", prefix, ".*\\.", filetype, "$")
+  files <- list.files(pattern = pattern)
+
+  if (length(files) == 0) {
+    message("No files found.")
+    return(invisible(character()))
+  }
+
+  if (interactive) {
+    cat("Files to be deleted:\n")
+    cat(paste0(" - ", files), sep = "\n")
+    choice <- utils::menu(c("Yes", "No"), title = "Delete all files above?")
+    if (choice != 1) {
+      message("Aborted.")
+      return(invisible(character()))
+    }
+  }
+
+  unlink(files)
+  invisible(files)
+}
