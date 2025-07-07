@@ -21,6 +21,10 @@ gather_package_names <- function()
       pkgs <- meta$session_info$otherPkgs
       pkg_names <- c(pkg_names, sapply(pkgs, function(x){x$Package}))
     }
+
+    if (hasName(x=meta, "packages")) {
+      pkg_names <- c(pkg_names, meta$packages)
+    }
   }
 
   return(unique(pkg_names))

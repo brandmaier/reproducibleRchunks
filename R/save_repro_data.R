@@ -61,7 +61,8 @@ save_repro_data <- function(x,
         hashing_package_version = utils::packageVersion("digest"),
         digits = default_digits(),
         R_version = base::R.version,
-        session_info = sessionInfo()
+        packages = sapply(sessionInfo()$otherPkgs, function(x) {x$Package})
+        #session_info = sessionInfo()
       ),
       data = named_list
     )
