@@ -41,7 +41,7 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
   if (length(pkglist)==1) {
     pkglist_str = pkglist
   } else {
-    pkglist_str = paste0("(",paste0(pkglist,sep="",collapse=", "),")")
+    pkglist_str = paste0("c(",paste0(pkglist,sep="",collapse=", "),")")
   }
   # create workflow yml
   workflow <- c(
