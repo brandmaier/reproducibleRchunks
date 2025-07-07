@@ -32,6 +32,10 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
     pkglist <- paste0(c('reproducibleRchunks', packages),collapse=",")
   }
 
+  # add quotes
+  pkglist <- shQuote(pkglist)
+
+  # create workflow yml
   workflow <- c(
     "name: Reproducibility",
     "on:",

@@ -1,4 +1,5 @@
 test_that("save numbers in JSON works", {
+
   # set no hashing
   options(reproducibleRchunks.hashing = FALSE)
   mydata <- 1:10
@@ -6,6 +7,10 @@ test_that("save numbers in JSON works", {
   reproducibleRchunks::save_repro_data(c("mydata"),
                                         filename = filename,
                                         filetype = "json")
+
+  on.exit({
+    unlink(filename)
+  }, add = TRUE)
 
   test_envir <- new.env()
   reproducibleRchunks::load_repro_data(filename,

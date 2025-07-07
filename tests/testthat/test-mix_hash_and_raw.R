@@ -13,4 +13,7 @@ test_that("mixing hashed and non-hashed JSON data works", {
   testthat::expect_true(file.exists(foutname))
 
   setwd(lastwd)
+
+  # clean up
+  if (file.exists(foutname)) { unlink(foutname)}
 })

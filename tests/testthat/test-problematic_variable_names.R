@@ -8,5 +8,5 @@ test_that("potentially problematic variable names are stored correctly", {
   testthat::expect_true(file.exists(foutname))
   setwd(lastwd)
 
-
+  if (file.exists(foutname)) unlink(foutname)
 })

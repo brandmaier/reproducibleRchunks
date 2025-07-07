@@ -26,5 +26,10 @@ test_that("RMD compiles and reproduces", {
     file.exists(json_filename_chunk1)
   )
 
+  # clean up
+  if (file.exists(json_filename_chunk1)) {
+    file.remove(json_filename_chunk1)
+  }
+  if (file.exists(foutname)) unlink(foutname)
 
 })
