@@ -12,7 +12,9 @@
 use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
                               packages = NULL) {
 
-  if (file.exists(path) && interactive()) {
+  yml_existed <- file.exists(path)
+
+  if (yml_existed && interactive()) {
     choice <- utils::menu(c("Yes", "No"), title = "Github action already exists. Overwrite?")
     if (choice != 1) {
       message("Aborted.")
@@ -25,15 +27,15 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
 
   # determine packages
   if (is.null(packages)) {
-    pkglist <- 'reproducibleRchunks'
+    pkglist <- unique(c('reproducibleRchunks', gather_package_names()))
   } else {
     if (!is.vector(packages)) stop("Invalid packages given.")
     if (!is.character(packages)) stop("Invalid packages given.")
     pkglist <- paste0(c('reproducibleRchunks', packages),collapse=",")
   }
 
-  # add quotes
-  pkglist <- shQuote(pkglist)
+  # add quotes (and escape them)
+  pkglist <- escapedQuote(pkglist)
 
   # create workflow yml
   workflow <- c(
@@ -62,7 +64,7 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
     "      - uses: r-lib/actions/setup-r@v2",
     "      - uses: r-lib/actions/setup-pandoc@v2",
     "      - name: Install reproducibleRchunks",
-    paste0("        run: R -e \"install.packages(",pkglist,")\"",sep="",collapse=""),
+    paste0("        run: R -e \"install.packages(",paste0(pkglist,sep="",collapse=", "),")\""),
     "      - name: Run reproducibility checks",
     "        run: |",
     "          Rscript - <<'EOF'",
@@ -92,7 +94,8 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
 
   )
 
-  message("Note: Make sure that your GitHub repository has write permissions set. On the repository website, go to Settings -> Action -> General -> Workflow permissions and allow 'Read and write permissions'")
+  if (!yml_existed)
+    message("Note: Make sure that your GitHub repository has write permissions set. On the repository website, go to Settings -> Action -> General -> Workflow permissions and allow 'Read and write permissions'")
 
   writeLines(workflow, path)
   invisible(path)
