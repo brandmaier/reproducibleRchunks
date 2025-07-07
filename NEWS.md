@@ -1,7 +1,8 @@
 # reproducibleRchunks 1.2.0
 
-* features new use_github_action() for automated reproducibility checks on github
+* features new use_github_action() for automated reproducibility checks on github with automatic inference of used packages for container setup
 * customization of failure and success message is now possible
+* storage of sessionInfo() in metadata
 
 # reproducibleRchunks 1.1.0
 

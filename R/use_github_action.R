@@ -37,6 +37,12 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
   # add quotes (and escape them)
   pkglist <- escapedQuote(pkglist)
 
+  # assemble string
+  if (length(pkglist)==1) {
+    pkglist_str = pkglist
+  } else {
+    pkglist_str = paste0("(",paste0(pkglist,sep="",collapse=", "),")")
+  }
   # create workflow yml
   workflow <- c(
     "name: Reproducibility",
@@ -64,7 +70,7 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
     "      - uses: r-lib/actions/setup-r@v2",
     "      - uses: r-lib/actions/setup-pandoc@v2",
     "      - name: Install reproducibleRchunks",
-    paste0("        run: R -e \"install.packages(",paste0(pkglist,sep="",collapse=", "),")\""),
+    paste0("        run: R -e \"install.packages(",pkglist_str,")\""),
     "      - name: Run reproducibility checks",
     "        run: |",
     "          Rscript - <<'EOF'",
