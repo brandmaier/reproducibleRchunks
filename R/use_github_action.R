@@ -34,6 +34,20 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
     pkglist <- paste0(c('reproducibleRchunks', packages),collapse=",")
   }
 
+  # determine if renv was used, if so
+  # ignore inferred packages and use renv later
+  # to restore packages
+  # renv should be activated anyway if .Rprofile is checked in
+  if (file.exists("renv.lock")) {
+    packages <- c("reproducibleRchunks", "renv")
+    renv_cmd <- "source(\\\"renv/activate.R\\\")"
+  } else {
+    renv_cmd <- ""
+  }
+
+  # make package list unique
+  pkglist <- unique(pkglist)
+
   # add quotes (and escape them)
   pkglist <- escapedQuote(pkglist)
 
@@ -75,6 +89,7 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
     "        run: |",
     "          Rscript - <<'EOF'",
     "          library(reproducibleRchunks)",
+    renv_cmd,
     "          files <- list.files(pattern = '\\\\.[Rr]md$', recursive = TRUE)",
     "          success <- all(sapply(files, isReproducible))",
     "          if (success) {",
