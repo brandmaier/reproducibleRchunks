@@ -10,10 +10,7 @@
 #' @return Invisibly returns the vector of deleted files.
 #' @export
 reset <- function() {
-  prefix <- default_prefix()
-  filetype <- default_filetype()
-  pattern <- paste0("^", prefix, ".*\\.", filetype, "$")
-  files <- list.files(pattern = pattern, all.files = TRUE)
+  files <- get_all_metadata_files()
 
   if (length(files) == 0) {
     message("No files found.")

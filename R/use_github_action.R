@@ -13,6 +13,7 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
                               packages = NULL) {
 
   yml_existed <- file.exists(path)
+  is_renv <- file.exists("renv.lock")
 
   if (yml_existed && interactive()) {
     choice <- utils::menu(c("Yes", "No"), title = "Github action already exists. Overwrite?")
@@ -27,7 +28,12 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
 
   # determine packages
   if (is.null(packages)) {
-    pkglist <- unique(c('reproducibleRchunks', gather_package_names()))
+    if (is_renv) {
+      pkglist <- c('reproducibleRchunks', 'renv')
+    } else {
+      pkglist <- unique(c('reproducibleRchunks', gather_package_names()))
+    }
+
   } else {
     if (!is.vector(packages)) stop("Invalid packages given.")
     if (!is.character(packages)) stop("Invalid packages given.")
@@ -38,9 +44,9 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
   # ignore inferred packages and use renv later
   # to restore packages
   # renv should be activated anyway if .Rprofile is checked in
-  if (file.exists("renv.lock")) {
-    packages <- c("reproducibleRchunks", "renv")
-    renv_cmd <- "source(\\\"renv/activate.R\\\")"
+  if (is_renv) {
+#    renv_cmd <- "source(\\\"renv/activate.R\\\")"
+    renv_cmd <- "          renv::restore()"
   } else {
     renv_cmd <- ""
   }
@@ -71,6 +77,8 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
     "jobs:",
     "  check:",
     "    runs-on: ubuntu-latest",
+#    "    container:",
+#    "      image: rocker/verse:latest  # Contains R + RStudio + tidyverse + rmarkdown",
     "    steps:",
     "      - uses: actions/checkout@v3",
     "      - name: Check if last commit was from github-actions bot",

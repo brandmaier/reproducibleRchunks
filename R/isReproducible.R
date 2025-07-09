@@ -21,6 +21,8 @@ isReproducible <- function(filename, resetOptions = TRUE,
 
   rmarkdown::render(input = filename,
                     quiet = TRUE,
+                    runtime = "static",
+                    run_pandoc = TRUE,
                     ...)
 
   if (nrow(get_reproducibility_summary()) == 0) {
