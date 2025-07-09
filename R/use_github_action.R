@@ -2,8 +2,8 @@
 #' @description Creates a GitHub Actions workflow that runs
 #' [isReproducible()] on all R Markdown files in the repository.
 #' The workflow installs Pandoc so that the documents can be rendered.
-#' If all files reproduce successfully, a badge file `reproduced.svg`
-#' is generated.
+#' Depending on the result, a badge file `reproduced.svg` is generated
+#' indicating successful, failing or unknown reproduction status.
 #'
 #' @param path Path to the workflow file to create.
 #'   Defaults to `.github/workflows/reproducibleR.yml`.
@@ -106,7 +106,9 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
     renv_cmd,
     "          files <- list.files(pattern = '\\\\.[Rr]md$', recursive = TRUE)",
     "          success <- all(sapply(files, isReproducible))",
-    "          if (success) {",
+    "          if (is.na(success)) {",
+    "            download.file('https://img.shields.io/badge/reproducibility_status-unknown-black.svg', 'reproduced.svg', mode = 'wb')",
+    "          } else if (success) {",
     "            download.file('https://img.shields.io/badge/reproduced-brightgreen.svg', 'reproduced.svg', mode = 'wb')",
     "          } else {",
     "            download.file('https://img.shields.io/badge/reproduced-failing-red.svg', 'reproduced.svg', mode = 'wb')",
