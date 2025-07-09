@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the following paper."
+title: "reproducibleRchunks"
+version: "1.2.0"
+type: software
+authors:
+  - family-names: Brandmaier
+    given-names: Andreas M.
+  - family-names: Peikert
+    given-names: Aaron
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Brandmaier
+      given-names: Andreas M.
+    - family-names: Peikert
+      given-names: Aaron
+  title: "Automated Reproducibility Testing in R Markdown"
+  journal: "Collabra: Psychology"
+  volume: "11"
+  issue: "1"
+  pages: "138638"
+  year: 2025
+  doi: "10.1525/collabra.138638"
