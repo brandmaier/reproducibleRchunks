@@ -26,10 +26,10 @@ isReproducible <- function(filename, resetOptions = TRUE,
                     ...)
 
   if (nrow(get_reproducibility_summary()) == 0) {
-    warning("No reproducibility information found! Could not evaluate reproducibility status.")
+    message("No reproducibility information found! Could not evaluate reproducibility status.")
     return(NA)
   }
 
-  all(get_reproducibility_summary()$Success)
+  return(all(get_reproducibility_summary()$Success))
 
 }

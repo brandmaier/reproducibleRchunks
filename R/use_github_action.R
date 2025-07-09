@@ -26,18 +26,24 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
   # create github action file
   dir.create(dirname(path), recursive = TRUE, showWarnings = FALSE)
 
+  # basic packages (for rmarkdown::render() to work)
+  # TODO: is there a way to remove these because
+  # they may actually not be needed depending on how
+  # isReproducible() performs the checks
+  pkgs_basic <- c('reproducibleRchunks','knitr','shiny','ggplot2','thematic')
+
   # determine packages
   if (is.null(packages)) {
     if (is_renv) {
-      pkglist <- c('reproducibleRchunks', 'renv')
+      pkglist <- c(pkgs_basic, 'renv')
     } else {
-      pkglist <- unique(c('reproducibleRchunks', gather_package_names()))
+      pkglist <- unique(c(pkgs_basic, gather_package_names()))
     }
 
   } else {
     if (!is.vector(packages)) stop("Invalid packages given.")
     if (!is.character(packages)) stop("Invalid packages given.")
-    pkglist <- paste0(c('reproducibleRchunks', packages),collapse=",")
+    pkglist <- c(pkgs_basic, packages)
   }
 
   # determine if renv was used, if so
