@@ -5,11 +5,14 @@
 #' Depending on the result, a badge file `reproduced.svg` is generated
 #' indicating successful, failing or unknown reproduction status.
 #'
+#' @param files Character. File(s) that should be tested for reproducibility. If NULL, all Rmd files in the directory.
 #' @param path Path to the workflow file to create.
 #'   Defaults to `.github/workflows/reproducibleR.yml`.
+#' @param packages Character. If NULL, necessary R packages are inferred automatically.
 #' @return Invisibly returns the path to the created workflow file.
 #' @export
-use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
+use_github_action <- function(files= NULL,
+                              path = ".github/workflows/reproducibleR.yml",
                               packages = NULL) {
 
   yml_existed <- file.exists(path)
@@ -30,7 +33,7 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
   # TODO: is there a way to remove these because
   # they may actually not be needed depending on how
   # isReproducible() performs the checks
-  pkgs_basic <- c('reproducibleRchunks','knitr','shiny','ggplot2','thematic')
+  pkgs_basic <- c('reproducibleRchunks')#,'knitr','shiny','ggplot2','thematic')
 
   # determine packages
   if (is.null(packages)) {
@@ -51,7 +54,6 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
   # to restore packages
   # renv should be activated anyway if .Rprofile is checked in
   if (is_renv) {
-#    renv_cmd <- "source(\\\"renv/activate.R\\\")"
     renv_cmd <- "          renv::restore()"
   } else {
     renv_cmd <- ""
@@ -61,7 +63,7 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
   pkglist <- unique(pkglist)
 
   # add quotes (and escape them)
-  pkglist <- escapedQuote(pkglist)
+  pkglist <- escapedQuote(pkglist, double=TRUE)
 
   # assemble string
   if (length(pkglist)==1) {
@@ -69,6 +71,16 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
   } else {
     pkglist_str = paste0("c(",paste0(pkglist,sep="",collapse=", "),")")
   }
+
+  # assemble Rmd files to reproduce
+  if (is.null(files)) {
+    files <- list.files(pattern = '\\.[Rr]md$', recursive = FALSE)
+  } else {
+    if (!is.character(files)) stop("Given files are invalid.")
+  }
+  files <- escapedQuote(files, double=FALSE)
+  file_lst <- paste0("c(",paste(files,sep="",collapse=","),")")
+
   # create workflow yml
   workflow <- c(
     "name: Reproducibility",
@@ -83,35 +95,34 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
     "jobs:",
     "  check:",
     "    runs-on: ubuntu-latest",
-#    "    container:",
-#    "      image: rocker/verse:latest  # Contains R + RStudio + tidyverse + rmarkdown",
+    "    container:",
+    "      image: rocker/verse:latest  # Contains R + RStudio + tidyverse + rmarkdown",
     "    steps:",
-    "      - uses: actions/checkout@v3",
-    "      - name: Check if last commit was from github-actions bot",
-    "        run: |",
-    "          AUTHOR=$(git log -1 --pretty=format:'%an')",
-    "          echo \"Last commit author: $AUTHOR\"",
-    "          if [ \"$AUTHOR\" = \"github-actions[bot]\" ]; then",
-    "           echo \"Commit made by github-actions bot. Exiting.\"",
-    "           exit 0",
-    "          fi",
-    "      - uses: r-lib/actions/setup-r@v2",
-    "      - uses: r-lib/actions/setup-pandoc@v2",
-    "      - name: Install reproducibleRchunks",
+    "      - name: Install packages",
     paste0("        run: R -e \"install.packages(",pkglist_str,")\""),
+"      - uses: actions/checkout@v4",
+"      - name: Check if last commit was from github-actions bot",
+"        run: |",
+"          git config --global --add safe.directory /__w/${{github.event.repository.name}}/${{github.event.repository.name}}",
+"          AUTHOR=$(git log -1 --pretty=format:'%an')",
+"          echo \"Last commit author: $AUTHOR\"",
+"          if [ \"$AUTHOR\" = \"github-actions[bot]\" ]; then",
+"           echo \"Commit made by github-actions bot. Exiting.\"",
+"           exit 0",
+"          fi",
     "      - name: Run reproducibility checks",
     "        run: |",
     "          Rscript - <<'EOF'",
     "          library(reproducibleRchunks)",
     renv_cmd,
-    "          files <- list.files(pattern = '\\\\.[Rr]md$', recursive = TRUE)",
+    paste0("          files <- ",file_lst),
     "          success <- all(sapply(files, isReproducible))",
     "          if (is.na(success)) {",
     "            download.file('https://img.shields.io/badge/reproducibility_status-unknown-black.svg', 'reproduced.svg', mode = 'wb')",
     "          } else if (success) {",
     "            download.file('https://img.shields.io/badge/reproduced-brightgreen.svg', 'reproduced.svg', mode = 'wb')",
     "          } else {",
-    "            download.file('https://img.shields.io/badge/reproduced-failing-red.svg', 'reproduced.svg', mode = 'wb')",
+    "            download.file('https://img.shields.io/badge/reproduction-failed-red.svg', 'reproduced.svg', mode = 'wb')",
     "          }",
     "          EOF",
     "      - uses: actions/upload-artifact@v4",
@@ -125,7 +136,7 @@ use_github_action <- function(path = ".github/workflows/reproducibleR.yml",
     "          git config --global user.name \"github-actions[bot]\"",
     "          git config --global user.email \"github-actions[bot]@users.noreply.github.com\"",
     "          git add reproduced.svg",
-    "          git commit -m \"chore: add generated file\" || echo \"No changes to commit\"",
+    "          git commit -m \"reproducibleRchunks: updated reproducibility status\" || echo \"No changes to commit\"",
     "          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:${{ github.ref_name }}"
 
   )

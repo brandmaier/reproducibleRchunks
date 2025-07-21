@@ -5,6 +5,9 @@ test_that("hash function reproduces on consecutive calls", {
 })
 
 test_that("hash function reproduces on consecutive calls", {
+
+  default_algo <- getOption("reproducibleRchunks.hashing_algorithm")
+
   options(reproducibleRchunks.hashing_algorithm="sha256")
   h1 <- reproducibleRchunks:::hash(c(1,2,3))
   expect_identical(h1, "2f36fd737fff4e4c313a930a84abeb8e0d137d78b897fe81fff5ad952c3a0c9a")
@@ -20,5 +23,8 @@ test_that("hash function reproduces on consecutive calls", {
   options(reproducibleRchunks.hashing_algorithm="md5")
   h1 <- reproducibleRchunks:::hash(c(1,2,3))
   expect_identical(h1,"af9e5c24af013c970922362b8850b060")
+
+  # restore all options
+  options(reproducibleRchunks.hashing_algorithm=default_algo)
 
 })

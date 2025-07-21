@@ -4,12 +4,22 @@
 \alias{isReproducible}
 \title{Test reproducibility of an R Markdown file}
 \usage{
-isReproducible(filename, resetOptions = TRUE, ...)
+isReproducible(
+  filename,
+  resetOptions = TRUE,
+  engine = c("knitr", "rmarkdown"),
+  quiet = TRUE,
+  ...
+)
 }
 \arguments{
 \item{filename}{Character. An R Markdown file to check for reproducibility}
 
 \item{resetOptions}{Boolean. Should all package options be reset to defaults? TRUE by default. This avoids problems if multiple checks on multiple documents with varying options are made in a row}
+
+\item{engine}{Character. Either knitr or rmarkdown, depending on what package should be used to render the document.}
+
+\item{quiet}{Boolean. Suppress output when knitting the document.}
 
 \item{\ldots}{Optional arguments passed down to \code{rmarkdown::render()}}
 }

@@ -4,14 +4,17 @@
 \alias{reset}
 \title{Delete reproducibility files}
 \usage{
-reset(interactive = TRUE)
+reset(interactive = NULL)
 }
 \arguments{
-\item{interactive}{Logical. If TRUE, ask for confirmation before deleting.}
+\item{interactive}{Logical. If \code{TRUE} (the default), the user is asked
+for confirmation before files are removed.}
 }
 \value{
 Invisibly returns the vector of deleted files.
 }
 \description{
-Deletes all files in the current working directory that start with \code{default_prefix()} and end with \code{default_filetype()}.
+Deletes all meta data in the current directory, that is,
+deletes all files in the current working directory that start with
+\code{default_prefix()} and end with \code{default_filetype()}.
 }

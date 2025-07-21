@@ -15,6 +15,6 @@ test_that("isReproducible returns TRUE on test_json.Rmd", {
   rmarkdown::render(input = rmd, quiet = TRUE)
 
   # render twice
-  res <- reproducibleRchunks::isReproducible(rmd)
+  res <- reproducibleRchunks::isReproducible(rmd, engine="rmarkdown")
   expect_true(res)
 })

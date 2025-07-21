@@ -1,3 +1,4 @@
+
 #' @export
 gather_package_names <- function()
 {
@@ -17,12 +18,12 @@ gather_package_names <- function()
   for (file in files) {
     meta <- load_repro_data(filename = file, envir = tmp_envir)
 
-    if (hasName(x=meta, "session_info")) {
+    if (utils::hasName(x=meta, "session_info")) {
       pkgs <- meta$session_info$otherPkgs
       pkg_names <- c(pkg_names, sapply(pkgs, function(x){x$Package}))
     }
 
-    if (hasName(x=meta, "packages")) {
+    if (utils::hasName(x=meta, "packages")) {
       pkg_names <- c(pkg_names, meta$packages)
     }
   }

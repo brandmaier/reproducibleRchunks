@@ -4,14 +4,27 @@
 \alias{use_github_action}
 \title{Add GitHub Action to test reproducibility}
 \usage{
-use_github_action(path = ".github/workflows/reproducibleR.yml")
+use_github_action(
+  files = NULL,
+  path = ".github/workflows/reproducibleR.yml",
+  packages = NULL
+)
 }
 \arguments{
-\item{path}{Path to the workflow file to create.}
+\item{files}{Character. File(s) that should be tested for reproducibility. If NULL, all Rmd files in the directory.}
+
+\item{path}{Path to the workflow file to create.
+Defaults to \code{.github/workflows/reproducibleR.yml}.}
+
+\item{packages}{Character. If NULL, necessary R packages are inferred automatically.}
 }
 \value{
 Invisibly returns the path to the created workflow file.
 }
 \description{
-Creates a GitHub Actions workflow that runs \code{isReproducible()} on all R Markdown files in the repository. The workflow installs Pandoc so that the documents can be rendered. A badge file \code{reproduced.svg} is generated indicating successful, failing or unknown reproduction status.
+Creates a GitHub Actions workflow that runs
+\code{\link[=isReproducible]{isReproducible()}} on all R Markdown files in the repository.
+The workflow installs Pandoc so that the documents can be rendered.
+Depending on the result, a badge file \code{reproduced.svg} is generated
+indicating successful, failing or unknown reproduction status.
 }

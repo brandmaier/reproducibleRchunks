@@ -4,10 +4,12 @@
 \alias{escapedQuote}
 \title{Escape quotes for shell commands}
 \usage{
-escapedQuote(x)
+escapedQuote(x, double = FALSE)
 }
 \arguments{
 \item{x}{A character vector that may contain double quotes.}
+
+\item{double}{Boolean. Should the quotes be escaped twice? Default: FALSE}
 }
 \value{
 A character vector with all double quotes double escaped so
@@ -15,11 +17,11 @@ that it can safely be passed to a command line call.
 }
 \description{
 This helper prepares character vectors for use in shell commands by
-quoting them with \code{shQuote()} and double escaping any internal
+quoting them with \code{shQuote()} and (double) escaping any internal
 double quotes.
 }
 \examples{
-escapedQuote("foo \"bar\" baz")
+escapedQuote('foo "bar" baz')
+
 }
 \keyword{internal}
-
