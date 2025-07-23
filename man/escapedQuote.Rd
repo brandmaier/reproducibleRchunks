@@ -21,7 +21,9 @@ quoting them with \code{shQuote()} and (double) escaping any internal
 double quotes.
 }
 \examples{
+\dontrun{
 escapedQuote('foo "bar" baz')
+}
 
 }
 \keyword{internal}

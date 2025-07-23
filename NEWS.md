@@ -5,6 +5,7 @@
 * customization of failure and success message is now possible
 * storage of sessionInfo() in metadata
 * reset() function to delete all metadata files
+* new vignette explaining how to use renv and the package together
 
 # reproducibleRchunks 1.1.0
 

@@ -1,14 +1,16 @@
 Dear CRAN maintainers,
 dear Beni Altmann,
 
-this is an update with new features (better support of code chunk options provided by the knitr package) and full backward compatibility. The package was checked locally and using winbuilder.
+this is an update with new features (compatibility with renv, support for github actions, more vignettes) and full backward compatibility. The package was checked both locally and using winbuilder.
 
 Regarding the potential NOTE on the 403 ("forbidden") error when checking a link to the journal Collabra in the README.md: I double-checked that it works in a browser. I assume that Collabra blocks automated access from command line tools like curl.
 
 ## R CMD check results
 
-❯ checking for future file timestamps ... NOTE
-  unable to verify current time
+── R CMD check results ──── reproducibleRchunks 1.2.0 ────
+Duration: 42.9s
 
-0 errors ✔ | 0 warnings ✔ | 1 note ✖
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
+
+R CMD check succeeded
 

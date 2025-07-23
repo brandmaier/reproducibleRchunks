@@ -11,7 +11,9 @@
 #'   that it can safely be passed to a command line call.
 #'
 #' @examples
+#' \dontrun{
 #' escapedQuote('foo "bar" baz')
+#' }
 #'
 #' @keywords internal
 escapedQuote <- function(x, double=FALSE) {

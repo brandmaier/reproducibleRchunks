@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">reproducibleRchunks</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,7 @@
     <li><a class="dropdown-item" href="../articles/minimal_example.html">A Minimal Example</a></li>
     <li><a class="dropdown-item" href="../articles/plots.html">Plots</a></li>
     <li><a class="dropdown-item" href="../articles/regression_example.html">Use Case: Linear Regression with Outlier Correction and Bootstrap</a></li>
+    <li><a class="dropdown-item" href="../articles/renv_example.html">Using renv with reproducibleRchunks</a></li>
     <li><a class="dropdown-item" href="../articles/use_case_simulation.html">Use Case: A Simulation Study using Random Numbers</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -47,7 +48,13 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">isReproducible</span><span class="op">(</span><span class="va">filename</span>, resetOptions <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">isReproducible</span><span class="op">(</span></span>
+<span>  <span class="va">filename</span>,</span>
+<span>  resetOptions <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  engine <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"knitr"</span>, <span class="st">"rmarkdown"</span><span class="op">)</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -60,6 +67,14 @@
 
 <dt id="arg-resetoptions">resetOptions<a class="anchor" aria-label="anchor" href="#arg-resetoptions"></a></dt>
 <dd><p>Boolean. Should all package options be reset to defaults? TRUE by default. This avoids problems if multiple checks on multiple documents with varying options are made in a row</p></dd>
+
+
+<dt id="arg-engine">engine<a class="anchor" aria-label="anchor" href="#arg-engine"></a></dt>
+<dd><p>Character. Either knitr or rmarkdown, depending on what package should be used to render the document.</p></dd>
+
+
+<dt id="arg-quiet">quiet<a class="anchor" aria-label="anchor" href="#arg-quiet"></a></dt>
+<dd><p>Boolean. Suppress output when knitting the document.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>

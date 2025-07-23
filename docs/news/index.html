@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">reproducibleRchunks</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,7 @@
     <li><a class="dropdown-item" href="../articles/minimal_example.html">A Minimal Example</a></li>
     <li><a class="dropdown-item" href="../articles/plots.html">Plots</a></li>
     <li><a class="dropdown-item" href="../articles/regression_example.html">Use Case: Linear Regression with Outlier Correction and Bootstrap</a></li>
+    <li><a class="dropdown-item" href="../articles/renv_example.html">Using renv with reproducibleRchunks</a></li>
     <li><a class="dropdown-item" href="../articles/use_case_simulation.html">Use Case: A Simulation Study using Random Numbers</a></li>
   </ul></li>
 <li class="active nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -40,6 +41,15 @@
       <small>Source: <a href="https://github.com/brandmaier/reproducibleRchunks/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.2.0" id="reproduciblerchunks-120">reproducibleRchunks 1.2.0<a class="anchor" aria-label="anchor" href="#reproduciblerchunks-120"></a></h2>
+<ul><li>features new use_github_action() for automated reproducibility checks on github with automatic inference of used packages for container setup; this action supports the use of renv projects</li>
+<li>metadata now stores information about R packages used</li>
+<li>customization of failure and success message is now possible</li>
+<li>storage of sessionInfo() in metadata</li>
+<li>reset() function to delete all metadata files</li>
+<li>new vignette explaining how to use renv and the package together</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.0" id="reproduciblerchunks-110">reproducibleRchunks 1.1.0<a class="anchor" aria-label="anchor" href="#reproduciblerchunks-110"></a></h2><p class="text-muted">CRAN release: 2025-07-02</p>
 <ul><li>Rewrite of the internal evaluation and formatting engine to relay most of the heavy lifting to knitrs native code; this enables support of all standard code chunk options that were previously not supported, including the creation of figures</li>

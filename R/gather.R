@@ -1,4 +1,13 @@
-
+#'
+#' @title Gather Package Names
+#' @description
+#' Searches all meta data in the current directory for
+#' information on what R packages are necessary to
+#' reproduce the Markdown files.
+#'
+#' @returns A character vector of R package names.
+#'
+#'
 #' @export
 gather_package_names <- function()
 {

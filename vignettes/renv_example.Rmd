@@ -28,30 +28,26 @@ one of the datasets that ships with that package, all while using
 
 # Creating a project
 
-First, create a new directory for your project and initialize
-`renv` inside it:
+First, inside your R project, initialize `renv` to track and manage package dependencies:
 
-```{r}
-# Set up a temporary project directory for demonstration
-proj_dir <- tempfile("renv-demo-")
-dir.create(proj_dir)
-setwd(proj_dir)
-
+```{r eval=FALSE}
 # Initialize renv
-renv::init(bare = TRUE)
+renv::init()
 ```
 
 `renv` creates a project-specific library and writes a lock file
-to record package versions. Next we install the `psych` package:
+to record package versions. Your R session will be restarted (if running inside RStudio). 
+Next we install the `psych` package as well as the `reproducibleRchunks` in the managed environment:
 
-```{r}
+```{r eval=FALSE}
 renv::install("psych")
+renv::install("reproducibleRchunks")
 ```
 
 After installation, snapshot the project state so the lock file is
 updated:
 
-```{r}
+```{r eval=FALSE}
 renv::snapshot(prompt = FALSE)
 ```
 
@@ -59,7 +55,7 @@ renv::snapshot(prompt = FALSE)
 
 With the packages installed and recorded, we can load `psych` and
 run a quick factor analysis on the `bfi` dataset that comes with
-that package:
+that package. The following code chunk could now be a part of an R Markdown document inside your project:
 
 ```{reproducibleR}
 library(psych)
@@ -75,6 +71,8 @@ This chunk is executed with `reproducibleR`, so fingerprints of
 `bfi_subset` and `fa_result` are stored for later reproducibility
 checks.
 
+Note that if you operate inside RStudio, RStudio will ask your permission to install all packages necessary to render Markdown files inside your managed environment. 
+
 # Restoring the environment
 
 If you share your project, others can reproduce the same setup by
@@ -82,17 +80,21 @@ calling `renv::restore()` in the project directory. This will
 install the recorded package versions and allow them to re-run
 the analyses above with verified reproducibility.
 
-```{r}
+```{r eval=FALSE}
 renv::restore()
 ```
 
-# Cleaning up
+# GitHub actions
 
-For this vignette we used a temporary directory. You might want to
-remove it after you are done:
+If you host your project on GitHub, you can add a github action that automatically verifies reproduction in the GitHub cloud:
 
-```{r}
-setwd("..")
-unlink(proj_dir, recursive = TRUE)
+```{r eval=FALSE}
+reproducibleRchunks::use_github_action()
 ```
+
+Depending on whether reproduction succeeded of failed, a badge is generated and added and committed to your repository. This is how the badges look like depending on the status:
+
+![](https://img.shields.io/badge/reproduced-brightgreen.svg)
+ or 
+![](https://img.shields.io/badge/reproduction-failed-red.svg)
 

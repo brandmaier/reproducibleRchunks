@@ -13,7 +13,7 @@ Also read our Open Access publication about this package in _Collabra: Psycholog
 
 This package allows you to make computational results in R testable for reproduction (does the same script with the same data produce the same results, e.g. on a different computer and/or later in time). There is only a single thing you need to change in your analysis if you are already using RMarkdown: Load the package at the beginning of your R Markdown file (`library(reproducibleRchunks)`) and change the code chunk type from `r` to `reproducibleR`. It's that easy:
 
-![](inst/img/rstudio-screenshot-marker2.png)
+![](man/figures/rstudio-screenshot-marker2.png)
 
 ## Installation
 

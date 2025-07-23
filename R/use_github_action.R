@@ -1,8 +1,8 @@
 #' @title Add GitHub Action to test reproducibility
 #' @description Creates a GitHub Actions workflow that runs
 #' [isReproducible()] on all R Markdown files in the repository.
-#' The workflow installs Pandoc so that the documents can be rendered.
-#' Depending on the result, a badge file `reproduced.svg` is generated
+#' The workflow installs pandoc so that the documents can be rendered.
+#' Depending on the result, a badge file `reproducibleRchunks-badge.svg` is generated
 #' indicating successful, failing or unknown reproduction status.
 #'
 #' @param files Character. File(s) that should be tested for reproducibility. If NULL, all Rmd files in the directory.
@@ -87,7 +87,7 @@ use_github_action <- function(files= NULL,
     "on:",
     "  push:",
     "    paths-ignore:",
-    "      - reproduced.svg",
+    "      - reproducibleRchunks-badge.svg",
     "",
     "permissions:",
     "  contents: write",
@@ -118,24 +118,24 @@ use_github_action <- function(files= NULL,
     paste0("          files <- ",file_lst),
     "          success <- all(sapply(files, isReproducible))",
     "          if (is.na(success)) {",
-    "            download.file('https://img.shields.io/badge/reproducibility_status-unknown-black.svg', 'reproduced.svg', mode = 'wb')",
+    "            download.file('https://img.shields.io/badge/reproducibility_status-unknown-black.svg', 'reproducibleRchunks-badge.svg', mode = 'wb')",
     "          } else if (success) {",
-    "            download.file('https://img.shields.io/badge/reproduced-brightgreen.svg', 'reproduced.svg', mode = 'wb')",
+    "            download.file('https://img.shields.io/badge/reproduced-brightgreen.svg', 'reproducibleRchunks-badge.svg', mode = 'wb')",
     "          } else {",
-    "            download.file('https://img.shields.io/badge/reproduction-failed-red.svg', 'reproduced.svg', mode = 'wb')",
+    "            download.file('https://img.shields.io/badge/reproduction-failed-red.svg', 'reproducibleRchunks-badge.svg', mode = 'wb')",
     "          }",
     "          EOF",
     "      - uses: actions/upload-artifact@v4",
     "        with:",
     "          name: reproduced-badge",
-    "          path: reproduced.svg",
+    "          path: reproducibleRchunks-badge.svg",
     "      - name: Commit and push",
     "        env:",
     "         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}",
     "        run: |",
     "          git config --global user.name \"github-actions[bot]\"",
     "          git config --global user.email \"github-actions[bot]@users.noreply.github.com\"",
-    "          git add reproduced.svg",
+    "          git add reproducibleRchunks-badge.svg",
     "          git commit -m \"reproducibleRchunks: updated reproducibility status\" || echo \"No changes to commit\"",
     "          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:${{ github.ref_name }}"
 

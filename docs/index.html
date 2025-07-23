@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">reproducibleRchunks</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,7 @@
     <li><a class="dropdown-item" href="articles/minimal_example.html">A Minimal Example</a></li>
     <li><a class="dropdown-item" href="articles/plots.html">Plots</a></li>
     <li><a class="dropdown-item" href="articles/regression_example.html">Use Case: Linear Regression with Outlier Correction and Bootstrap</a></li>
+    <li><a class="dropdown-item" href="articles/renv_example.html">Using renv with reproducibleRchunks</a></li>
     <li><a class="dropdown-item" href="articles/use_case_simulation.html">Use Case: A Simulation Study using Random Numbers</a></li>
   </ul>
 </li>
@@ -65,7 +66,7 @@
 <h2 id="why-should-i-care">Why should I care?<a class="anchor" aria-label="anchor" href="#why-should-i-care"></a>
 </h2>
 <p>This package allows you to make computational results in R testable for reproduction (does the same script with the same data produce the same results, e.g. on a different computer and/or later in time). There is only a single thing you need to change in your analysis if you are already using RMarkdown: Load the package at the beginning of your R Markdown file (<code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(reproducibleRchunks)</a></code>) and change the code chunk type from <code>r</code> to <code>reproducibleR</code>. It’s that easy:</p>
-<p><img src="inst/img/rstudio-screenshot-marker2.png"></p>
+<p><img src="reference/figures/rstudio-screenshot-marker2.png"></p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>

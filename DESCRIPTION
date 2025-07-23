@@ -10,6 +10,7 @@ Imports: jsonlite, knitr, digest, rstudioapi, utils, rmarkdown
 Suggests: 
     spelling,
     MASS,
+    psych,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Language: en-US

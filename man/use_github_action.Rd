@@ -24,7 +24,7 @@ Invisibly returns the path to the created workflow file.
 \description{
 Creates a GitHub Actions workflow that runs
 \code{\link[=isReproducible]{isReproducible()}} on all R Markdown files in the repository.
-The workflow installs Pandoc so that the documents can be rendered.
-Depending on the result, a badge file \code{reproduced.svg} is generated
+The workflow installs pandoc so that the documents can be rendered.
+Depending on the result, a badge file \code{reproducibleRchunks-badge.svg} is generated
 indicating successful, failing or unknown reproduction status.
 }
