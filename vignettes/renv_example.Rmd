@@ -1,0 +1,98 @@
+---
+title: "Using renv with reproducibleRchunks"
+author: "Andreas Brandmaier"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using renv with reproducibleRchunks}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(reproducibleRchunks)
+```
+
+# Introduction
+
+This vignette demonstrates how to create a small project using
+`renv` for dependency management. We will initialize a project,
+install the `psych` package, and run a simple factor analysis on
+one of the datasets that ships with that package, all while using
+`reproducibleRchunks`.
+
+# Creating a project
+
+First, create a new directory for your project and initialize
+`renv` inside it:
+
+```{r}
+# Set up a temporary project directory for demonstration
+proj_dir <- tempfile("renv-demo-")
+dir.create(proj_dir)
+setwd(proj_dir)
+
+# Initialize renv
+renv::init(bare = TRUE)
+```
+
+`renv` creates a project-specific library and writes a lock file
+to record package versions. Next we install the `psych` package:
+
+```{r}
+renv::install("psych")
+```
+
+After installation, snapshot the project state so the lock file is
+updated:
+
+```{r}
+renv::snapshot(prompt = FALSE)
+```
+
+# Running a factor analysis
+
+With the packages installed and recorded, we can load `psych` and
+run a quick factor analysis on the `bfi` dataset that comes with
+that package:
+
+```{reproducibleR}
+library(psych)
+
+# Use the first 200 cases of the bfi dataset for speed
+bfi_subset <- head(bfi, 200)
+
+fa_result <- fa(bfi_subset[, 1:10], nfactors = 3)
+fa_result
+```
+
+This chunk is executed with `reproducibleR`, so fingerprints of
+`bfi_subset` and `fa_result` are stored for later reproducibility
+checks.
+
+# Restoring the environment
+
+If you share your project, others can reproduce the same setup by
+calling `renv::restore()` in the project directory. This will
+install the recorded package versions and allow them to re-run
+the analyses above with verified reproducibility.
+
+```{r}
+renv::restore()
+```
+
+# Cleaning up
+
+For this vignette we used a temporary directory. You might want to
+remove it after you are done:
+
+```{r}
+setwd("..")
+unlink(proj_dir, recursive = TRUE)
+```
+
