@@ -31,7 +31,7 @@ devtools::install_github("brandmaier/reproducibleRchunks")
 
 ## Demo
 
-You can try it out yourself—additional examples are available on our [GitHub project page]((https://brandmaier.github.io/reproducibleRchunks/)). Simply install the package and render the test.Rmd file to evaluate the reproducibility of its R code chunks. Each chunk will generate a reproducibility report. One chunk is intentionally designed to fail, showcasing how the package handles errors. Here's what to expect:
+You can try it out yourself—additional examples are available on our [GitHub project page](https://brandmaier.github.io/reproducibleRchunks/). Simply install the package and render the test.Rmd file to evaluate the reproducibility of its R code chunks. Each chunk will generate a reproducibility report. One chunk is intentionally designed to fail, showcasing how the package handles errors. Here's what to expect:
 
 ### Step 1: Document is built for the first time:
 

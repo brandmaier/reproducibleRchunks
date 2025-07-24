@@ -1,9 +1,10 @@
 Dear CRAN maintainers,
-dear Beni Altmann,
 
 this is an update with new features (compatibility with renv, support for github actions, more vignettes) and full backward compatibility. The package was checked both locally and using winbuilder.
 
 Regarding the potential NOTE on the 403 ("forbidden") error when checking a link to the journal Collabra in the README.md: I double-checked that it works in a browser. I assume that Collabra blocks automated access from command line tools like curl.
+
+PS: I now fixed the extra parentheses - thanks Uwe Ligges for your feedback!
 
 ## R CMD check results
 
