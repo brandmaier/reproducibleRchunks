@@ -9,14 +9,26 @@
 #'
 isReproducible <- function(filename,
                            resetOptions = TRUE,
-                           engine = c("knitr","rmarkdown"),
+                           engine = c("auto","knitr","rmarkdown","quarto"),
                            quiet = TRUE,
                            ...)
 {
   engine <- match.arg(engine)
 
-  if (!file.exists(filename)) stop("File does not exist")
-  if (!endsWith(tolower(filename),"rmd")) warning("Possibly not an Rmd file")
+  if (!file.exists(filename))
+    stop("File does not exist")
+  if (!endsWith(tolower(filename),"md"))
+    warning("Possibly not a Markdown or Quarto file")
+
+  if (engine=="auto") {
+    if (endsWith(tolower(filename), "rmd")) {
+      engine <- "knitr"
+    } else if (endsWith(tolower(filename), "qmd"))  {
+      engine <- "quarto"
+    } else {
+      engine <- "knitr"
+    }
+  }
 
   if (resetOptions) {
     ids <- (startsWith(names(options()),"reproducibleRchunks."))
@@ -34,6 +46,11 @@ isReproducible <- function(filename,
                     ...)
   } else if (engine == "knitr") {
     knitr::knit(input = filename, quiet=quiet)
+  } else if (engine == "quarto") {
+    if (requireNamespace("quarto", quietly = TRUE))
+      quarto::quarto_render(filename, quiet = quiet, as_job = FALSE)
+    else
+      stop("Please install the quarto package first!")
   } else {
     stop("Engine not implemented")
   }

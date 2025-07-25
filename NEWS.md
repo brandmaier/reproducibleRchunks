@@ -1,3 +1,7 @@
+# reproducibleRchunks 1.3.0
+
+* Quarto support
+
 # reproducibleRchunks 1.2.0
 
 * features new use_github_action() for automated reproducibility checks on github with automatic inference of used packages for container setup; this action supports the use of renv projects

@@ -74,7 +74,7 @@ use_github_action <- function(files= NULL,
 
   # assemble Rmd files to reproduce
   if (is.null(files)) {
-    files <- list.files(pattern = '\\.[Rr]md$', recursive = FALSE)
+    files <- list.files(pattern = '\\.[Rrq]md$', recursive = FALSE)
   } else {
     if (!is.character(files)) stop("Given files are invalid.")
   }
@@ -116,7 +116,7 @@ use_github_action <- function(files= NULL,
     "          library(reproducibleRchunks)",
     renv_cmd,
     paste0("          files <- ",file_lst),
-    "          success <- all(sapply(files, isReproducible))",
+    "          success <- all(sapply(files, function(x) {isReproducible(x)}))",
     "          if (is.na(success)) {",
     "            download.file('https://img.shields.io/badge/reproducibility_status-unknown-black.svg', 'reproducibleRchunks-badge.svg', mode = 'wb')",
     "          } else if (success) {",
@@ -141,8 +141,11 @@ use_github_action <- function(files= NULL,
 
   )
 
+  cat("GitHub action written to ", path ,".\n")
+
+
   if (!yml_existed)
-    message("Note: Make sure that your GitHub repository has write permissions set. On the repository website, go to Settings -> Action -> General -> Workflow permissions and allow 'Read and write permissions'")
+    message("\nNote: Make sure that your GitHub repository has write permissions set. On the repository website, go to Settings -> Action -> General -> Workflow permissions and allow 'Read and write permissions'")
 
   writeLines(workflow, path)
   invisible(path)

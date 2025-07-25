@@ -8,6 +8,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Imports: jsonlite, knitr, digest, rstudioapi, utils, rmarkdown
 Suggests: 
+    quarto,
     spelling,
     MASS,
     psych,
