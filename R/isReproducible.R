@@ -48,6 +48,17 @@ isReproducible <- function(filename,
     knitr::knit(input = filename, quiet=quiet)
   } else if (engine == "quarto") {
     if (requireNamespace("quarto", quietly = TRUE))
+      # Create a list to hold snapshots of the environment after each chunk
+     # all_vars <- list()
+
+    # Hook to collect variables from global environment after each chunk
+    #knitr::knit_hooks$set(chunk = function(x, options) {
+    #  vars <- ls(envir = .GlobalEnv)
+    #  snapshot <- mget(vars, envir = .GlobalEnv, ifnotfound = NA)
+    #  all_vars[[options$label %||% paste0("chunk_", length(all_vars) + 1)]] <<- snapshot
+    #  return(x)  # Don't modify the chunk output
+    #})
+
       quarto::quarto_render(filename, quiet = quiet, as_job = FALSE)
     else
       stop("Please install the quarto package first!")

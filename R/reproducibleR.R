@@ -72,7 +72,7 @@ reproducibleR <- function(options) {
       path <- dirname(act_doc)
       this_filename <- basename(act_doc)
     } else {
-      return("Note: Unable to determine file and chunk name for reproducibility check.")
+      return("Note: Unable to determine file and chunk name for reproducibility check. Please install package rstudioapi.")
     }
   } else {
     # we end up here if people render an entire Rmd file

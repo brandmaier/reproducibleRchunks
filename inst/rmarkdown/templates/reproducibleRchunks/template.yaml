@@ -1,0 +1,4 @@
+name: reproducibleRchunks
+description: >
+     An R Markdown template provided by reproducibleRchunks to get you started with R chunks that have automated reproducibility checks.
+create_dir: FALSE

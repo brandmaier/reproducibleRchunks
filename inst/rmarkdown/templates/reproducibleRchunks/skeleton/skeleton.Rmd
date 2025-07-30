@@ -1,0 +1,31 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#
+# load the reproducibleRchunks package
+# if it is not available, revert to standard R rendering
+#
+if (requireNamespace("reproducibleRchunks")) {
+  require(reproducibleRchunks)
+} else {
+   knitr::knit_engines$set(reproducibleR = knitr::knit_engines$get("R"))
+}
+
+```
+
+## reproducibleRchunks
+
+Use chunks of type `reproducibleR` just like you use regular `r` chunks:
+
+```{reproducibleR}
+x <- 15
+y <- x * 2
+print(x)
+``` 
+
+All newly declared variables will be automatically checked for reproducibility in future.
