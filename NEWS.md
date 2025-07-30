@@ -1,6 +1,7 @@
 # reproducibleRchunks 1.3.0
 
-* Quarto support
+* Quarto support (work in progress)
+* Added an rmarkdown template
 
 # reproducibleRchunks 1.2.0
 
