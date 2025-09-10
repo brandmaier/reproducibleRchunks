@@ -101,6 +101,12 @@ reproducibleR <- function(options) {
   # find an environment for the current reproduction attempt
   current_env <- knitr::knit_global()
   existing_var_names <- ls(current_env, all.names=TRUE)
+  # prepare custom HTML styling
+  #if (!hasName(options,"attr.source"))
+  attr_name <- paste0('.',label)
+  options$attr.source=paste0(options$attr.source," ",attr_name)
+  stylesheet <- ""
+
   # evaluate code within knitr and retrieve output
   # make sure that knitr global environment
   # is the environment we work with
@@ -287,6 +293,9 @@ reproducibleR <- function(options) {
       # store information
       add_to_repror_summary(c(label, var, cur_attempt_successful), .cache)
 
+      # add stylesheet information
+      if (!cur_attempt_successful)
+       stylesheet <- paste0(stylesheet,"\n.",label,"{background-color:#fff0f0;","}","\n")
 
     } # end for var in ...
 
@@ -330,11 +339,17 @@ reproducibleR <- function(options) {
   }
 
   # merge code result and package output
-  if (isFALSE(options$report))
+  show_rep <- options$report
+  if (!is.null(rmarkdown::metadata$reproducibleR$report))
+    show_rep <- rmarkdown::metadata$reproducibleR$report
+  if (isFALSE(show_rep))
     out <- ""
 
 
-
+  # TODO (if HTML)
+  dbc <- isTRUE(rmarkdown::metadata$reproducibleR$dynamic_backgroundcolor)
+  if (output_format == "html" && dbc)
+    out <-  paste0(out, "\n<style>",stylesheet," </style>\n")
 
 
   paste0(c(output3, "\n",out))
