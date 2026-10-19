@@ -2,6 +2,8 @@
 
 * Quarto support (work in progress)
 * Added an rmarkdown template
+* changed default numerical precision from 10 to 7 digits to increase tolerance
+* fixed a bug that did not report where numerical differences appeared 
 
 # reproducibleRchunks 1.2.0
 

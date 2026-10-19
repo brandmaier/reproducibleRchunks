@@ -221,8 +221,9 @@ reproducibleR <- function(options) {
       if (is.numeric(original_value))
         original_value <- round(original_value, default_digits())
 
+      tolerance = 10^-(default_digits()-1)
       cmp <- isTRUE(all.equal(original_value, current_value,
-                              tolerance=10^-(default_digits()-1)))
+                              tolerance=tolerance))
 
       if (cmp) {
         result <-
@@ -238,7 +239,8 @@ reproducibleR <- function(options) {
         } else {
           errmsg <- paste0(
             "Objects are not identical. Details: ",
-            base::all.equal(original_value, current_value)
+            base::all.equal(original_value, current_value,
+                            tolerance=tolerance)
           )
 
           if (is.character(original_value) &&

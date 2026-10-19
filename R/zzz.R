@@ -39,7 +39,7 @@ default_filetype <-
     getOption("reproducibleRchunks.filetype", "json")
 default_digits <-
   function()
-    getOption("reproducibleRchunks.digits", 10)
+    getOption("reproducibleRchunks.digits", 7)
 default_hashing <-
   function()
     getOption("reproducibleRchunks.hashing", TRUE)
