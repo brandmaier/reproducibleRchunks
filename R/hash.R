@@ -1,5 +1,5 @@
 #'
-#' This function calls digest with the default hashing algorithm
+#' This function calls \code{digest} with the default hashing algorithm
 #'
 #' Across R versions, attribute order of objects seems not to
 #' be consistent. Anecdotally, I found a difference between
@@ -9,6 +9,10 @@
 #' on those computers). In order to prevent this issue, I
 #' choose a canonical representation of attributes before
 #' creating the hash.
+#'
+#' @param x Object. An arbitrary R object which will be serialized and fingerprinted.
+#' @param canonical Boolean. Determines whether the canonical form of the attributes should be used.
+#'
 hash <- function(x, canonical=TRUE) {
 
   if (isTRUE(canonical)) {

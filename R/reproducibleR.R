@@ -106,7 +106,6 @@ reproducibleR <- function(options) {
   current_env <- knitr::knit_global()
   existing_var_names <- ls(current_env, all.names=TRUE)
   # prepare custom HTML styling
-  #if (!hasName(options,"attr.source"))
   attr_name <- paste0('.',label)
   options$attr.source=paste0(options$attr.source," ",attr_name)
   stylesheet <- ""
@@ -180,7 +179,7 @@ reproducibleR <- function(options) {
                                  filetype = "json")
 
     # downward compatibility
-    if (!hasName(meta_data,"reproducibleRchunks_package_version")) {
+    if (!utils::hasName(meta_data,"reproducibleRchunks_package_version")) {
       # this means we are package version 1.2.0 or below
       # which did not set canonical sorting of attributes
       # so newer package versions can still produce

@@ -3,6 +3,7 @@
 <url><loc>/articles/custom_reports.html</loc></url>
 <url><loc>/articles/index.html</loc></url>
 <url><loc>/articles/minimal_example.html</loc></url>
+<url><loc>/articles/object_identity.html</loc></url>
 <url><loc>/articles/plots.html</loc></url>
 <url><loc>/articles/regression_example.html</loc></url>
 <url><loc>/articles/renv_example.html</loc></url>
@@ -17,6 +18,7 @@
 <url><loc>/reference/get_all_metadata_files.html</loc></url>
 <url><loc>/reference/get_num_reproducibility_errors.html</loc></url>
 <url><loc>/reference/get_reproducibility_summary.html</loc></url>
+<url><loc>/reference/hash.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
 <url><loc>/reference/isReproducible.html</loc></url>
 <url><loc>/reference/load_repro_data.html</loc></url>

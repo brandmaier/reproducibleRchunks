@@ -1,11 +1,12 @@
-pandoc: 3.1.1
-pkgdown: 2.1.1
+pandoc: '3.4'
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   custom_reports: custom_reports.html
   minimal_example: minimal_example.html
+  object_identity: object_identity.html
   plots: plots.html
   regression_example: regression_example.html
   renv_example: renv_example.html
   use_case_simulation: use_case_simulation.html
-last_built: 2025-07-23T14:10Z
+last_built: 2026-10-20T17:50Z
