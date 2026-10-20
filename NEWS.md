@@ -1,9 +1,13 @@
-# reproducibleRchunks 1.3.0
+# reproducibleRchunks 1.3.0 (work in progress)
 
 * Quarto support (work in progress)
+
+# reproducibleRchunks 1.2.1
+
 * Added an rmarkdown template
 * changed default numerical precision from 10 to 7 digits to increase tolerance
 * fixed a bug that did not report where numerical differences appeared 
+* hashes are now computed based on a canonical representation of attributes (ignoring their order)
 
 # reproducibleRchunks 1.2.0
 

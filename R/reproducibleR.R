@@ -81,6 +81,10 @@ reproducibleR <- function(options) {
     this_filename <- knitr::current_input()
   }
 
+  # set use of canonical sorting of attributes to TRUE
+  # and change this depending on loaded previous versions
+  # of the package further down
+  use_canonical_attributes <- TRUE
 
   # determine requested output format
   output_format <- knitr::pandoc_to()
@@ -175,6 +179,15 @@ reproducibleR <- function(options) {
                                  envir = repro_env,
                                  filetype = "json")
 
+    # downward compatibility
+    if (!hasName(meta_data,"reproducibleRchunks_package_version")) {
+      # this means we are package version 1.2.0 or below
+      # which did not set canonical sorting of attributes
+      # so newer package versions can still produce
+      # consistent version checks with older package versions
+      use_canonical_attributes <- FALSE
+    }
+
     # compare code fingerprint (if exists)
     if (utils::hasName(meta_data, "code_fingerprint")) {
       if (!identical(meta_data$code_fingerprint, code_fingerprint)) {
@@ -212,7 +225,8 @@ reproducibleR <- function(options) {
       current_value <- get(var, envir = current_env)
 
       if (isTRUE(default_hashing())) {
-        current_value <- hash(current_value)
+        current_value <- hash(current_value,
+                  canonical=use_canonical_attributes)
       }
 
       # perform rounding to given numeric precision
