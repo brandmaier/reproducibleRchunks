@@ -1,0 +1,44 @@
+# Loading reproducibility data
+
+This function loads reproducibility meta data from a file and stores the
+meta information about the variable contents in the specified
+environment. Reproducibility meta data can be loaded from either a json
+(preferred) or a binary saved R object. The function returns a named
+list with meta information restored from file. The named elements
+include "hashing" indicating whether a hashing algorithm was used,
+"hashing_algorithm" indicating the name of the hashing algorithm,
+"hashing_package" indicating the name of the R package, from which the
+hashing algorithm was used, "hashing_package_version" indicating the
+package version, "digits" the numeric precision used before hashing
+numeric values, and "code_fingerprint" the actual hashed string of the
+chunk code.
+
+## Usage
+
+``` r
+load_repro_data(filename, envir, filetype = c("json", "rda"))
+```
+
+## Arguments
+
+- filename:
+
+  Character. File name to load objects from.
+
+- envir:
+
+  Environment to load the objects into. By default, this is the global
+  environment.
+
+- filetype:
+
+  Character. Currently supported is json and rda.
+
+## Value
+
+Returns a named list with meta information restored from file. See
+description for more details.
+
+## See also
+
+[`save_repro_data()`](save_repro_data.md)

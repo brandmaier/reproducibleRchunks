@@ -61,8 +61,8 @@ save_repro_data <- function(x,
         hashing_package_version = utils::packageVersion("digest"),
         digits = default_digits(),
         R_version = base::R.version,
-        packages = sapply(utils::sessionInfo()$otherPkgs, function(x) {x$Package})
-        #session_info = sessionInfo()
+        packages = sapply(utils::sessionInfo()$otherPkgs, function(x) {x$Package}),
+        reproducibleRchunks_package_version = utils::packageVersion("reproducibleRchunks")
       ),
       data = named_list
     )

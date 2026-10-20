@@ -1,0 +1,68 @@
+# Changelog
+
+## reproducibleRchunks 1.3.0 (work in progress)
+
+- Quarto support (work in progress)
+
+## reproducibleRchunks 1.2.1
+
+- Added an rmarkdown template
+- changed default numerical precision from 10 to 7 digits to increase
+  tolerance
+- fixed a bug that did not report where numerical differences appeared
+- hashes are now computed based on a canonical representation of
+  attributes (ignoring their order)
+
+## reproducibleRchunks 1.2.0
+
+CRAN release: 2025-07-23
+
+- features new use_github_action() for automated reproducibility checks
+  on github with automatic inference of used packages for container
+  setup; this action supports the use of renv projects
+- metadata now stores information about R packages used
+- customization of failure and success message is now possible
+- storage of sessionInfo() in metadata
+- reset() function to delete all metadata files
+- new vignette explaining how to use renv and the package together
+
+## reproducibleRchunks 1.1.0
+
+CRAN release: 2025-07-02
+
+- Rewrite of the internal evaluation and formatting engine to relay most
+  of the heavy lifting to knitrs native code; this enables support of
+  all standard code chunk options that were previously not supported,
+  including the creation of figures
+- In the reproducibility report, a warning is now displayed if a
+  reproducibleR chunk has no newly declared variables and thus has no
+  actual reproducibility checks
+
+## reproducibleRchunks 1.0.3
+
+CRAN release: 2025-02-26
+
+- New function [`isReproducible()`](../reference/isReproducible.md)
+  allows checking whether a given R Markdown file reproduces or not
+- Package metadata now contains comprehensive information about R
+  version
+- Reproducibility information is now stored in an internal environment
+  called `.cache`
+- This is the package version that was descried in the paper Automated
+  Reproducibility Testing in R Markdown (2025) by Brandmaier and
+  Peikert.
+
+## reproducibleRchunks 1.0.2
+
+CRAN release: 2025-01-29
+
+- Removed global environment references according to CRAN policy
+- Improved documentation with more descriptions and return values
+- Removed usage of installed.packages() according to CRAN policy
+- Object comparisons are now made via
+  [`all.equal()`](https://rdrr.io/r/base/all.equal.html) instead of
+  [`identical()`](https://rdrr.io/r/base/identical.html)
+
+## reproducibleRchunks 1.0.1
+
+- Added a `NEWS.md` file to track changes to the package.

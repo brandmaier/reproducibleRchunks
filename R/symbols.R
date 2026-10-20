@@ -20,5 +20,5 @@ warning_symbol <- function(fmt="undef") {
   if (fmt=="html")
     return("&#9888;")
   else
-    return("/!\\")
+    return("/!\\\\textbackslash")
 }
