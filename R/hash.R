@@ -15,16 +15,7 @@
 #'
 hash <- function(x, canonical=TRUE, digits=default_digits()) {
 
-  if (!isFALSE(digits) && !is.null(digits)) {
-    stopifnot(is.numeric(digits))
-
-    x <- round_recursive(x)
-  }
-
-  if (isTRUE(canonical)) {
-    a <- attributes(x)
-    attributes(x) <- a[sort(names(a))]
-  }
+  x <- normalize_for_hash(x, canonical=canonical, digits=digits)
 
   digest::digest(x, algo=default_hashing_algorithm(), serialize=TRUE)
 }
