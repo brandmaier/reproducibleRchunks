@@ -13,7 +13,13 @@
 #' @param x Object. An arbitrary R object which will be serialized and fingerprinted.
 #' @param canonical Boolean. Determines whether the canonical form of the attributes should be used.
 #'
-hash <- function(x, canonical=TRUE) {
+hash <- function(x, canonical=TRUE, digits=default_digits()) {
+
+  if (!isFALSE(digits) && !is.null(digits)) {
+    stopifnot(is.numeric(digits))
+
+    x <- round_recursive(x)
+  }
 
   if (isTRUE(canonical)) {
     a <- attributes(x)

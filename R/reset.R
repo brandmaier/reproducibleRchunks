@@ -14,8 +14,12 @@ reset <- function(interactive = NULL) {
 
   if (is.null(interactive)) {
     interactive = base::interactive()
-  } else {
-    interactive = match(interactive, c(TRUE,FALSE))
+  }
+
+  if (!is.logical(interactive) ||
+      length(interactive) != 1L ||
+      is.na(interactive)) {
+    stop("`interactive` must be TRUE or FALSE.")
   }
 
   if (length(files) == 0) {

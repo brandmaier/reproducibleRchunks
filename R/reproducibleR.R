@@ -224,17 +224,28 @@ reproducibleR <- function(options) {
       current_value <- get(var, envir = current_env)
 
       if (isTRUE(default_hashing())) {
+
+        digits <- default_digits()
+        # downward compatibility
+        if (!utils::hasName(meta_data,"reproducibleRchunks_package_version")) {
+          # this means we are package version 1.2.0 or below
+          # which did not use rounding in hashes
+          digits <- FALSE
+        }
+
         current_value <- hash(current_value,
-                  canonical=use_canonical_attributes)
+                  canonical=use_canonical_attributes,
+                  digits=digits)
       }
 
-      # perform rounding to given numeric precision
-      if (is.numeric(current_value))
-        current_value <- round(current_value, default_digits())
-      if (is.numeric(original_value))
-        original_value <- round(original_value, default_digits())
+      # REMOVED: because this is handled by all.equal()
+      #perform rounding to given numeric precision
+      #if (is.numeric(current_value))
+      #  current_value <- round(current_value, default_digits())
+      #if (is.numeric(original_value))
+      #  original_value <- round(original_value, default_digits())
 
-      tolerance = 10^-(default_digits()-1)
+      tolerance = 10^-(default_digits())
       cmp <- isTRUE(all.equal(original_value, current_value,
                               tolerance=tolerance))
 
@@ -361,7 +372,9 @@ reproducibleR <- function(options) {
     out <- ""
 
 
-  # TODO (if HTML)
+  # For HTML output and if dynamic_backgroundcolor is set as a
+  # markdown meta parameter, add a block of stylesheet information
+  # that was dynamically generated
   dbc <- isTRUE(rmarkdown::metadata$reproducibleR$dynamic_backgroundcolor)
   if (output_format == "html" && dbc)
     out <-  paste0(out, "\n<style>",stylesheet," </style>\n")

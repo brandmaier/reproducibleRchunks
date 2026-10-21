@@ -87,7 +87,7 @@ save_repro_data <- function(x,
     writeLines(json_data, con)
     close(con)
   } else if (tolower(filetype) == "rda") {
-    save(list = x, file = filename)
+    save(list = x, file = filename, envir = envir)
   } else {
     stop("Unknown filetype. Cannot save reproducibility data.")
   }

@@ -7,7 +7,7 @@
 isReproducible(
   filename,
   resetOptions = TRUE,
-  engine = c("knitr", "rmarkdown"),
+  engine = c("auto", "knitr", "rmarkdown", "quarto"),
   quiet = TRUE,
   ...
 )

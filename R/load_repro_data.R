@@ -49,7 +49,7 @@ load_repro_data <-
         stop("Hashing vs. raw data mismatch between Markdown and JSON file!")
       }
 
-      for (i in 1:length(json_lst)) {
+      for (i in seq_along(json_lst)) {
         var_name <- names(json_lst)[i]
         assign(x = var_name,
                value = json_lst[[i]],
