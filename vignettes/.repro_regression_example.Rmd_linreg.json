@@ -14,7 +14,7 @@
         "names": {
           "type": "character",
           "attributes": {},
-          "value": ["hashing", "hashing_algorithm", "hashing_package", "hashing_package_version", "digits", "R_version", "code_fingerprint"]
+          "value": ["hashing", "hashing_algorithm", "hashing_package", "hashing_package_version", "digits", "R_version", "packages", "reproducibleRchunks_package_version", "code_fingerprint"]
         }
       },
       "value": [
@@ -46,14 +46,14 @@
             {
               "type": "integer",
               "attributes": {},
-              "value": [0, 6, 37]
+              "value": [0, 6, 39]
             }
           ]
         },
         {
           "type": "double",
           "attributes": {},
-          "value": [10]
+          "value": [7]
         },
         {
           "type": "list",
@@ -108,27 +108,27 @@
             {
               "type": "character",
               "attributes": {},
-              "value": ["4.2"]
+              "value": ["5.1"]
             },
             {
               "type": "character",
               "attributes": {},
-              "value": ["2024"]
+              "value": ["2025"]
             },
             {
               "type": "character",
               "attributes": {},
-              "value": ["10"]
+              "value": ["06"]
             },
             {
               "type": "character",
               "attributes": {},
-              "value": ["31"]
+              "value": ["13"]
             },
             {
               "type": "character",
               "attributes": {},
-              "value": ["87279"]
+              "value": ["88306"]
             },
             {
               "type": "character",
@@ -138,12 +138,40 @@
             {
               "type": "character",
               "attributes": {},
-              "value": ["R version 4.4.2 (2024-10-31 ucrt)"]
+              "value": ["R version 4.5.1 (2025-06-13 ucrt)"]
             },
             {
               "type": "character",
               "attributes": {},
-              "value": ["Pile of Leaves"]
+              "value": ["Great Square Root"]
+            }
+          ]
+        },
+        {
+          "type": "character",
+          "attributes": {
+            "names": {
+              "type": "character",
+              "attributes": {},
+              "value": ["MASS", "reproducibleRchunks"]
+            }
+          },
+          "value": ["MASS", "reproducibleRchunks"]
+        },
+        {
+          "type": "list",
+          "attributes": {
+            "class": {
+              "type": "character",
+              "attributes": {},
+              "value": ["package_version", "numeric_version"]
+            }
+          },
+          "value": [
+            {
+              "type": "integer",
+              "attributes": {},
+              "value": [1, 2, 1]
             }
           ]
         },
@@ -167,7 +195,7 @@
         {
           "type": "character",
           "attributes": {},
-          "value": ["d5e57989c941485ebfba3a041f1cb7b3746421c8399cbfc160d8a97ab738c210"]
+          "value": ["f39cf23f3d7d9493e8b2421614ea3f1c27ea143d5e10d268e0f3a562407b5cec"]
         }
       ]
     }

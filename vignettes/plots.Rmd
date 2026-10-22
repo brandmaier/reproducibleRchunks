@@ -22,7 +22,7 @@ library(reproducibleRchunks)
 
 Note that base R plots typically produce graphical output directly to the current graphics device, without assigning the result to a variable. By design, the `reproducibleRchunks` package only tracks metadata for variables that are explicitly created within each code chunk. Since standard plotting commands do not involve variable assignment, their output is not checked for reproducibility. See the following example, in which only the newly declared variables `x` and `y` are subject to a reproducibility check but not the plot:
 
-```{reproducibleR}
+```{reproducibleR sinplot}
 x <- seq(1,10,.1)
 y <- sin(x)
 plot(x,y)
