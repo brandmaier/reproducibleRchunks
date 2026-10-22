@@ -2,7 +2,7 @@
 title: "Use Case: A Simulation Study using Random Numbers"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{use_case_simulation}
+  %\VignetteIndexEntry{Use Case: A Simulation Study using Random Numbers}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -1,0 +1,46 @@
+---
+title: "Conditional Backgrounds"
+author: "Andreas Brandmaier"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Conditional Backgrounds}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+reproducibleR:
+  conditional_backgroundcolor: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This document contains the following metaparameters in the YAML header of the Markdown file
+
+```{yaml}
+reproducibleR:
+  conditional_backgroundcolor: true
+```
+
+This turns on dynamic coloring of code blocks that do not reproduce. 
+In the following code blocks with failures to reproduce get a light red background color.
+
+```{r}
+library(reproducibleRchunks)
+```
+
+The following code is set up to reproduce fine:
+
+```{reproducibleR ab}
+a <- 1
+b <- 2
+```
+
+The next code block is set up to fail:
+
+```{reproducibleR today_rnd}
+today <- date()
+rnd <- rnorm(1)
+```
+
+

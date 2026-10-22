@@ -6,12 +6,16 @@
 
 ## reproducibleRchunks 1.2.1
 
+- Hashes are now based on rounded numbers, not exact matches
+- Hashes are now computed based on a canonical representation of
+  attributes (ignoring their order)
 - Added an rmarkdown template
 - changed default numerical precision from 10 to 7 digits to increase
   tolerance
 - fixed a bug that did not report where numerical differences appeared
-- hashes are now computed based on a canonical representation of
-  attributes (ignoring their order)
+- new vignette on object identity
+- new styling option that allows to color code backgrounds conditional
+  on reproduction success
 
 ## reproducibleRchunks 1.2.0
 

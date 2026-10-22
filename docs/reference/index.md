@@ -10,8 +10,7 @@
   : Get the total number of failed reproduction attempts
 - [`get_reproducibility_summary()`](get_reproducibility_summary.md) :
   Get a summary about all reproduction attempts
-- [`hash()`](hash.md) : This function calls digest with the default
-  hashing algorithm
+- [`hash()`](hash.md) : Create a fingerprint of an objext
 - [`isReproducible()`](isReproducible.md) : Test reproducibility of an R
   Markdown file
 - [`load_repro_data()`](load_repro_data.md) : Loading reproducibility

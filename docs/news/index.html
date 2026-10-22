@@ -19,6 +19,7 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/custom_reports.html">Custom Reports</a></li>
+    <li><a class="dropdown-item" href="../articles/html_styling.html">Conditional Backgrounds</a></li>
     <li><a class="dropdown-item" href="../articles/minimal_example.html">A Minimal Example</a></li>
     <li><a class="dropdown-item" href="../articles/object_identity.html">Details on Comparing Objects</a></li>
     <li><a class="dropdown-item" href="../articles/plots.html">Plots</a></li>
@@ -48,10 +49,13 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.1" id="reproduciblerchunks-121">reproducibleRchunks 1.2.1<a class="anchor" aria-label="anchor" href="#reproduciblerchunks-121"></a></h2>
-<ul><li>Added an rmarkdown template</li>
+<ul><li>Hashes are now based on rounded numbers, not exact matches</li>
+<li>Hashes are now computed based on a canonical representation of attributes (ignoring their order)</li>
+<li>Added an rmarkdown template</li>
 <li>changed default numerical precision from 10 to 7 digits to increase tolerance</li>
 <li>fixed a bug that did not report where numerical differences appeared</li>
-<li>hashes are now computed based on a canonical representation of attributes (ignoring their order)</li>
+<li>new vignette on object identity</li>
+<li>new styling option that allows to color code backgrounds conditional on reproduction success</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.0" id="reproduciblerchunks-120">reproducibleRchunks 1.2.0<a class="anchor" aria-label="anchor" href="#reproduciblerchunks-120"></a></h2><p class="text-muted">CRAN release: 2025-07-23</p>

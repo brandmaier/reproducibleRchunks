@@ -1,21 +1,27 @@
+#' Create a fingerprint of an objext
 #'
 #' This function calls \code{digest} with the default hashing algorithm
+#' as set in the package.
 #'
+#' By default, the function hashes a canonical objec representation:
 #' Across R versions, attribute order of objects seems not to
-#' be consistent. Anecdotally, I found a difference between
-#' R 4.5.1 on Windows and R 4.2.2 on macOS Seqouia, which differed
-#' only in the order of attributes when creating a data.frame
-#' (which may also be related to different tidyverse versions
-#' on those computers). In order to prevent this issue, I
-#' choose a canonical representation of attributes before
-#' creating the hash.
+#' be consistent, so attributes are sorted by name first. Further,
+#' numeric variables are rounded to a given precision.
+#'
+#' @examples
+#' hash( c(1,2,3,4,5) )
+#'
 #'
 #' @param x Object. An arbitrary R object which will be serialized and fingerprinted.
-#' @param canonical Boolean. Determines whether the canonical form of the attributes should be used.
+#' @param canonical_attributes Boolean. Determines whether the canonical form of the attributes should be used.
+#' @param digits Numeric/Boolean. If FALSE or NULL, no rounding is applied. Otherwise rounding up to the number of digits.
 #'
-hash <- function(x, canonical=TRUE, digits=default_digits()) {
+#' @export
+hash <- function(x, canonical_attributes=TRUE, digits=default_digits()) {
 
-  x <- normalize_for_hash(x, canonical=canonical, digits=digits)
+  x <- normalize_for_hash(x,
+                          canonical_attributes = canonical_attributes,
+                          digits=digits)
 
   digest::digest(x, algo=default_hashing_algorithm(), serialize=TRUE)
 }

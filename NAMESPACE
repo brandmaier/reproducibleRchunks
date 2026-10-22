@@ -3,6 +3,7 @@
 export(gather_package_names)
 export(get_num_reproducibility_errors)
 export(get_reproducibility_summary)
+export(hash)
 export(isReproducible)
 export(load_repro_data)
 export(reproducibleR)

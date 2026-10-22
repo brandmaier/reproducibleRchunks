@@ -26,7 +26,7 @@ compute_correlation <- function(N, rho, ...) {
 
 - ✅compute_correlation: REPRODUCTION SUCCESSFUL
 
-- ✅conditions: REPRODUCTION SUCCESSFUL
+- ❌conditions: **REPRODUCTION FAILED** Fingerprints are not identical.
 
 Last, we call the function for every simulation condition to obtain the
 estimates for all simulation conditions.

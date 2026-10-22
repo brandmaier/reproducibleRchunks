@@ -234,7 +234,7 @@ reproducibleR <- function(options) {
         }
 
         current_value <- hash(current_value,
-                  canonical=use_canonical_attributes,
+                  canonical_attributes=use_canonical_attributes,
                   digits=digits)
       }
 
@@ -372,10 +372,10 @@ reproducibleR <- function(options) {
     out <- ""
 
 
-  # For HTML output and if dynamic_backgroundcolor is set as a
+  # For HTML output and if conditional_backgroundcolor is set as a
   # markdown meta parameter, add a block of stylesheet information
   # that was dynamically generated
-  dbc <- isTRUE(rmarkdown::metadata$reproducibleR$dynamic_backgroundcolor)
+  dbc <- isTRUE(rmarkdown::metadata$reproducibleR$conditional_backgroundcolor)
   if (output_format == "html" && dbc)
     out <-  paste0(out, "\n<style>",stylesheet," </style>\n")
 

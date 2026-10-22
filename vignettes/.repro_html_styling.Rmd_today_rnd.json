@@ -1,0 +1,213 @@
+{
+  "type": "list",
+  "attributes": {
+    "names": {
+      "type": "character",
+      "attributes": {},
+      "value": ["metadata", "data"]
+    }
+  },
+  "value": [
+    {
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": ["hashing", "hashing_algorithm", "hashing_package", "hashing_package_version", "digits", "R_version", "packages", "reproducibleRchunks_package_version", "code_fingerprint"]
+        }
+      },
+      "value": [
+        {
+          "type": "logical",
+          "attributes": {},
+          "value": [true]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["sha256"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["digest"]
+        },
+        {
+          "type": "list",
+          "attributes": {
+            "class": {
+              "type": "character",
+              "attributes": {},
+              "value": ["package_version", "numeric_version"]
+            }
+          },
+          "value": [
+            {
+              "type": "integer",
+              "attributes": {},
+              "value": [0, 6, 39]
+            }
+          ]
+        },
+        {
+          "type": "double",
+          "attributes": {},
+          "value": [7]
+        },
+        {
+          "type": "list",
+          "attributes": {
+            "names": {
+              "type": "character",
+              "attributes": {},
+              "value": ["platform", "arch", "os", "crt", "system", "status", "major", "minor", "year", "month", "day", "svn rev", "language", "version.string", "nickname"]
+            },
+            "class": {
+              "type": "character",
+              "attributes": {},
+              "value": ["simple.list"]
+            }
+          },
+          "value": [
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["x86_64-w64-mingw32"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["x86_64"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["mingw32"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["ucrt"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["x86_64, mingw32"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": [""]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["4"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["5.1"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["2025"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["06"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["13"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["88306"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["R"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["R version 4.5.1 (2025-06-13 ucrt)"]
+            },
+            {
+              "type": "character",
+              "attributes": {},
+              "value": ["Great Square Root"]
+            }
+          ]
+        },
+        {
+          "type": "character",
+          "attributes": {
+            "names": {
+              "type": "character",
+              "attributes": {},
+              "value": ["reproducibleRchunks"]
+            }
+          },
+          "value": ["reproducibleRchunks"]
+        },
+        {
+          "type": "list",
+          "attributes": {
+            "class": {
+              "type": "character",
+              "attributes": {},
+              "value": ["package_version", "numeric_version"]
+            }
+          },
+          "value": [
+            {
+              "type": "integer",
+              "attributes": {},
+              "value": [1, 2, 1]
+            }
+          ]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["df730bde4f59116585f1595099407c7ee4988010a07e2b83c67623442f6dd0b7"]
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "attributes": {
+        "names": {
+          "type": "character",
+          "attributes": {},
+          "value": [".Random.seed", "rnd", "today"]
+        }
+      },
+      "value": [
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["7981774a04aff85cafae44d39cfb7bfab9c6e00ff74e0915944c30b2eeee2e93"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["7b3baefcea37228811d4b431d79b402f1552d01bdf3f8ad613ef7af92755281e"]
+        },
+        {
+          "type": "character",
+          "attributes": {},
+          "value": ["e755d46327573817a3dd09d74ef4194228f22d9040290ed580c8dc20cbddeb8e"]
+        }
+      ]
+    }
+  ]
+}

@@ -3,6 +3,7 @@
 ### All vignettes
 
 - [Custom Reports](custom_reports.md):
+- [Conditional Backgrounds](html_styling.md):
 - [A Minimal Example](minimal_example.md):
 - [Details on Comparing Objects](object_identity.md):
 - [Plots](plots.md):
