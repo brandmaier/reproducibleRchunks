@@ -17,7 +17,7 @@ y <- sin(x)
 plot(x,y)
 ```
 
-![](plots_files/figure-html/unnamed-chunk-1-1.png)
+![](plots_files/figure-html/sinplot-1.png)
 
 ###### Code Chunk Reproduction Report
 

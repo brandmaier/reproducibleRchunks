@@ -6,7 +6,7 @@ in the package.
 ## Usage
 
 ``` r
-hash(x, canonical = TRUE, digits = default_digits())
+hash(x, canonical_attributes = TRUE, digits = default_digits())
 ```
 
 ## Arguments
@@ -16,12 +16,12 @@ hash(x, canonical = TRUE, digits = default_digits())
   Object. An arbitrary R object which will be serialized and
   fingerprinted.
 
-- canonical:
+- canonical_attributes:
 
   Boolean. Determines whether the canonical form of the attributes
   should be used.
 
-- digits.:
+- digits:
 
   Numeric/Boolean. If FALSE or NULL, no rounding is applied. Otherwise
   rounding up to the number of digits.

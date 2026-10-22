@@ -105,7 +105,7 @@ fa_result
 
 - ✅bfi_subset: REPRODUCTION SUCCESSFUL
 
-- ❌fa_result: **REPRODUCTION FAILED** Fingerprints are not identical.
+- ✅fa_result: REPRODUCTION SUCCESSFUL
 
 This chunk is executed with `reproducibleR`, so fingerprints of
 `bfi_subset` and `fa_result` are stored for later reproducibility
